@@ -1,0 +1,1 @@
+open_basedir="F:\github\studynote\;F:\UPUPW_NP5.6\memcached\;F:\UPUPW_NP5.6\phpmyadmin\;F:\UPUPW_NP5.6\temp\;C:\Windows\Temp\"
