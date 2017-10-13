@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+  <script src="./jsencrypt.js"></script>
+  <script src="./jquery.js"></script>
+    <script>
+      $(function(){
+          //生成rsa密钥对
+          /*var crypt = new JSEncrypt();
+          crypt.getKey();
+          $("#privatekey").val(crypt.getPrivateKey());
+          $("#publickey").val(crypt.getPublicKey());*/
+
+          var publickey = "-----BEGIN PUBLIC KEY-----\n" +
+              "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCFDGD7tDsXzFKOG9ZazDF45G1j\n" +
+              "il1ZBoTznMqN7WOqa2t7pp6J75yVKPItIHZyxL2YLBmgCRmDCr9rTtmmqIHbDwPV\n" +
+              "0/jXsjuMLOJqo5ybToqwm+RHvIjxUja1PK2trB63mP15GFekzVEgrLMSxrFIiupy\n" +
+              "U9h1Pw4nHNyKEyFgIQIDAQAB\n" +
+              "-----END PUBLIC KEY-----";
+          $("form").submit(function(){
+              var encrypt = new JSEncrypt({'default_key_size': 1024});
+              encrypt.setPublicKey(publickey);
+              var encrypted = encrypt.encrypt($("#password").val());
+              $("input[name='passwd']").val(encrypted);
+          });
+      });
+    </script>
+</head>
+<body>
+<form action="./demo.php" method="post">
+  <input type="text" id="password">
+  <input type="hidden" name="passwd">
+  <input type="submit">
+</form>
+
+</body>
+</html>

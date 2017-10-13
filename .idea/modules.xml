@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://F:/UPUPW_NP5.6/htdocs/.idea/htdocs.iml" filepath="F:/UPUPW_NP5.6/htdocs/.idea/htdocs.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/studynote.iml" filepath="$PROJECT_DIR$/.idea/studynote.iml" />
     </modules>
   </component>

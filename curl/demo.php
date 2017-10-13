@@ -1,5 +1,4 @@
 <?php
-
 function p($arr){
     echo "<pre>";
     print_r($arr);
@@ -22,9 +21,6 @@ $matchs = [];
 //获取所有的a链接
 //preg_match_all("/(<a[^>]*>)(.*?)(<\/a>)/",$content,$matchs);
 preg_match_all("/<a[^>]*>.*?<\/a>/",$content,$matchs);
-
-//echo $content;
-
 p($matchs);
 
 // 关闭cURL资源，并且释放系统资源
