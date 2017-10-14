@@ -6,7 +6,7 @@ function p($arr){
     echo "</pre>";
 }
 
-//curl获取网页内容
+//curl获取网页内容  同时也可用来发送get请求
 function curl_content($url){
     //curl请求接口
     $ch = curl_init();
@@ -39,8 +39,48 @@ function curl_href($url){
     return $arr;
 }
 
+/*
 $matchs = [];
 $url = "http://www.zixue.it/";
 p(curl_href($url));
+*/
 
+
+//发送post请求
+function curl_post($url,$data){
+    $ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL,$url);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch,CURLOPT_POST, 1);
+    curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+/*
+$url = "study/curl/answer.php";
+echo curl_post($url,array('name'=>'hello'));
+ */
+
+
+//上传文件 并传输数据
+function curl_sendfile($url,$filepath,$time=30)
+{
+    $post_data = array(
+        'filename' => basename($filepath),
+        'upfile'=>'@'.$filepath
+    );
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    curl_setopt($ch, CURLOPT_TIMEOUT, $time);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
+$url = "study/curl/upload.php";
+echo curl_sendfile($url,"E:\blog.sql");
 
