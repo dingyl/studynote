@@ -1,36 +1,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title>Document</title>
-    </head>
-    <body>
-    <div id="app-7">
-        <ol>
-            <todo-item
-                v-for="item in groceryList"
-                v-bind:todo="item"
-                v-bind:key="item.id">
-            </todo-item>
-        </ol>
-    </div>
-    </body>
-    <script src="./js/vue.js"></script>
-    <script>
-        Vue.component('todo-item', {
-            props: ['todo'],
-            template: '<li>{{ todo.text }}</li>'
-        })
-        var app7 = new Vue({
-            el: '#app-7',
-            data: {
-                groceryList: [
-                    { id: 0, text: '蔬菜' },
-                    { id: 1, text: '奶酪' },
-                    { id: 2, text: '随便其他什么人吃的东西' }
-                ]
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app" v-bind:title="title">
+    {{message}}
+    <p v-if="isseen">are you say</p>
+
+    <ol>
+        <li v-for="item in items">{{item.name}}</li>
+    </ol>
+
+    <input type="button" v-on:click="test" value="click">
+
+    <input type="text" v-model="name">
+    <!--绑定参数时,必须有一个默认的值,或者会出错-->
+    <strong>{{name}}</strong>
+
+</div>
+
+
+<script src="./js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:'hello world',
+            title:"this is title",
+            isseen:false,
+            items:[
+                {name:'ding',age:23},
+                {name:'da',age:23},
+                {name:'fdf',age:23}
+            ],
+            name:"defaultname"
+        },
+        methods:{
+            test:function(){
+                alert(this.message);
             }
-        })
-    </script>
+        }
+    });
+
+</script>
+</body>
 </html>

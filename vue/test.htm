@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <p :style='style' class="message">{{message}}</p>
+    <input type="text" v-model="message" @click="onClick"/>
+
+    <ul>
+        <navlist v-for="list in booklist"
+        v-bind:lists="list"
+        v-bind:key="list.price">
+
+        </navlist>
+
+        <li v-for="list in booklist">{{list.name}}</li>
+    </ul>
+</div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    Vue.component('navlist',{
+        props:['lists'],
+        template:'<li>{{lists.name}}</li>>'
+    });
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello world',
+            style:'color:red',
+            booklist:[
+                {name:'php',price:24},
+                {name:'css',price:24},
+                {name:'java',price:24},
+                {name:'net',price:24}
+            ]
+        },
+        methods:{
+            onClick:function(){
+                alert(this.message);
+            }
+        }
+    });
+</script>
+</html>
