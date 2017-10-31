@@ -1,11 +1,5 @@
 <?php
-//打印数组函数
-function p($arr){
-    echo "<pre>";
-    print_r($arr);
-    echo "</pre>";
-}
-
+include("../functions.php");
 //curl获取网页内容  同时也可用来发送get请求
 function curl_content($url){
     //curl请求接口
@@ -52,35 +46,59 @@ function curl_post($url,$data){
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch,CURLOPT_POST, 1);
+    //添加文件上传功能
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false); //  PHP 5.6.0 后必须设置
     curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
     $output = curl_exec($ch);
     curl_close($ch);
     return $output;
 }
-/*
-$url = "study/curl/answer.php";
-echo curl_post($url,array('name'=>'hello'));
- */
 
 
 //上传文件 并传输数据
 function curl_sendfile($url,$filepath,$time=30)
 {
+    //$filepath 文件的真实物理地址,upfile用来获取$_FILES['upfile']
     $post_data = array(
         'filename' => basename($filepath),
-        'upfile'=>'@'.$filepath
+        'file'=>'@'.$filepath
     );
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
+    //添加文件上传功能
+    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false); //  PHP 5.6.0 后必须设置
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    //设置上传超时时间
     curl_setopt($ch, CURLOPT_TIMEOUT, $time);
     $output = curl_exec($ch);
     curl_close($ch);
     return $output;
 }
 
+p($_FILES);
 $url = "study/curl/upload.php";
-echo curl_sendfile($url,"E:\blog.sql");
+echo curl_sendfile($url,$_FILES['img']['tmp_name']);
+
+$file = "./demo.txt";
+echo curl_sendfile($url,$file);
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data" >
+    <input type="file" name="img"/>
+    <input type="submit">
+</form>
+</body>
+</html>
+
+
 
