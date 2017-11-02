@@ -3,11 +3,10 @@
         <meta http-equiv="pragma" content="no-cache">
         <meta http-equiv="cache-control" content="no-cache">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="../jquery.js"></script>
         <script type="text/javascript">
             $(function () {
                 (function longPolling() {
-                    alert(Date.parse(new Date())/1000);
                     $.ajax({
                         url: "comet.php",
                         data: {"timed": Date.parse(new Date())/1000},

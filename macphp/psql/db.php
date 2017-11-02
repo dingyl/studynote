@@ -42,6 +42,7 @@ class Db{
     }
 
     public function query($sql){
+        put_log($sql,LOG_PATH);
         return $this->_pdo->query($sql);
     }
 
@@ -64,19 +65,6 @@ class Db{
         return $this;
     }
 
-    /**如果分页sql不是这样的需要自己进行重写,此适合mysql
-     * @param $num
-     * @return $this
-     */
-    public function limit(int $limit,int $offset=0){
-        if(!empty($order)){
-            $this->_limit = " limit $limit, $offset ";
-        }else{
-            $this->_limit = '';
-        }
-        return $this;
-    }
-
     public function group($group){
         if(!empty($group)){
             $this->_group = ' group by '.$group;
@@ -85,6 +73,20 @@ class Db{
         }
         return $this;
     }
+
+    /**如果分页sql不是这样的需要自己进行重写,此适合mysql
+     * @param $num
+     * @return $this
+     */
+    public function limit($limit,$offset=0){
+        if(!empty($order)){
+            $this->_limit = " limit $limit, $offset ";
+        }else{
+            $this->_limit = '';
+        }
+        return $this;
+    }
+
 
     /**
      * 获取插入数据的id
@@ -117,30 +119,29 @@ class Db{
      * @param $conditions
      * @return bool
      */
-    public function find($conditions){
-        $bind = $this->_create_where($conditions);
+    public function find($conditions=[]){
+        $bind = $this->_createWhere($conditions);
         $sql = " select ".$this->_field." from ".$this->_tb_name.$this->_where.$this->_join.$this->_group.$this->_order.$this->_limit.$this->_offset;
-        p($sql);
-        p($bind);
-        die;
         $shd = $this->_pdo->prepare($sql);
+        //添加日志记录
+        put_log($this->_bindSql($sql,$bind),LOG_PATH);
         $this->_clear();
-        $rst = $shd->execute($bind);
-        var_dump($shd->fetchAll());
-        foreach ($rst as $item) {
-            p($item);
+        $shd->execute($bind);
+        $temp = [] ;
+        foreach ($shd->fetchAll() as $row) {
+            $temp[] = $row ;
         }
-        die;
-        //返回数组数据
+        return $temp;
     }
 
     /**根据条件删除数据
      * @param $conditions
      */
     public function delete($conditions){
-        $bind = $this->_create_where($conditions);
+        $bind = $this->_createWhere($conditions);
         $sql = " delete from ".$this->_tb_name.$this->_where;
         $shd = $this->_pdo->prepare($sql);
+        put_log($this->_bindSql($sql,$bind),LOG_PATH);
         $this->_clear();
         return $shd->execute($bind);
     }
@@ -160,6 +161,7 @@ class Db{
         }
         $sql = " insert into ".$this->_tb_name." ( $column ) values ( $prepares ) ";
         $shd = $this->_pdo->prepare($sql);
+        put_log($this->_bindSql($sql,$temp),LOG_PATH);
         if($shd->execute($temp)){
             return $this->_id();
         }
@@ -174,21 +176,20 @@ class Db{
      */
     public function update($data,$conditions=null){
         $rows = $temp = [];
-        $bind = $this->_create_where($conditions);
+        $bind = $this->_createWhere($conditions);
         foreach($data as $k=>$v){
-            $rows[] = ($k."=:u$k");
+            $rows[] = ($k." = :u$k");
             $temp[":u$k"] = $v;
         }
         $temp = array_merge($temp,$bind);
-        p($temp);
-
         $sql = "update ".$this->_tb_name." set ".implode(', ',$rows).$this->_where;
         $shd = $this->_pdo->prepare($sql);
+        put_log($this->_bindSql($sql,$temp),LOG_PATH);
         $this->_clear();
         return $shd->execute($temp);
     }
 
-    public function or($where){
+    public function orWhere($where){
 
     }
 
@@ -196,7 +197,7 @@ class Db{
      * @param $conditions   给定的条件
      * @return array    返回相应的绑定数据数组
      */
-    public function _create_where($conditions){
+    public function _createWhere($conditions){
         //相对应得绑定数据
         $bind = [];
         if(empty($conditions)){
@@ -206,10 +207,7 @@ class Db{
         }else if(is_array($conditions)){
             $where = [];
             foreach ($conditions as $k=>$v){
-                if(is_string($v)){
-                    $where[] = " $k = :$k ";
-                    $bind[":$k"] = $v ;
-                }else if(is_array($v)){
+                if(is_array($v)){
                     switch ($v[0]){
                         case '<':
                         case '>':
@@ -223,13 +221,17 @@ class Db{
                             $bind[":$k"] = "%$v[1]%" ;
                             break;
                         case 'in':
-                            $where[] = " $k in ( :$k ) ";
-                            $bind[":$k"] = "'".implode("','",$v[1])."'" ;
+                            $where[] = " $k in (:$k) ";
+                            $bind[":$k"] = " '".implode("' , '",$v[1])."' " ;
                             break;
                         case 'between':
                             $where[] = " $k between $v[1] and $v[2]";
                             break;
+
                     }
+                }else{
+                    $where[] = " $k = :$k ";
+                    $bind[":$k"] = $v ;
                 }
             }
             $where = implode(' and ',$where);
@@ -253,5 +255,13 @@ class Db{
         $this->_order='';
         $this->_offset='';
         $this->_group='';
+    }
+
+    //获取绑定后的sql
+    public function _bindSql($sql,$data){
+        foreach ($data as $k=>$v){
+            $sql = str_replace($k,$v,$sql);
+        }
+        return $sql;
     }
 }

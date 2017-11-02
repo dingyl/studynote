@@ -76,7 +76,6 @@ function curl_sendfile($url,$filepath,$time=30)
     curl_close($ch);
     return $output;
 }
-
 p($_FILES);
 $url = "study/curl/upload.php";
 echo curl_sendfile($url,$_FILES['img']['tmp_name']);
