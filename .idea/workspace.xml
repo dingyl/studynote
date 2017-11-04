@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/curl/demo.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pdo/config.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pdo/db.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pdo/postgres.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PHPMailer/demo.php" afterPath="$PROJECT_DIR$/PHPMailer/demo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/curl/demo.php" afterPath="$PROJECT_DIR$/curl/demo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/curl/upload.php" afterPath="$PROJECT_DIR$/curl/upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.php" afterPath="$PROJECT_DIR$/functions.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,72 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/functions.php">
+      <file leaf-file-name="sample.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/websocket/sample.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <marker date="1509284508949" expanded="true" signature="992:1035" ph="INSERT INTO table... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pdo/db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1098">
-              <caret line="176" column="7" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="268" selection-end-column="1" />
-              <folding>
-                <marker date="1509408396047" expanded="true" signature="3684:3696" ph="delete from " />
-                <marker date="1509408396047" expanded="true" signature="4207:4271" ph="insert into ${$this-&gt;_tb_name}... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PHPMailer/demo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-              <folding>
-                <marker date="1509410852693" expanded="true" signature="2167:2391" ph="..." />
-                <marker date="1509410852693" expanded="true" signature="2174:2275" ph="..." />
-                <marker date="1509410852693" expanded="true" signature="2282:2383" ph="..." />
-                <marker date="1509410852693" expanded="true" signature="2297:2311" ph="..." />
-                <marker date="1509410852693" expanded="true" signature="2312:2375" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="postgres.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pdo/postgres.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pdo/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/51360e71-1297-47da-a592-a326571ef478/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="384">
+              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -213,6 +143,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,28 +176,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="comet" type="cbb8eebc:String" user="comet" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="PHPMailer" type="cbb8eebc:String" user="PHPMailer" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,7 +246,8 @@
       <workItem from="1508852232835" duration="4716000" />
       <workItem from="1508887218440" duration="1931000" />
       <workItem from="1509239877016" duration="17665000" />
-      <workItem from="1509370857594" duration="6616000" />
+      <workItem from="1509370857594" duration="6680000" />
+      <workItem from="1509797106725" duration="926000" />
     </task>
     <servers />
   </component>
@@ -339,16 +260,15 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77966000" />
+    <option name="totallyTimeSpent" value="78956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19688842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18186696" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18615879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16899142" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19172113" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -376,20 +296,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/comet/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webim/webroot/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webim/configs/webim.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -651,7 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="40" column="58" lean-forward="false" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -659,24 +564,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPMailer/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <marker date="1509410852693" expanded="true" signature="2167:2391" ph="..." />
+            <marker date="1509410852693" expanded="true" signature="2174:2275" ph="..." />
+            <marker date="1509410852693" expanded="true" signature="2282:2383" ph="..." />
+            <marker date="1509410852693" expanded="true" signature="2297:2311" ph="..." />
+            <marker date="1509410852693" expanded="true" signature="2312:2375" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pdo/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="786">
+          <caret line="176" column="7" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="268" selection-end-column="1" />
+          <folding>
+            <marker date="1509408396047" expanded="true" signature="3684:3696" ph="delete from " />
+            <marker date="1509408396047" expanded="true" signature="4207:4271" ph="insert into ${$this-&gt;_tb_name}... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
+        <state relative-caret-position="0">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <marker date="1509284508949" expanded="true" signature="992:1035" ph="INSERT INTO table... " />
+            <marker date="1509797984041" expanded="true" signature="992:1035" ph="INSERT INTO table... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/51360e71-1297-47da-a592-a326571ef478/console.sql">
+    <entry file="file://$PROJECT_DIR$/pdo/postgres.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="786">
+          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -689,36 +618,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pdo/postgres.php">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/51360e71-1297-47da-a592-a326571ef478/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pdo/db.php">
+    <entry file="file://$PROJECT_DIR$/comet/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="176" column="7" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="268" selection-end-column="1" />
-          <folding>
-            <marker date="1509408396047" expanded="true" signature="3684:3696" ph="delete from " />
-            <marker date="1509408396047" expanded="true" signature="4207:4271" ph="insert into ${$this-&gt;_tb_name}... " />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PHPMailer/demo.php">
+    <entry file="file://$PROJECT_DIR$/websocket/sample.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-          <folding>
-            <marker date="1509410852693" expanded="true" signature="2167:2391" ph="..." />
-            <marker date="1509410852693" expanded="true" signature="2174:2275" ph="..." />
-            <marker date="1509410852693" expanded="true" signature="2282:2383" ph="..." />
-            <marker date="1509410852693" expanded="true" signature="2297:2311" ph="..." />
-            <marker date="1509410852693" expanded="true" signature="2312:2375" ph="..." />
-          </folding>
+        <state relative-caret-position="384">
+          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
