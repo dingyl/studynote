@@ -1,7 +1,3 @@
-<!--
-  Lincense: Public Domain
--->
-
 <html><head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Sample of web_socket.js</title>
@@ -9,23 +5,18 @@
   <!-- Include these three JS files: -->
   <script type="text/javascript" src="swfobject.js"></script>
   <script type="text/javascript" src="web_socket.js"></script>
-
   <script type="text/javascript">
     
     // Set URL of your WebSocketMain.swf here:
     WEB_SOCKET_SWF_LOCATION = "WebSocketMain.swf";
     // Set this to dump debug message from Flash to console.log:
     WEB_SOCKET_DEBUG = true;
-    
-    // Everything below is the same as using standard WebSocket.
-    
     var ws;
-    
     function init() {
 
       // Connect to Web Socket.
       // Change host/port here to your own Web Socket server.
-      ws = new WebSocket("ws://localhost:10081/");
+      ws = new WebSocket("ws://192.168.24.135:9502/");
 
       // Set event handlers.
       ws.onopen = function() {
@@ -46,7 +37,6 @@
     
     function onSubmit() {
       var input = document.getElementById("input");
-      // You can send message to the Web Socket using ws.send.
       ws.send(input.value);
       output("send: " + input.value);
       input.value = "";
