@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jsencrypt/Rsa.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/studynote.iml" afterPath="$PROJECT_DIR$/.idea/studynote.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/curl/Curl.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsencrypt/demo.php" afterPath="$PROJECT_DIR$/jsencrypt/demo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/curl/demo.php" afterPath="$PROJECT_DIR$/curl/demo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/curl/upload.php" afterPath="$PROJECT_DIR$/curl/upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsencrypt/Rsa.class.php" afterPath="$PROJECT_DIR$/jsencrypt/Rsa.class.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,41 +44,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yii2advanced/common/models/User.php">
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/curl/upload.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jsencrypt/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rsa.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jsencrypt/Rsa.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="demo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jsencrypt/demo.php">
+        <entry file="file://$PROJECT_DIR$/curl/demo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="357">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Curl.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/curl/Curl.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2244">
+              <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -124,8 +115,6 @@
         <option value="$PROJECT_DIR$/vue/compont.html" />
         <option value="$PROJECT_DIR$/vue/test.htm" />
         <option value="$PROJECT_DIR$/curl/demo.txt" />
-        <option value="$PROJECT_DIR$/curl/upload.php" />
-        <option value="$PROJECT_DIR$/curl/demo.php" />
         <option value="$PROJECT_DIR$/functions.php" />
         <option value="$PROJECT_DIR$/db.class.php" />
         <option value="$PROJECT_DIR$/pdo/db.class.php" />
@@ -141,8 +130,11 @@
         <option value="$PROJECT_DIR$/yii2advanced/console/migrations/m130524_201442_init.php" />
         <option value="$PROJECT_DIR$/blogdemo2/common/config/main-local.php" />
         <option value="$PROJECT_DIR$/jsencrypt/index.html" />
-        <option value="$PROJECT_DIR$/jsencrypt/Rsa.class.php" />
         <option value="$PROJECT_DIR$/jsencrypt/demo.php" />
+        <option value="$PROJECT_DIR$/jsencrypt/Rsa.class.php" />
+        <option value="$PROJECT_DIR$/curl/upload.php" />
+        <option value="$PROJECT_DIR$/curl/Curl.class.php" />
+        <option value="$PROJECT_DIR$/curl/demo.php" />
       </list>
     </option>
   </component>
@@ -166,9 +158,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="480" />
-    <option name="y" value="58" />
-    <option name="width" value="1617" />
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
     <option name="height" value="1022" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -195,6 +186,11 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="studynote" type="cbb8eebc:String" user="studynote" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+              <item name="curl" type="cbb8eebc:String" user="curl" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -302,7 +298,7 @@
       <workItem from="1509843401789" duration="1990000" />
       <workItem from="1509849109253" duration="58000" />
       <workItem from="1509850093817" duration="10674000" />
-      <workItem from="1510190233365" duration="5460000" />
+      <workItem from="1510190233365" duration="19223000" />
     </task>
     <servers />
   </component>
@@ -315,16 +311,16 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102746000" />
+    <option name="totallyTimeSpent" value="116509000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="480" y="58" width="1617" height="1022" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1022" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1320635" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11075612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20126984" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1687966" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19172113" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -352,27 +348,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/curl/demo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="87" column="32" lean-forward="false" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2basic/vendor/yiisoft/yii2/db/ActiveRecord.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="376" column="5" lean-forward="true" selection-start-line="376" selection-start-column="5" selection-end-line="376" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yii2basic/vendor/yiisoft/yii2/db/BaseActiveRecord.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-864">
-          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yii2basic/vendor/yiisoft/yii2/db/ActiveRecordInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1272">
@@ -544,10 +519,10 @@
     <entry file="file://$PROJECT_DIR$/blogdemo2/database/V1.5.sql" />
     <entry file="file://$PROJECT_DIR$/blogdemo2/console/migrations/m130524_201442_init.php" />
     <entry file="file://$PROJECT_DIR$/yii2advanced/frontend/web/index.php" />
-    <entry file="file://$PROJECT_DIR$/yii2advanced/common/models/User.php">
+    <entry file="file://$PROJECT_DIR$/jsencrypt/demo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="578">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -560,18 +535,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsencrypt/demo.php">
+    <entry file="file://$PROJECT_DIR$/yii2advanced/common/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        <state relative-caret-position="-2126">
+          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jsencrypt/Rsa.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+        <state relative-caret-position="34">
+          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="7" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curl/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curl/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curl/Curl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2244">
+          <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding />
         </state>
       </provider>

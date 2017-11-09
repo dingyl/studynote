@@ -45,6 +45,14 @@ class Rsa{
         $this->private_key = $private_key;
     }
 
+    public function isBadPublicKey($key){
+        return openssl_pkey_get_public($key);
+    }
+
+    public function isBadPrivateKey($key){
+        return openssl_pkey_get_private($key);
+    }
+
     /**
      * 公钥加密数据
      * @param $str
