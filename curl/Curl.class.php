@@ -50,6 +50,24 @@ class Curl{
     }
 
     /**
+     * 设置cookie头信息
+     * @param $cookie
+     * @return $this
+     */
+    public function setCookie($cookies){
+        $cookie = [] ;
+        if(is_array($cookies)){
+            foreach ($cookies as $name=>$value){
+                $cookie[] = $name."=".$value;
+            }
+            $cookies = implode(';',$cookie);
+        }
+
+        curl_setopt($this->curl, CURLOPT_COOKIE, $cookies);
+        return $this;
+    }
+
+    /**
      * 返回所有的链接数组
      */
     public function getLinks(){
@@ -119,17 +137,20 @@ class Curl{
         return $this->post($data);
     }
 
-
-    protected function filter(&$data){
-        if(version_compare(phpversion(),"7.0")>=0){
-            foreach ($data as $name=>$path){
-                $data[$name] = new CURLFile(ltrim($path,'@'));
-            }
-        }else{
-            curl_setopt($this->curl,CURLOPT_SAFE_UPLOAD, false);
-        }
-        return $this;
+    /**
+     * 下载文件
+     * @param $url
+     * @param $save_path
+     */
+    public function downFile($url,$save_path){
+        $ourl = $this->url;
+        $this->setUrl($url);
+        $this->setTimeOut(0);
+        $filecontent = $this->getContent();
+        file_put_contents($save_path,$filecontent);
+        $this->setUrl($ourl);
     }
+
 
     /**
      * 设置超时时间
@@ -145,6 +166,25 @@ class Curl{
         return curl_exec($this->curl);
     }
 
+    public function close(){
+        return curl_close($this->curl);
+    }
+
+    public function __destruct(){
+        $this->close();
+    }
+
+    protected function filter(&$data){
+        if(version_compare(phpversion(),"5.5") > 0){
+            foreach ($data as $name=>$path){
+                $data[$name] = new CURLFile(ltrim($path,'@'));
+            }
+        }else{
+            curl_setopt($this->curl,CURLOPT_SAFE_UPLOAD, false);
+        }
+        return $this;
+    }
+
     /**
      * 设置请求方式 post 默认为1 开启post，或者为get
      */
@@ -154,13 +194,5 @@ class Curl{
 
     protected function setData($data){
         return curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
-    }
-
-    public function close(){
-        return curl_close($this->curl);
-    }
-
-    public function __destruct(){
-        $this->close();
     }
 }
