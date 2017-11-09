@@ -1,2 +1,0 @@
-<?php
-echo "URL Testing";

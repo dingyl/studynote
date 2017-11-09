@@ -16,6 +16,7 @@ TOMDy8lb1d5qui6fVHECQAopOe4QnnbVxeL8p5FMgn2OJJ6pugnn+Ax1X1UxOQ/l
 -----END RSA PRIVATE KEY-----";
 
 $passwd = $_POST['passwd'];
+echo $passwd."<br>";
 $temp = "";//存放解密后的数据
 
 //生成私钥
