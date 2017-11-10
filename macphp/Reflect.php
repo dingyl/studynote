@@ -1,5 +1,14 @@
 <?php
+
+/**
+ * Class Demo
+ */
 class Demo{
+
+    /**
+     * name
+     * @var
+     */
     public $name;
     protected $age;
     private $sex;
@@ -20,27 +29,36 @@ class Demo{
     }
 }
 
-$cname = 'Demo';
-$reflect = new ReflectionClass($cname);
-//获取属性
-$prop = $reflect->getProperties();
-//获取所有方法
-$method = $reflect->getMethods();
-$props = [];
-$methods = [];
-foreach ($method as $v){
-    //获取注释
-    $mark = $v->getDocComment();
-    array_push($methods,$v->class.'-'.$v->name.' mark:'.$mark);
-}
-foreach ($prop as $v){
-    array_push($props,$v->class.'-'.$v->name);
-}
-print_r($methods);
-print_r($props);
+class Reflect{
+    protected $class_name;
+    protected static $ins = null;
+    final protected function __construct(){}
 
-//过程式
-//获取所有方法
-$methods = get_class_methods('ReflectionClass');
-//获取属性
-$props = get_class_vars('ReflectionClass');
+    public static function getClass($class_name){
+        if(! self::$ins instanceof self){
+            self::$ins = new self();
+        }
+        (self::$ins)->class_name = $class_name;
+        return (self::$ins)->init();
+    }
+
+    public function init(){
+        $temp = [];
+        $cls = new ReflectionClass($this->class_name);
+        $temp['name'] = $this->class_name;
+        $temp['mark'] = $cls->getDocComment();
+        foreach ($cls->getMethods() as $method){
+            $temp['methods'][] = ['name'=>$method->name,'mark'=>$method->getDocComment()];
+        }
+
+        foreach ($cls->getProperties() as $property){
+            $temp['propertys'][] = ['name'=>$property->name,'mark'=>$property->getDocComment()];
+        }
+        return $temp;
+    }
+
+    final protected function __clone(){}
+
+}
+
+print_r(Reflect::getClass("Demo"));
