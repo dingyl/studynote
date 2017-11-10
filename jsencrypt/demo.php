@@ -1,4 +1,7 @@
 <?php
+include("Rsa.class.php");
+
+
 $private_key = "-----BEGIN RSA PRIVATE KEY-----
 MIICXAIBAAKBgQCFDGD7tDsXzFKOG9ZazDF45G1jil1ZBoTznMqN7WOqa2t7pp6J
 75yVKPItIHZyxL2YLBmgCRmDCr9rTtmmqIHbDwPV0/jXsjuMLOJqo5ybToqwm+RH
@@ -15,14 +18,9 @@ TOMDy8lb1d5qui6fVHECQAopOe4QnnbVxeL8p5FMgn2OJJ6pugnn+Ax1X1UxOQ/l
 2Im6cR432desQAdT0Keb0nD+8B1WCqAZHdv2MgXUQK4=
 -----END RSA PRIVATE KEY-----";
 
+
+
 $passwd = $_POST['passwd'];
-echo $passwd."<br>";
-$temp = "";//存放解密后的数据
-
-//生成私钥
-$pi_key =  openssl_pkey_get_private($private_key);
-//私钥解密
-openssl_private_decrypt(base64_decode($passwd),$temp,$pi_key);
-
-//输出解密后的数据
-echo $temp;
+$rsa = new Rsa();
+$rsa->setPrivateKey($private_key);
+echo $rsa->privateDecrypt($passwd);
