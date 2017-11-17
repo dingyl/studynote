@@ -16,7 +16,7 @@
 
       // Connect to Web Socket.
       // Change host/port here to your own Web Socket server.
-      ws = new WebSocket("ws://192.168.24.135:9502/");
+      ws = new WebSocket("ws://127.0.0.1:9501/");
 
       // Set event handlers.
       ws.onopen = function() {
@@ -38,7 +38,7 @@
     function onSubmit() {
       var input = document.getElementById("input");
       ws.send(input.value);
-      output("send: " + input.value);
+      //output("send: " + input.value);
       input.value = "";
       input.focus();
     }
