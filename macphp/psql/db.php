@@ -221,8 +221,8 @@ class Db{
                             $bind[":$k"] = "%$v[1]%" ;
                             break;
                         case 'in':
-                            $where[] = " $k in (:$k) ";
-                            $bind[":$k"] = " '".implode("' , '",$v[1])."' " ;
+                            $in = " '".implode("' , '",$v[1])."' " ;
+                            $where[] = " $k in ( $in ) ";
                             break;
                         case 'between':
                             $where[] = " $k between $v[1] and $v[2]";

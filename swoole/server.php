@@ -1,29 +1,88 @@
 <?php
-include("../functions.php");
+//include '../pdo/db.php';
 
-$http = new swoole_http_server('localhost', 9501);
+$server = new swoole_websocket_server("0.0.0.0", 9501);
 
-$http->on('request', function ($request, $response) {
-    //将所有请求信息数据返回给浏览器访问者
-    //获取请求的数据 $request->get $request->post $request->cookie $request->server $request->file
+class Nodb{
+	protected static $ins;
+	protected $prefix = 'clis-';
+	protected $host = '127.0.0.1';
+	protected $port = 6379;
+	protected $redis;
+	protected function __construct(){
 
+	}
 
+	protected function __clone(){
 
-    $hr = "\r\n";
-    $content = "";
-    $content.="print post$hr";
-    $content.=var_export($request->post,true);
-    $content.="print file$hr";
-    $content.=var_export($request->files,true);
-    $content.="print server$hr";
-    $content.=var_export($request->server,true);
-    $content.="print cookie$hr";
-    $content.=var_export($request->cookie,true);
-    put_log($content,"./swoole.log");
-    echo "this is request$hr";
-    //可以发现浏览器请求依次这里面的内容，执行了两次
-    $response->header('Content-Type', 'text/html; charset=utf-8');
-    $response->end($content);
+	}
+
+	public static function getIns(){
+		if(!self::$ins instanceof self){
+			self::$ins = new self();
+		}
+		return self::$ins;
+	}
+
+	public function init(){
+		$this->redis = new Redis();
+		$this->redis->connect($host,$port);
+		return $this;
+	}
+
+	public function set($key,$value){
+		return $this->redis->set($this->prefix.$key,$value);
+	}
+
+	public function get($key){
+		return $this->redis->get($this->prefix.$key);
+	}
+
+	public function exists($key){
+		return $this->redis->exists($this->prefix.$key);
+	}
+
+	public function keys($key){
+		return $this->redis->keys($this->prefix.$key);
+	}
+}
+
+$fd_userid_prefix = 'fd-id';
+$userid_fd_prefix ='id-fd';
+$redis = new Redis();
+$redis->connect('127.0.0.1',6379);
+$redis->flushdb();
+
+//$psql = Db::getIns();
+
+$server->on('open', function (swoole_websocket_server $server, $request) {
+	global $redis,$fd_userid_prefix,$userid_fd_prefix,$psql;
+	echo 11111;
+	$redis->set($fd_userid_prefix.$request->fd,$request->fd);
 });
 
-$http->start();
+$server->on('message', function (swoole_websocket_server $server, $frame) {
+    global $redis,$fd_userid_prefix,$userid_fd_prefix,$psql;
+
+    $msg = $frame->data;
+    //绑定相应的用户信息
+
+    foreach($redis->keys($fd_userid_prefix.'*') as $v){
+    	$fd = intval(substr($v, strlen($fd_userid_prefix)));
+    	$userid = $redis->get($v);
+    	$server->push($fd,$msg);
+    }
+});
+
+$server->on('close', function ($server, $fd) {
+	global $redis,$fd_userid_prefix,$userid_fd_prefix,$psql;
+    $redis->del($fd_userid_prefix.$fd);
+});
+$server->start();
+
+
+
+
+
+
+
