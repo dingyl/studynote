@@ -11,7 +11,8 @@ class Elastic{
     private $offset = 0;
     private $tag = ['',''];
     private $field = [];
-    private $group = [];
+    private $group = '';
+//    private $where = [];
     private $order = [];
     //限制报错
     private $default_params = [
@@ -172,7 +173,6 @@ class Elastic{
             $params['id'] = $_id;
         }
         $res = $this->client->index($this->combineParams($params));
-        p($res);
         if($res['created']){
             return $res['_id'];
         }else{
@@ -256,8 +256,9 @@ class Elastic{
         return $this;
     }
 
-    public function group(){
-
+    public function group($group){
+        $this->group = $group;
+        return $this;
     }
 
     public function field($field){
@@ -329,7 +330,6 @@ class Elastic{
         }
 
 
-
         //显示字段设置
         $temp_fields = empty($this->field) ? $_fields : $this->field ;
         $fields = [];
@@ -377,10 +377,24 @@ class Elastic{
             }
         }
 
+        //group 分组条件  简单分组  不指定size默认就显示10个分组数据
+        if(!empty($this->group)){
+            $params['body']['aggs']['terms_'.$this->group]['terms'] = [
+                'field' => $this->group,
+                'size' => 10000
+            ];
+        }
+
+//        p($params);
+
+
+        //过滤条件
         if(!empty($condition)){
             $params['body']['query']['bool']['filter'] = $filter;
         }
 
+
+        //统计设置
         foreach($aggs as $agg){
             foreach($agg as $operator=>$field){
                 $params['body']['aggs'][$operator.'_'.$field] = [ $operator=> [ 'field' => $field ] ];
@@ -390,6 +404,8 @@ class Elastic{
         $data = [];
         $res = $this->client->search($this->combineParams($params));
 
+
+        //返回统计结果
         if(isset($res['aggregations'])){
             $data = $res['aggregations'];
         }
@@ -459,5 +475,7 @@ $order = [
     'age'=>'asc'
 ];
 
-//p($client->aggs([['stats'=>'age'],['max'=>'age','min'=>'age']],[ 'age'=>[ ['to'=>30],['from'=>10],['from'=>10,'to'=>30] ] ]));
-p($client->find(['age'=>['lt'=>13,'gt'=>10]]));
+
+//todo  统计问题
+p($client->group('age')->aggs([['stats'=>'age'],['max'=>'age','min'=>'age']],[ 'age'=>[ ['to'=>30],['from'=>10],['from'=>10,'to'=>30] ] ]));
+//p($client->find(['age'=>['lt'=>13,'gt'=>10]]));
