@@ -6,6 +6,14 @@ class Elastic{
     private $client = NULL;
     private $index = NULL;
     private $type = NULL;
+    //$limit = 10000 接口默认最大值为10000
+    private $limit = 10000;
+    private $offset = 0;
+    private $tag = ['',''];
+    private $field = [];
+    private $group = [];
+    private $order = [];
+    //限制报错
     private $default_params = [
         'client' => [
             'ignore' => [
@@ -14,13 +22,11 @@ class Elastic{
         ]
     ];
 
-    public function __construct($hosts,$index=NULL,$type=NULL){
+    public function __construct($hosts,$index='',$type=''){
         $this->client = Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
         $this->index = $index;
         $this->type = $type;
     }
-
-
 
 
     public function setIndex($index){
@@ -116,22 +122,22 @@ class Elastic{
     }
 
 
-    //[['name'=>'','type'=>'']['name'=>'','type'=>'']]
+    //['field_name'=>'field_type']
     public function createType($type_name,$fields){
         if(!$this->existsIndex($this->index)){
             return false;
         }
         $properties = [];
-        foreach($fields as $field){
-            if(in_array($field['type'],['string','text'])){
-                $properties[$field['name']] = [
+        foreach($fields as $field_name=>$field_type){
+            if(in_array($field_type,['string','text'])){
+                $properties[$field_name] = [
                     'analyzer' => 'ik_max_word',
                     'type' => 'text'
                 ];
             }
 
-            if(in_array($field['type'],['int','integer'])){
-                $properties[$field['name']] = [
+            if(in_array($field_type,['int','integer'])){
+                $properties[$field_name] = [
                     'type' => 'integer'
                 ];
             }
@@ -159,10 +165,19 @@ class Elastic{
             'type' => $this->type,
             'body' => $data
         ];
+        if(isset($data['id'])){
+            $params['id'] = $data['id'];
+        }
         if(!empty($_id)){
             $params['id'] = $_id;
         }
-        return $this->client->index($this->combineParams($params));
+        $res = $this->client->index($this->combineParams($params));
+        p($res);
+        if($res['created']){
+            return $res['_id'];
+        }else{
+            return false;
+        }
     }
 
     public function get($_id){
@@ -171,7 +186,12 @@ class Elastic{
             'type' => $this->type,
             'id' => $_id
         ];
-        return $this->client->get($this->combineParams($params));
+        $res = $this->client->get($this->combineParams($params));
+        $data = [];
+        if($res['found']){
+            $data = $res['_source'];
+        }
+        return $data;
     }
 
     public function exists($_id){
@@ -192,66 +212,191 @@ class Elastic{
         return $this->client->delete($this->combineParams($params));
     }
 
-    public function update($_id,$data){
+    public function update($data,$_id=NULL){
         $params = [
             'index' => $this->index,
             'type' => $this->type,
-            'id' => $_id,
             'body' => [
                 'doc' => $data
             ]
         ];
+        if(isset($data['id'])){
+            $params['id'] = $data['id'];
+        }
+        if(!empty($_id)){
+            $params['id'] = $_id;
+        }
         return $this->client->update($this->combineParams($params));
     }
 
     /**
-     * [key=>[1,2,3]]
-     * 返回指定条件下的所有文档
-     * @param array $query
+     * 获取指定index,type所有的字段
      * @return array
      */
-    public function search($conditions=[],$fields=[],$tag='',$limit=NULL,$offset=0){
+    public function getFields(){
+        $res = [];
+        if($this->existsIndex($this->index)){
+            if($this->existsType($this->type)){
+                $fields = $this->getInfo()[$this->index]['mappings'][$this->type]['properties'];
+                $res = array_keys($fields);
+            }
+        }
+        return $res;
+    }
 
-        if(!empty($limit)){
-            $body['size'] = $limit;
+
+    public function limit($limit,$offset=0){
+        $this->limit = $limit>10000 ? 10000 : $limit;
+        $this->offset = $offset;
+        return $this;
+    }
+
+    public function tag($tags){
+        $this->tag = $tags;
+        return $this;
+    }
+
+    public function group(){
+
+    }
+
+    public function field($field){
+        $this->field = $field;
+        return $this;
+    }
+
+    public function order($order){
+        $this->order = $order;
+        return $this;
+    }
+
+    //指定需要统计信息的字段
+    public function stats($fields){
+
+    }
+
+
+
+    //query 获取条件查询结果集     ['age' => ['gt'=>10,'lt'=>20]];
+    public function find($condition=[]){
+        $params = [
+            'index' => $this->index,
+            'type' => $this->type,
+            'from' => $this->offset,
+            'size' => $this->limit
+        ];
+
+        //获取所有字段
+        $_fields = $this->getFields();
+
+        //排序
+        if(!empty($this->order)){
+            $sort = [];
+            foreach($this->order as $field=>$esc){
+                if(in_array($field,$_fields)){
+                    $sort[] = [
+                        $field => [
+                            "order" => $esc
+                        ]
+                    ];
+                }
+            }
+            if(!empty($sort)){
+                $params['body']['sort'] = $sort;
+            }
         }
 
+
+        //查询过滤
+        $query = [];
+        foreach($condition as $field=>$value){
+            if(is_array($value)){
+                //范围限制
+                $params['body']['query']['range'] = [
+                    $field => $value
+                ];
+                unset($condition[$field]);
+            }else{
+                $query[] = [
+                    'match' => [ "$field" => $value ]
+                ];
+            }
+        }
+
+
+        if(!empty($condition)){
+            $params['body']['query']['bool']['must'] = $query;
+        }
+
+
+
+        //显示字段设置
+        $temp_fields = empty($this->field) ? $_fields : $this->field ;
+        $fields = [];
+        foreach($temp_fields as $field_name){
+            $fields[$field_name] = new \stdClass();
+        }
+        $params['body']['_source'] = [
+            "include" => $temp_fields
+        ];
+
+        //高亮查询字符串
+        if(!empty($this->tag)){
+            $params['body']['highlight'] = [
+                'pre_tags' => [$this->tag[0]],
+                'post_tags' => [$this->tag[1]],
+                'fields' => $fields
+            ];
+        }
+
+        $res = $this->client->search($this->combineParams($params));
+        return $this->getData($res);
+    }
+
+
+    //filter 可以配合聚合函数进行条件统计
+    //获取聚合值 min,max,sum,avg
+    //聚合操作 $aggs = [['stats'=>'age'],['max'=>'age','min'=>'age']]
+    //$conditoin = [['username'=>'user'],['age'=>[ ['to'=>30],['from'=>10],['from'=>10,'to'=>30] ]]]
+    public function aggs($aggs,$condition=[]){
         $params = [
             'index' => $this->index,
             'type' => $this->type
         ];
-
-        if(!empty($conditions)){
-            $matchs = [];
-            foreach($conditions as $field=>$value){
-                if(is_array($value)){
-                    $value = implode(' ',$value);
-                }
-                $matchs[] = "{'match' : { '$field' : '$value' } }";
+        $filter = [];
+        foreach($condition as $field=>$value){
+            if(is_array($value)){
+                $params['body']['aggs']['range_'.$field]['range'] = [
+                    'field' => $field,
+                    'ranges' => $value
+                ];
+            }else{
+                $filter[] = [
+                    'term' => [ "$field" => $value ]
+                ];
             }
-
-            $matchs_str = '[ '.implode(', ',$matchs).' ]';
-
-            $body = "{
-                'query' : {
-                    'bool' : {
-                        'must' : $matchs_str
-                    }
-                }
-            }";
-            $params['body'] = $body;
         }
 
-        $res = $this->client->search($this->combineParams($params));
+        if(!empty($condition)){
+            $params['body']['query']['bool']['filter'] = $filter;
+        }
+
+        foreach($aggs as $agg){
+            foreach($agg as $operator=>$field){
+                $params['body']['aggs'][$operator.'_'.$field] = [ $operator=> [ 'field' => $field ] ];
+            }
+        }
+
         $data = [];
-        if(isset($res['hits'])){
-            foreach($res['hits']['hits'] as $v){
-                $v['_source']['_id'] = $v['_id'];
-                $data[] = $v['_source'];
-            }
+        $res = $this->client->search($this->combineParams($params));
+
+        if(isset($res['aggregations'])){
+            $data = $res['aggregations'];
         }
+
         return $data;
     }
+
 
     /**
      * 返回所有的文档
@@ -259,10 +404,29 @@ class Elastic{
      */
     public function getDocuments(){
         $res = $this->client->search();
+        return $this->getData($res);
+    }
+
+
+    /**
+     * 同步数据库数据
+     */
+    public function syncSqlSource(){
+
+    }
+
+    protected function getData($res){
+//        p($res);//die;
         $data = [];
+        $data['total'] = $res['hits']['total'];
         if(isset($res['hits'])){
             foreach($res['hits']['hits'] as $v){
                 $v['_source']['_id'] = $v['_id'];
+                foreach($this->getFields() as $field){
+                    if(isset($v['highlight'][$field])){
+                        $v['_source']['_'.$field] = $v['highlight'][$field][0];
+                    }
+                }
                 $data[] = $v['_source'];
             }
         }
@@ -270,19 +434,30 @@ class Elastic{
     }
 
     protected function combineParams($params){
-        p($params);
-        return array_merge($this->default_params,$params);
+        $params = array_merge($params,$this->default_params);
+//        p($params);
+        return $params;
     }
 }
 
 $hosts = ['localhost:9200'];
-$client = new Elastic($hosts,'blog','article');
-//p($client->getInfo());
+$client = new Elastic($hosts,'test','user');
+$cond = ['text'=>'习近平'];
+$tag = ['-strong-','-/strong-'];
 
-$conditions = ['title'=>['习近平', '黑洞'],'text'=>'习近平'];
+$user = [
+    'id' => 'fsdfdsf',
+    'username' => 'fdsf',
+    'age' => 45
+];
 
-p($client->search());die;
+//$client->createType('comment',$fields);
 
-//p($client->createType('article',$fields));
+//p($client->add($user));
+$order = [
+    'id'=>'desc',
+    'age'=>'asc'
+];
 
-p($client->getInfo());
+//p($client->aggs([['stats'=>'age'],['max'=>'age','min'=>'age']],[ 'age'=>[ ['to'=>30],['from'=>10],['from'=>10,'to'=>30] ] ]));
+p($client->find(['age'=>['lt'=>13,'gt'=>10]]));
