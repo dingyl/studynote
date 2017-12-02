@@ -363,13 +363,15 @@ class Elastic{
             'index' => $this->index,
             'type' => $this->type
         ];
+
         $filter = [];
         foreach($condition as $field=>$value){
             if(is_array($value)){
-                $params['body']['aggs']['range_'.$field]['range'] = [
-                    'field' => $field,
-                    'ranges' => $value
+                //范围限制
+                $params['body']['query']['range'] = [
+                    $field => $value
                 ];
+                unset($condition[$field]);
             }else{
                 $filter[] = [
                     'term' => [ "$field" => $value ]
@@ -385,9 +387,6 @@ class Elastic{
             ];
         }
 
-//        p($params);
-
-
         //过滤条件
         if(!empty($condition)){
             $params['body']['query']['bool']['filter'] = $filter;
@@ -395,9 +394,16 @@ class Elastic{
 
 
         //统计设置
-        foreach($aggs as $agg){
-            foreach($agg as $operator=>$field){
-                $params['body']['aggs'][$operator.'_'.$field] = [ $operator=> [ 'field' => $field ] ];
+        foreach($aggs as $agg) {
+            list($operator, $field) = each($agg);
+            if ($operator == 'range' && is_array($field)) {
+                list($field, $value) = each($field);
+                $params['body']['aggs']['range_' . $field]['range'] = [
+                    'field' => $field,
+                    'ranges' => $value
+                ];
+            } else {
+                $params['body']['aggs'][$operator . '_' . $field] = [$operator => ['field' => $field]];
             }
         }
 
@@ -427,7 +433,7 @@ class Elastic{
     /**
      * 同步数据库数据
      */
-    public function syncSqlSource(){
+    public function syncSqlSource($db_name){
 
     }
 
@@ -477,5 +483,5 @@ $order = [
 
 
 //todo  统计问题
-p($client->group('age')->aggs([['stats'=>'age'],['max'=>'age','min'=>'age']],[ 'age'=>[ ['to'=>30],['from'=>10],['from'=>10,'to'=>30] ] ]));
+p($client->group('age')->aggs([['stats'=>'age'],['max'=>'age'],[ 'range' => ['age'=>[ ['to'=>30],['from'=>10],['from'=>10,'to'=>30] ] ]]]));
 //p($client->find(['age'=>['lt'=>13,'gt'=>10]]));
