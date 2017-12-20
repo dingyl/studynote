@@ -4,12 +4,24 @@ class Curl
 {
     protected $url;
     protected $curl;
+    protected $temp_dir;
 
     public function __construct($url = '')
     {
         $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         $this->setUrl($url);
+    }
+
+
+    /**
+     * 设置文件缓存目录
+     * @param $path
+     * @return $this
+     */
+    public function setTempDir($path){
+        $this->temp_dir = $path;
+        return $this;
     }
 
     /**
@@ -48,6 +60,8 @@ class Curl
 
     /**
      * 设置请求来源地址
+     * @param $url
+     * @return $this
      */
     public function setRefererUrl($url)
     {
@@ -57,7 +71,7 @@ class Curl
 
     /**
      * 设置cookie头信息
-     * @param $cookie
+     * @param $cookies
      * @return $this
      */
     public function setCookie($cookies)
@@ -76,6 +90,7 @@ class Curl
 
     /**
      * 返回所有的链接数组
+     * @return array
      */
     public function getLinks()
     {
@@ -101,7 +116,8 @@ class Curl
      */
     public function get($data)
     {
-        $this->setData($data);
+        $url = $this->url.'?'.http_build_query($data);
+        $this->setUrl($url);
         return $this->getContent();
     }
 
@@ -115,8 +131,26 @@ class Curl
         $this->setPost();
         $this->format($data);
         $this->setData($data);
-//        p($data);die;
         return $this->getContent();
+    }
+
+
+    /**
+     * 转发请求
+     * @return mixed
+     */
+    public function transferQuery(){
+        if($this->isGet()){
+            return $this->get($_GET);
+        }
+
+        if($this->isPost()){
+            $post_data = $_POST;
+            if($data = $this->isUpFile()){
+                $post_data = array_merge($post_data,$data);
+            }
+            return $this->post($post_data);
+        }
     }
 
 
@@ -196,13 +230,58 @@ class Curl
     /**
      * 设置请求方式 post 默认为1 开启post，或者为get
      */
-    protected function setPost($status = 1)
+    private function setPost()
     {
-        return curl_setopt($this->curl, CURLOPT_POST, $status);
+        return curl_setopt($this->curl, CURLOPT_POST, 1);
     }
 
-    protected function setData($data)
+    private function setData($data)
     {
         return curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
+    }
+
+    private function isGet(){
+        return $this->server('REQUEST_METHOD') == 'GET';
+    }
+
+    private function isPost(){
+        return $this->server('REQUEST_METHOD') == 'POST';
+    }
+
+    private function server($name){
+        return $_SERVER[$name];
+    }
+
+    private function isUpFile(){
+        $files = $_FILES;
+        $data = [];
+        if(count($files)){
+            foreach($files as $field=>$file){
+                if(is_array($file['error'])){
+                    foreach($file['error'] as $k=>$error_code){
+                        if($error_code == 0){
+                            $file_name = $file['name'][$k];
+                            $cache_file = $file['tmp_name'][$k];
+                            $temp_file = $this->temp_dir.'/'.$file_name;
+                            copy($cache_file,$temp_file);
+                            $data[$field][$k] = "@".$temp_file;
+                        }
+                    }
+                }
+
+                //单文件
+                if($file['error'] == 0){
+                    $file_name = $file['name'];
+                    $cache_file = $file['tmp_name'];
+                    $temp_file = $this->temp_dir.'/'.$file_name;
+                    copy($cache_file,$temp_file);
+                    $data[$field] = "@".$temp_file;
+                }
+            }
+        }
+        if($data){
+            return $data;
+        }
+        return false;
     }
 }
