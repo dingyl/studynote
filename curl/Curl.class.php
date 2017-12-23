@@ -11,6 +11,7 @@ class Curl
         $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         $this->setUrl($url);
+        $this->setTempDir('./');
     }
 
 
@@ -149,6 +150,7 @@ class Curl
             if($data = $this->isUpFile()){
                 $post_data = array_merge($post_data,$data);
             }
+            p($data);
             return $this->post($post_data);
         }
     }
@@ -273,7 +275,7 @@ class Curl
                 if($file['error'] == 0){
                     $file_name = $file['name'];
                     $cache_file = $file['tmp_name'];
-                    $temp_file = $this->temp_dir.'/'.$file_name;
+                    $temp_file = $this->temp_dir.$file_name;
                     copy($cache_file,$temp_file);
                     $data[$field] = "@".$temp_file;
                 }
