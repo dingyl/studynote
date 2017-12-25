@@ -142,7 +142,4 @@ class SsdbCache extends AbstractCache implements CacheInterface
         $this->db->flushdb();
         return $this;
     }
-
-//    public function getReaderCache();
-//    public function getWriterCache();
 }

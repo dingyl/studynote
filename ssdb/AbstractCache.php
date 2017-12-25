@@ -42,7 +42,9 @@ abstract class AbstractCache{
         return $this->db->exists($key);
     }
 
-    //$config 'host:port,host1:port1'
+    /**
+     * @param $config   'host:port,host1:port1'
+     */
     public static function getReaderCache($config)
     {
         $servers = explode(',',$config);
