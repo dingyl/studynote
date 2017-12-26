@@ -4,7 +4,7 @@ include 'PHPExcel.php';
 include 'PHPExcel/Reader/Excel2007.php';
 include 'PHPExcel/Reader/Excel5.php';
 
-$filePath = "demo.xls";
+$filePath = "../1514261002.xls";
 $PHPReader = new PHPExcel_Reader_Excel2007();
 if(!$PHPReader->canRead($filePath))
    {
@@ -16,12 +16,12 @@ if(!$PHPReader->canRead($filePath))
 }
 
 $PHPExcel = $PHPReader->load($filePath); //读取文件
-$currentSheet = $PHPExcel->getSheet(1); //读取第一个工作簿
+$currentSheet = $PHPExcel->getSheet(0); //读取第一个工作簿
 $allColumn = $currentSheet->getHighestColumn(); // 所有列数
 $allRow = $currentSheet->getHighestRow(); // 所有行数
 
 $data = array(); //下面是读取想要获取的列的内容
-for ($rowIndex = 2; $rowIndex <= $allRow; $rowIndex++)
+for ($rowIndex = 1; $rowIndex <= $allRow; $rowIndex++)
     {
         $data[] = array(
                 '名字' => $cell = $currentSheet->getCell('A'.$rowIndex)->getValue(),
