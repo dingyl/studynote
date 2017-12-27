@@ -1,11 +1,13 @@
 <?php
-require 'CacheInterface.php';
-require 'AbstractCache.php';
-require 'RedisCache.php';
-require 'SsdbCache.php';
-$config = 'localhost:6379';
-$redis = RedisCache::getReaderCache($config);
-$ssdb = SsdbCache::getIns("localhost",'8888');
+require 'XRedis.php';
+$redis_config = 'localhost:6379';
+$ssdb_config = 'localhost:8888';
+$redis = XRedis::getWriterCache($redis_config);
+$redis->setSsdb($ssdb_config);
+$ssdb = SsdbCache::getWriterCache($ssdb_config);
 
-//$redis->set('username','ding');
-echo $redis->get('username');
+$name = "testname";
+$key = "age";
+$value = 23;
+$redis->hset($name,$key,$value);
+print_r($redis->hgetall($name));

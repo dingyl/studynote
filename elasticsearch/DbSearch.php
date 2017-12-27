@@ -1,5 +1,5 @@
 <?php
-require 'Elastic.php';
+require __DIR__.'/Elastic.php';
 /**
  * 数据库全文搜索助手
  * Class DbSearch

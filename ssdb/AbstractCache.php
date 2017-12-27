@@ -11,10 +11,6 @@ abstract class AbstractCache{
     {
     }
 
-    public static function getIns($host, $port)
-    {
-    }
-
     public function set($key, $value)
     {
         $this->db->set($key, $value);
@@ -50,17 +46,13 @@ abstract class AbstractCache{
         $servers = explode(',',$config);
         $index = array_rand($servers);
         $server = explode(':',$servers[$index]);
-        $host = $server[0];
-        $port = $server[1];
-        return static::getIns($host,$port);
+        return static::getIns($server[0],$server[1]);
     }
 
     public static function getWriterCache($config)
     {
         $servers = explode(',',$config);
         $server = explode(':',$servers[0]);
-        $host = $server[0];
-        $port = $server[1];
-        return static::getIns($host,$port);
+        return static::getIns($server[0],$server[1]);
     }
 }

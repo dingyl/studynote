@@ -133,15 +133,15 @@ class POP3 {
     $this->error     = null;
   }
 
-  /**
-   * Combination of public events - connect, login, disconnect
-   * @access public
-   * @param string $host
-   * @param integer $port
-   * @param integer $tval
-   * @param string $username
-   * @param string $password
-   */
+    /**
+     * @param $host
+     * @param bool $port
+     * @param bool $tval
+     * @param $username
+     * @param $password
+     * @param int $debug_level
+     * @return bool
+     */
   public function Authorise ($host, $port = false, $tval = false, $username, $password, $debug_level = 0) {
     $this->host = $host;
 
@@ -186,14 +186,12 @@ class POP3 {
     return false;
   }
 
-  /**
-   * Connect to the POP3 server
-   * @access public
-   * @param string $host
-   * @param integer $port
-   * @param integer $tval
-   * @return boolean
-   */
+    /**
+     * @param $host
+     * @param bool $port
+     * @param int $tval
+     * @return bool
+     */
   public function Connect ($host, $port = false, $tval = 30) {
     //  Are we already connected?
     if ($this->connected) {

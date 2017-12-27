@@ -1,6 +1,5 @@
 <?php
-require '../functions.php';
-require 'vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 class Elastic
 {
     public static $ins ;

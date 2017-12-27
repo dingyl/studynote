@@ -1,14 +1,17 @@
 <?php
-
+require_once __DIR__.'/AbstractCache.php';
+require_once __DIR__.'/CacheInterface.php';
 class SsdbCache extends AbstractCache implements CacheInterface
 {
-
     public static function getIns($host, $port)
     {
         if (!static::$ins instanceof static) {
             static::$ins = new static();
-            static::$ins->db = new SSDB($host, $port);
         }
+        if(static::$ins->db){
+            static::$ins->db->close();
+        }
+        static::$ins->db = new SSDB($host, $port);
         return static::$ins;
     }
 
@@ -137,9 +140,16 @@ class SsdbCache extends AbstractCache implements CacheInterface
         $this->db->hclear($key);
     }
 
+
+    /**
+     * ssdb php不支持清空数据库,只可以命令行清楚数据库
+     * @return $this
+     */
     public function flushdb()
     {
-        $this->db->flushdb();
+        foreach($this->keys() as $key){
+            $this->delete($key);
+        }
         return $this;
     }
 }
