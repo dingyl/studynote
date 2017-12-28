@@ -47,7 +47,7 @@ class Db{
 
     public function table($tb_name){
         $this->_tb_name = $tb_name;
-        $this->_field($tb_name);
+//        $this->_field($tb_name);
         return $this;
     }
 

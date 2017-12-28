@@ -1,4 +1,8 @@
 <?php
+require __DIR__.'/city.php';
+require __DIR__.'/province.php';
+require __DIR__.'/curl/Curl.php';
+
 function getMimes()
 {
     return [
@@ -90,10 +94,11 @@ function getMimes()
     ];
 }
 
-function getCities(){
 
-}
-
+/**
+ * 打印辅助函数
+ * @param $arr
+ */
 function p($arr)
 {
     echo "<pre>";
@@ -309,10 +314,19 @@ function getOs()
 }
 
 /**
+ * 获取本地真实ip
+ * @return mixed|string
+ */
+function getLocalIp()
+{
+
+}
+
+/**
  * 获取访客真实ip
  * @return mixed
  */
-function getIp()
+function getClientIp()
 {
     if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -339,75 +353,78 @@ function getIp()
     }
 }
 
-/**
- * 获取本地真实ip
- * @return mixed|string
- */
-function getLocalIp()
-{
-    $json = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json");
-    $address = json_decode($json,true);
-    $data = [
-        'country'
-    ];
-}
+
 
 /**
- * 根据ip获取访客的地名
+ * 获取ip的地址信息
  * @param string $ip
  * @return string
  */
 function getAddress($ip)
 {
-    $json = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=".$ip);
-    $address = json_decode($json,true);
+    $info = file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
+    $info = json_decode($info,true);
+    return $info['data'];
+}
+
+
+/**
+ * 根据ip地址获取城市信息
+ * @return array
+ */
+function getLocalAddress(){
+    $url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json";
+    $json = file_get_contents($url);
+    $address = json_decode($json);
     $info = [];
     if(isset($address->country)){
         $info = [
             'country' => $address->country,
             'province' => $address->province,
+            'province_pinyin' => pinyin($address->province),
             'city' => $address->city,
+            'city_pinyin' => pinyin($address->city)
         ];
     }
     return $info;
 }
-echo "<pre>";
 
-$data = file_get_contents('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json');
-$citys = json_decode($city_json,true);
-$temp = [];
-$allcity = [];
-foreach($citys['城市代码'] as $province){
-    $province_name = $province['省'];
-    $province_name_pinyin = pinyin($province_name);
-    $temp_province = [];
-    foreach($province['市'] as $city){
-        $city_name = $city['市名'];
-        $city_name_pinyin = pinyin($city_name);
-        $temp_city = [
-            'name'=>$city_name,
-            'pinyin'=>$city_name_pinyin,
-            'code'=>$city['编码']
-        ];
-        $temp_province[$city_name_pinyin] = $temp_city;
-        $allcity[$city_name_pinyin] = $temp_city;
-    }
 
-    $temp['provice'][$province_name_pinyin] = [
-        'name' => $province_name,
-        'pinyin' => $province_name_pinyin,
-        'code' => $temp_province[$province_name_pinyin]['code'],
-        'city' => $temp_province
-    ];
+/**
+ * 根据城市名获取天气信息
+ * @param $city_name
+ * @return bool|mixed|string
+ */
+function getWeatherInfo($city_name){
+    $pinyin = pinyin($city_name);
+    $city_code = getCityCode($pinyin);
+    $url = "http://wthrcdn.etouch.cn/weather_mini?citykey=$city_code";
+    $info = file_get_contents($url);
+    $info = gzdecode($info);
+    $info = json_decode($info,true);
+    return $info;
 }
 
-//print_r($citys);
-//print_r($temp);
 
-file_put_contents('city.php',var_export($allcity,true));
-file_put_contents('province.php',var_export($temp,true));
+/**
+ * 手机归属地运营商信息查询
+ * @param $mobile
+ * @return array
+ */
+function getMobileInfo($mobile){
+    $url = "https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=$mobile";
+    $info = file_get_contents($url);
+    $info = trim(explode('=',$info)[1]);
+    $info = preg_replace('/[\t\r\n \{\}]+/','',$info);
+    $info = explode(',',$info);
+    $temp = [];
+    foreach($info as $value){
+        $key_value = explode(':',$value);
+        $temp[$key_value[0]] = trim(iconv('GB2312','UTF-8',$key_value[1]),'\'');
+    }
+    return $temp;
+}
 
-
-
+p(getAddress("116.226.124.47"));
 
 ?>

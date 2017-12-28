@@ -1,6 +1,6 @@
 <?php
 define(HOST, "localhost") ;
-define(USER, "root") ;
-define(PASSWD, "root") ;
-define(DB_NAME, "test") ;
-define(TYPE, "mysql") ;
+define(USER, "postgres") ;
+define(PASSWD, "") ;
+define(DB_NAME, "testdb") ;
+define(TYPE, "pgsql") ;

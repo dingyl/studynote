@@ -255,6 +255,20 @@ class XRedis extends AbstractCache implements CacheInterface
         return $this;
     }
 
+    public function qpush($key, $value)
+    {
+        $this->db->lpush($key, $value);
+        if($this->ssdb){
+            $this->ssdb->qpush($key, $value);
+        }
+        return $this;
+    }
+
+    public function qpop($key)
+    {
+        return $this->db->lpop($key);
+    }
+
     public function flushdb()
     {
         $this->db->flushDB();

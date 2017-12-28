@@ -974,7 +974,7 @@ class Db {
     public function select($options=array()) {
         $this->model  =   $options['model'];
         $sql    = $this->buildSelectSql($options);
-        $cache  =  isset($options['cache']) ? $options['cache'] : false;
+        $cache  =  isset($options['XCache']) ? $options['XCache'] : false;
         //if($cache) { // 查询缓存检测
         //  $key    =  is_string($cache['key']) ? $cache['key'] : md5($sql);
         //  $value  =  S($key,'',$cache);//去掉
@@ -3232,7 +3232,7 @@ class Model
     public function cache($key = true, $expire = null, $type = '')
     {
         if (false !== $key)
-            $this->options['cache'] = array('key' => $key, 'expire' => $expire, 'type' => $type);
+            $this->options['XCache'] = array('key' => $key, 'expire' => $expire, 'type' => $type);
         return $this;
     }
 

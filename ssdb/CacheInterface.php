@@ -34,5 +34,8 @@ interface CacheInterface{
     public function hdel($key,$field);
     public function hclear($key);
 
+    public function qpush($key,$value);
+    public function qpop($key);
+
     public function flushdb();
 }

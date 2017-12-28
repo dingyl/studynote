@@ -140,6 +140,17 @@ class SsdbCache extends AbstractCache implements CacheInterface
         $this->db->hclear($key);
     }
 
+    public function qpush($key, $value)
+    {
+        $this->db->qpush($key, $value);
+        return $this;
+    }
+
+    public function qpop($key)
+    {
+        return $this->db->qpop($key);
+    }
+
 
     /**
      * ssdb php不支持清空数据库,只可以命令行清楚数据库

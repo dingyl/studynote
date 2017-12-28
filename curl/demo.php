@@ -28,7 +28,7 @@
 
 <?php
 include("../functions.php");
-include("Curl.class.php");
+include("Curl.php");
 set_time_limit(0);
 error_reporting(0);
 //ini_set('memory_limit', '512M');
@@ -52,7 +52,7 @@ class Preach{
 //        'provinces',
 //        'cities',
 
-        'courses',
+//        'courses',
 //        'chapters',
 
 //        'devices',
@@ -62,7 +62,7 @@ class Preach{
 //        'push',
 
 //        'teachers',
-//        'course_wares',
+        'course_wares',
 
 //        'users'
     ];
@@ -339,12 +339,12 @@ class Preach{
 
 
     //课件列表接口
-//    public function courseWares($url){
-//        $data = [
-//            'chapter_id' => $this->chapter_id
-//        ];
-//        $this->basicGet($data,$url);
-//    }
+    public function courseWares($url){
+        $data = [
+            'chapter_id' => $this->chapter_id
+        ];
+        $this->basicGet($data,$url);
+    }
 
     //新增课件接口
     public function courseWares_create($url){
@@ -552,15 +552,20 @@ class Preach{
             }
         }
     }
-
 }
-$preach = new Preach();
-$preach->exec();
-//
-//p($_FILES);
-//
-//$curl = new Curl("http://study.com/curl/upload.php");
-//$curl->setTempDir("./temp");
-//p($curl->transferQuery());
+//$preach = new Preach();
+//$preach->exec();
+
+$curl = new Curl("http://study.com/elasticsearch/search.php");
+echo $curl->post();
+$url ="http://preach.com/api/course_wares";
+$query_params = [
+    'debug'=>1,
+    'code'=>'tret',
+    'sid'=>'7s4a5f5ed6f8b679880591bbb68be82e2fbe',
+    'chapter_id'=>29
+];
+$curl->setUrl($url);
+echo $curl->get($query_params);
 
 ?>
