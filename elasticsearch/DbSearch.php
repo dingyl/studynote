@@ -66,7 +66,7 @@ class DbSearch{
     }
 
     public function stat($aggs,$cond=[]){
-        return $this->client($aggs,$cond);
+        return $this->client->aggs($aggs,$cond);
     }
 
     public function limit($limit, $offset = 0){

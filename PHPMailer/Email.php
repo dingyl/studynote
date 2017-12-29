@@ -4,7 +4,7 @@ require __DIR__.'/class.pop3.php';
 require __DIR__.'/class.smtp.php';
 define('SERVER_EMAIL_HOST','smtp.qq.com');
 define('SERVER_EMAIL_USERNAME','1907928206@qq.com');
-define('SERVER_EMAIL_PASSWORD','');
+define('SERVER_EMAIL_PASSWORD','wkjkusszeynqcjii');
 define('SERVER_EMAIL_NICKNAME','青色火焰');
 class Email{
     private static $ins;
