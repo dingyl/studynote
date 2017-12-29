@@ -1,7 +1,13 @@
 <?php
-require __DIR__.'/city.php';
-require __DIR__.'/province.php';
-require __DIR__.'/curl/Curl.php';
+//定义系统换行符
+//windows系统
+if(in_array(PHP_OS,['WIN32', 'WINNT', 'Windows'])){
+    define('SYSTEM_CRLF',"\r\n");
+}else if(in_array(PHP_OS,['Darwin'])){//mac系统
+    define('SYSTEM_CRLF',"\r");
+}else{
+    define('SYSTEM_CRLF',"\n");
+}
 
 function getMimes()
 {
@@ -104,6 +110,19 @@ function p($arr)
     echo "<pre>";
     print_r($arr);
     echo "</pre>";
+}
+
+
+
+function echoLine($str){
+    if(is_array($str)){
+        print_r($str);
+        return ;
+    }
+    if(!is_string($str)){
+        $str = json_encode($str);
+    }
+    echo "$str".SYSTEM_CRLF;
 }
 
 
@@ -425,6 +444,5 @@ function getMobileInfo($mobile){
     return $temp;
 }
 
-p(getAddress("116.226.124.47"));
 
 ?>
