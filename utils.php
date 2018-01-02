@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.DIRECTORY_SEPARATOR.'log/Log.php';
 //定义系统换行符
 //windows系统
 if(in_array(PHP_OS,['WIN32', 'WINNT', 'Windows'])){
@@ -110,6 +111,12 @@ function p($arr)
     echo "<pre>";
     print_r($arr);
     echo "</pre>";
+}
+
+
+function debug(){
+    $log = Log::getIns();
+    $log->debug();
 }
 
 
@@ -443,6 +450,5 @@ function getMobileInfo($mobile){
     }
     return $temp;
 }
-
 
 ?>
