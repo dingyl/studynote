@@ -311,6 +311,17 @@ function getBrowser()
 }
 
 /**
+ * 判断是否是微信浏览器
+ * @return bool
+ */
+function isWeixin(){
+    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * 获取客户端语言
  * @return bool|string
  */
@@ -332,6 +343,7 @@ function getLang()
         return "获取浏览器语言失败！";
     }
 }
+
 
 /**
  * 获取客户端操作系统
@@ -472,4 +484,47 @@ function getMobileInfo($mobile){
     return $temp;
 }
 
+
+/**
+ * 接口数据签名
+ * @param array $data
+ * @return string
+ */
+function signDate($data=[],$secret)
+{
+    ksort($data);
+    $signStr = [];
+    foreach ($data as $key => $val){
+        $signStr[] = $key . $val;
+    }
+    $signStr = implode('&',$signStr);
+    $signature = md5($secret . strtolower($signStr) . $secret);
+    return $signature;
+}
+
+/**
+ * 接口验证签名
+ * @return array
+ */
+function validSign($secret){
+    $params = $_REQUEST;
+    if ($params) {
+        $current_time = time();
+        $signature = $params['signature'];
+        if($signature){
+            unset($params['signature']);
+        }else{
+            return false;
+        }
+        //允许3分钟的延迟
+        if($params['timestamp']>$current_time || $params['timestamp']<$current_time-180){
+            return false;
+        }
+        $sign = signDate($params,$secret);
+        if ($signature == $sign) {
+            return true;
+        }
+    }
+    return false;
+}
 ?>
