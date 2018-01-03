@@ -1,5 +1,8 @@
 <?php
-require_once __DIR__.DIRECTORY_SEPARATOR.'log/Log.php';
+
+//日志文件地址
+define('LOG_FILE',__DIR__.'/development.log');
+
 //定义系统换行符
 //windows系统
 if(in_array(PHP_OS,['WIN32', 'WINNT', 'Windows'])){
@@ -115,8 +118,26 @@ function p($arr)
 
 
 function debug(){
-    $log = Log::getIns();
-    $log->debug();
+    $args = func_get_args();
+    $str = '';
+    foreach($args as $argv){
+        if(is_string($argv)){
+            $str .= ' '.$argv;
+        }else{
+            $str .= ' '.json_encode($argv);
+        }
+    }
+    $time = date('[Y-m-d H:i:s]');
+    $backtrace = debug_backtrace();
+    $backtrace_line = array_shift($backtrace);
+    $backtrace_call = array_shift($backtrace);
+    $file = substr($backtrace_line['file'], strlen($_SERVER['DOCUMENT_ROOT']));
+    $line = $backtrace_line['line'];
+    $class = isset($backtrace_call['class']) ? $backtrace_call['class'] : '';
+    $type = isset($backtrace_call['type']) ? $backtrace_call['type'] : '';
+    $func = $backtrace_call['function'];
+    $info = "$time $file:$line $class$type$func $str".SYSTEM_CRLF;
+    error_log($info,3,LOG_FILE);
 }
 
 
