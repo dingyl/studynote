@@ -51,9 +51,10 @@ class TaskServer
         echoLine($task);
         if(isset($task['class'])){
             $class = $task['class'];
+            $action = $task['action'];
             $class = new $class();
             echoLine($task_id."任务开始执行");
-            $class->run($task['data']);
+            $class->$action($task['data']);
         }else{
             echoLine($task_id."任务异常");
         }

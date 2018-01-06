@@ -1,7 +1,8 @@
 <?php
 
 //日志文件地址
-define('LOG_FILE',__DIR__.'/development.log');
+define('LOG_DIR',__DIR__);
+define('LOG_FILE',LOG_DIR.'/development.log');
 
 //定义系统换行符
 //windows系统
@@ -116,7 +117,18 @@ function p($arr)
     echo "</pre>";
 }
 
+/**
+ * 切换日志目录
+ * @param $file_name
+ */
+function switchLog($file_name){
+    define('LOG_FILE',LOG_DIR.DIRECTORY_SEPARATOR.$file_name);
+}
 
+
+/**
+ * 打印日志函数
+ */
 function debug(){
     $args = func_get_args();
     $str = '';
@@ -141,7 +153,10 @@ function debug(){
 }
 
 
-
+/**
+ * 行输出函数
+ * @param $str
+ */
 function echoLine($str){
     if(is_array($str)){
         print_r($str);
@@ -502,6 +517,7 @@ function signDate($data=[],$secret)
     return $signature;
 }
 
+
 /**
  * 接口验证签名
  * @return array
@@ -527,4 +543,3 @@ function validSign($secret){
     }
     return false;
 }
-?>

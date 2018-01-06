@@ -29,6 +29,7 @@ class Task
 
 $task = [
     'class' => 'MailTask',
+    'action' => 'run',
     'data' => [
         'address' => '1907928206@qq.com',
         'title' => '美好的人生光景',

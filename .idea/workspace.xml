@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/d3067596-920d-4b31-8bbd-337e3acfd799.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/yii2原生.zip" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/yii15/demos/hangman/assets/empty" afterPath="$PROJECT_DIR$/log/tool.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/Log.php" afterPath="$PROJECT_DIR$/log/Log.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpinfo.php" afterPath="$PROJECT_DIR$/phpinfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swoole/task/Task.php" afterPath="$PROJECT_DIR$/swoole/task/Task.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/swoole/task/TaskServer.php" afterPath="$PROJECT_DIR$/swoole/task/TaskServer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils.php" afterPath="$PROJECT_DIR$/utils.php" />
     </list>
@@ -29,8 +30,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/functions.php">
+      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="2" lean-forward="false" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+              <folding>
+                <marker date="1515156817000" expanded="true" signature="30:479" ph="..." />
+                <marker date="1515156817000" expanded="true" signature="631:838" ph="..." />
+                <marker date="1515156817000" expanded="true" signature="788:831" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageTask.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/swoole/task/MessageTask.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -39,11 +54,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tool.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/log/tool.php">
+      <file leaf-file-name="TaskServer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/swoole/task/TaskServer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="631">
+              <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Task.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/swoole/task/Task.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MailTask.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/swoole/task/MailTask.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8041">
+              <caret line="473" column="24" lean-forward="true" selection-start-line="473" selection-start-column="24" selection-end-line="473" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -100,8 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/elasticsearch/DbSearchHelper.php" />
-        <option value="$PROJECT_DIR$/curl/demo.php" />
         <option value="$PROJECT_DIR$/curl/Curl.php" />
         <option value="$PROJECT_DIR$/curl/Spider.php" />
         <option value="$PROJECT_DIR$/curl/Api.php" />
@@ -138,19 +181,21 @@
         <option value="$PROJECT_DIR$/swoole/task/client.php" />
         <option value="$PROJECT_DIR$/swoole/task/MessageTask.php" />
         <option value="$PROJECT_DIR$/swoole/task/task.log" />
-        <option value="$PROJECT_DIR$/swoole/task/TaskServer.php" />
         <option value="$PROJECT_DIR$/PHPMailer/Email.php" />
         <option value="$PROJECT_DIR$/swoole/task/MailTask.php" />
-        <option value="$PROJECT_DIR$/swoole/task/Task.php" />
         <option value="$PROJECT_DIR$/elasticsearch/DbSearch.php" />
         <option value="$PROJECT_DIR$/phpqrcode/index.php" />
         <option value="$PROJECT_DIR$/pdo/db.php" />
         <option value="$PROJECT_DIR$/log/LogException.php" />
         <option value="$PROJECT_DIR$/debug.log" />
-        <option value="$PROJECT_DIR$/utils.php" />
         <option value="$PROJECT_DIR$/log/tool.php" />
         <option value="$PROJECT_DIR$/log/Log.php" />
+        <option value="$PROJECT_DIR$/phpinfo.php" />
+        <option value="$PROJECT_DIR$/app.log" />
         <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/utils.php" />
+        <option value="$PROJECT_DIR$/swoole/task/TaskServer.php" />
+        <option value="$PROJECT_DIR$/swoole/task/Task.php" />
       </list>
     </option>
   </component>
@@ -173,10 +218,10 @@
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="69" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="70" />
     <option name="y" value="23" />
-    <option name="width" value="1852" />
+    <option name="width" value="1850" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -197,6 +242,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+              <item name="swoole" type="cbb8eebc:String" user="swoole" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+              <item name="swoole" type="cbb8eebc:String" user="swoole" />
+              <item name="task" type="cbb8eebc:String" user="task" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,23 +281,6 @@
               <item name="studynote" type="b2602c69:ProjectViewProjectNode" />
               <item name="studynote" type="47feb1d3:ProjectViewModuleNode" />
               <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="log" type="cbb8eebc:String" user="log" />
             </path>
           </expand>
           <select />
@@ -343,7 +394,15 @@
       <workItem from="1514511103045" duration="10395000" />
       <workItem from="1514537609716" duration="1730000" />
       <workItem from="1514547103868" duration="3357000" />
-      <workItem from="1514856722613" duration="5435000" />
+      <workItem from="1514856722613" duration="6989000" />
+      <workItem from="1514947136598" duration="1381000" />
+      <workItem from="1514963828297" duration="2205000" />
+      <workItem from="1515030359095" duration="1923000" />
+      <workItem from="1515047172314" duration="1334000" />
+      <workItem from="1515125110386" duration="72000" />
+      <workItem from="1515156544156" duration="661000" />
+      <workItem from="1515208039317" duration="398000" />
+      <workItem from="1515224035626" duration="92000" />
     </task>
     <servers />
   </component>
@@ -356,22 +415,21 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="357962000" />
+    <option name="totallyTimeSpent" value="367582000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="23" width="1852" height="1057" extended-state="1" />
-    <editor active="true" />
+    <frame x="70" y="23" width="1850" height="1057" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15082873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13053097" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17955801" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17920354" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19172113" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -399,210 +457,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/elasticsearch/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssdb/XCache.php" />
-    <entry file="file://$PROJECT_DIR$/pdo/postgres.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pdo/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pdo/thinkdb.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/zlib/zlib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="394" column="17" lean-forward="false" selection-start-line="394" selection-start-column="9" selection-end-line="394" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp.php" />
-    <entry file="file://$PROJECT_DIR$/city/city.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/city_prefecture.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/province_city.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/province_city_prefecture.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/province.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5043">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/curl/Curl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="96" column="38" lean-forward="false" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssdb/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssdb/XRedis.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="263" column="21" lean-forward="false" selection-start-line="263" selection-start-column="21" selection-end-line="263" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/demo.log" />
-    <entry file="file://$PROJECT_DIR$/swoole/swoole.log" />
-    <entry file="file://$PROJECT_DIR$/swoole/jquery.js" />
-    <entry file="file://$PROJECT_DIR$/swoole/index.html" />
-    <entry file="file://$PROJECT_DIR$/swoole/commet/comet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/AbstractTask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/curl/Api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/Task.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/task.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHPMailer/demo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/MailTask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/MessageTask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/task/TaskServer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="50" column="10" lean-forward="true" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/elasticsearch/DbSearch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/socket/server.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/swoole/socket/client.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpqrcode/phpqrcode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2459">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpqrcode/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="52" lean-forward="false" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pdo/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="143" column="7" lean-forward="false" selection-start-line="143" selection-start-column="7" selection-end-line="143" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ssdb/SsdbCache.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1992">
@@ -620,13 +474,6 @@
     <entry file="file://$PROJECT_DIR$/ssdb/AbstractCache.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-156">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHPMailer/Email.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -663,57 +510,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1132">
           <caret line="258" column="6" lean-forward="false" selection-start-line="258" selection-start-column="6" selection-end-line="258" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log/LogException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log/Log.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/debug.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="47" lean-forward="true" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="452" column="0" lean-forward="true" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
-          <folding>
-            <marker date="1514871228000" expanded="true" signature="3657:3695" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/log/LogException.php" />
+    <entry file="file://$PROJECT_DIR$/debug.log" />
     <entry file="file://$PROJECT_DIR$/up-rewrite.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -721,11 +526,160 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/tool.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/appCharge.php" />
+    <entry file="file://$PROJECT_DIR$/payment/src/Config.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/queryOrder.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/aliconfig.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/queryRefund.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/queryTransfer.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/refund.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/webCharge.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/wx/pubCharge.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/wx/qrCharge.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/wx/queryOrder.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/index.html" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/index.html" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/barCharge.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/wapCharge.php" />
+    <entry file="file://$PROJECT_DIR$/payment/examples/ali/transfer.php" />
+    <entry file="file://$PROJECT_DIR$/log/Log.php" />
+    <entry file="file://$PROJECT_DIR$/app.log" />
+    <entry file="file://$PROJECT_DIR$/phpinfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curl/Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/curl/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9248">
+          <caret line="544" column="5" lean-forward="false" selection-start-line="544" selection-start-column="5" selection-end-line="544" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/css/admin.css" />
+    <entry file="file://$PROJECT_DIR$/build/js/login.js" />
+    <entry file="file://$PROJECT_DIR$/elasticsearch/Elastic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPMailer/demo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jsencrypt/Rsa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPMailer/Email.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swoole/task/AbstractTask.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elasticsearch/DbSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/city/city.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHPExcel/Excel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/pcre/pcre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="234" column="9" lean-forward="false" selection-start-line="234" selection-start-column="9" selection-end-line="234" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/log/tool.php">
+    <entry file="file://$PROJECT_DIR$/utils.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8041">
+          <caret line="473" column="24" lean-forward="true" selection-start-line="473" selection-start-column="24" selection-end-line="473" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="2" lean-forward="false" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+          <folding>
+            <marker date="1515156817000" expanded="true" signature="30:479" ph="..." />
+            <marker date="1515156817000" expanded="true" signature="631:838" ph="..." />
+            <marker date="1515156817000" expanded="true" signature="788:831" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swoole/task/MessageTask.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swoole/task/TaskServer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swoole/task/Task.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swoole/task/MailTask.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
