@@ -101,8 +101,8 @@ class Rsa{
      * @return mixed
      */
     public function sign($data){
-        openssl_sign(json_encode($data),$signature,$this->private_key);
-        return $signature;
+        openssl_sign($data,$signature,$this->private_key);
+        return base64_encode($signature);
     }
 
     /**
@@ -112,7 +112,7 @@ class Rsa{
      * @return int
      */
     public function verify($data,$signature){
-        return openssl_verify(json_encode($data),$signature,$this->public_key);
+        return openssl_verify($data,base64_decode($signature),$this->public_key);
     }
 
 
