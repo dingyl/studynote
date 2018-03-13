@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ManhattanRecommend.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/base.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/find.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/sort.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/tree.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsencrypt/Rsa.php" afterPath="$PROJECT_DIR$/jsencrypt/Rsa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsencrypt/demo.php" afterPath="$PROJECT_DIR$/jsencrypt/demo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpinfo.php" afterPath="$PROJECT_DIR$/phpinfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,28 +28,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="city.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/city/city.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="35853">
+              <caret line="1887" column="42" lean-forward="false" selection-start-line="1887" selection-start-column="42" selection-end-line="1887" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+            <state relative-caret-position="209">
+              <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ManhattanRecommend.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ManhattanRecommend.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeoHash.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GeoHash.php">
+      <file leaf-file-name="sort.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algro/sort.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -59,31 +58,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils.php">
+      <file leaf-file-name="find.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/algro/find.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11050">
-              <caret line="650" column="9" lean-forward="false" selection-start-line="650" selection-start-column="9" selection-end-line="650" selection-end-column="9" />
+            <state relative-caret-position="266">
+              <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Rsa.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jsencrypt/Rsa.php">
+      <file leaf-file-name="tree.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algro/tree.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="49" />
+            <state relative-caret-position="38">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jsencrypt/demo.php">
+      <file leaf-file-name="base.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algro/base.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="171">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jquery/demo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbSearch.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elasticsearch/DbSearch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elasticsearch/search.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="phpinfo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phpinfo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -140,10 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/PHPExcel/Classes/PHPExcel/Calculation/Functions.php" />
-        <option value="$PROJECT_DIR$/PHPExcel/Classes/demoReader.php" />
-        <option value="$PROJECT_DIR$/PHPExcel/demo.php" />
-        <option value="$PROJECT_DIR$/PHPExcel/Excel.php" />
         <option value="$PROJECT_DIR$/PHPExcel/Classes/PHPExcel.php" />
         <option value="$PROJECT_DIR$/PHPMailer/class.pop3.php" />
         <option value="$PROJECT_DIR$/PHPMailer/class.phpmailer.php" />
@@ -191,6 +226,10 @@
         <option value="$PROJECT_DIR$/jsencrypt/demo.php" />
         <option value="$PROJECT_DIR$/ManhattanRecommend.php" />
         <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/algro/base.php" />
+        <option value="$PROJECT_DIR$/algro/sort.php" />
+        <option value="$PROJECT_DIR$/algro/tree.php" />
+        <option value="$PROJECT_DIR$/algro/find.php" />
       </list>
     </option>
   </component>
@@ -243,6 +282,11 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="studynote" type="cbb8eebc:String" user="studynote" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+              <item name="algro" type="cbb8eebc:String" user="algro" />
             </path>
           </expand>
           <select />
@@ -394,6 +438,7 @@
       <workItem from="1515402831514" duration="18241000" />
       <workItem from="1515660471309" duration="2202000" />
       <workItem from="1515745038267" duration="3650000" />
+      <workItem from="1520938932740" duration="2209000" />
     </task>
     <servers />
   </component>
@@ -406,12 +451,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="398711000" />
+    <option name="totallyTimeSpent" value="400920000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="23" width="1850" height="1057" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15320796" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15486726" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18971239" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -448,20 +494,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log/tool.php" />
-    <entry file="file://$PROJECT_DIR$/payment/examples/ali/appCharge.php" />
-    <entry file="file://$PROJECT_DIR$/payment/src/Config.php" />
-    <entry file="file://$PROJECT_DIR$/payment/examples/ali/queryOrder.php" />
-    <entry file="file://$PROJECT_DIR$/payment/examples/aliconfig.php" />
-    <entry file="file://$PROJECT_DIR$/payment/examples/ali/queryRefund.php" />
-    <entry file="file://$PROJECT_DIR$/payment/examples/ali/queryTransfer.php" />
     <entry file="file://$PROJECT_DIR$/payment/examples/ali/refund.php" />
     <entry file="file://$PROJECT_DIR$/payment/examples/ali/webCharge.php" />
     <entry file="file://$PROJECT_DIR$/payment/examples/wx/pubCharge.php" />
@@ -513,15 +545,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/elasticsearch/DbSearch.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-139">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="209">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/city/city.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        <state relative-caret-position="35853">
+          <caret line="1887" column="42" lean-forward="false" selection-start-line="1887" selection-start-column="42" selection-end-line="1887" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -651,7 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -659,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,8 +713,74 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        <state relative-caret-position="209">
+          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/city/province_city_prefecture.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/city/province_city.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#166#5346#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/city/city_prefecture.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jquery/validate/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/tree.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/sort.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/find.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding />
         </state>
       </provider>
