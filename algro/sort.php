@@ -1,5 +1,9 @@
 <?php
-require_once "base.php";
+function swap(&$a,&$b){
+    $a ^= $b;
+    $b ^= $a;
+    $a ^= $b;
+}
 
 //简单排序
 function simpleSort(&$arr){
@@ -45,5 +49,42 @@ function quickSort(&$arr,$left,$right){
         $arr[$low] = $key;
         quickSort($arr,$left,$low);
         quickSort($arr,$low+1,$right);
+    }
+}
+
+//归并排序
+function mergeSort(&$arr,$low,$high){
+    if($low < $high){
+        $mid = intval(($low+$high)/2);
+        mergeSort($arr,$low,$mid);
+        mergeSort($arr,$mid+1,$high);
+        merge($arr,$low,$mid,$high);
+    }
+}
+
+
+//合并两个有序子数组
+function merge(&$arr,$low,$mid,$high){
+    $temp = [];
+    $m = $low;
+    $n = $mid+1;
+    while($m <= $mid && $n <= $high){
+        if($arr[$m] < $arr[$n]){
+            array_push($temp,$arr[$m++]);
+        }else{
+            array_push($temp,$arr[$n++]);
+        }
+    }
+
+    while($m <= $mid){
+        array_push($temp,$arr[$m++]);
+    }
+
+    while($n <= $high){
+        array_push($temp,$arr[$n++]);
+    }
+
+    for($i=0;$i<count($temp);$i++){
+        $arr[$low+$i] = $temp[$i];
     }
 }

@@ -4,9 +4,3 @@ function p($arr){
     print_r($arr);
     echo "</pre>";
 }
-
-function swap(&$a,&$b){
-    $a ^= $b;
-    $b ^= $a;
-    $a ^= $b;
-}

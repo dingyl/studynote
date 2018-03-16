@@ -1,6 +1,4 @@
 <?php
-require_once "base.php";
-
 class Tree{
     public $left;
     public $right;
