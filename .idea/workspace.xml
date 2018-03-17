@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/BalanceSortTree.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/BinarySortTree.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/algro/question.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/algro/graph.php" afterPath="$PROJECT_DIR$/algro/Graph.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/algro/tree.php" afterPath="$PROJECT_DIR$/algro/Tree.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algro/base.php" afterPath="$PROJECT_DIR$/algro/base.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algro/sort.php" afterPath="$PROJECT_DIR$/algro/sort.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algro/BalanceSortTree.php" afterPath="$PROJECT_DIR$/algro/BalanceSortTree.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algro/Graph.php" afterPath="$PROJECT_DIR$/algro/Graph.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/algro/index.php" afterPath="$PROJECT_DIR$/algro/index.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,18 +29,18 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algro/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="171">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Graph.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Graph.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algro/Graph.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,33 +49,8 @@
       <file leaf-file-name="BalanceSortTree.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algro/BalanceSortTree.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="101" column="17" lean-forward="true" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="question.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/algro/question.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="68" column="15" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
-              <folding>
-                <element signature="e#49#352#0#PHP" expanded="false" />
-                <element signature="e#2249#2770#0#PHP" expanded="false" />
-                <element signature="e#3699#5024#0#PHP" expanded="false" />
-                <element signature="e#5055#5401#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/macphp/test.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1543">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="133">
+              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -184,11 +153,11 @@
         <option value="$PROJECT_DIR$/algro/Tree.php" />
         <option value="$PROJECT_DIR$/algro/base.php" />
         <option value="$PROJECT_DIR$/algro/BinarySortTree.php" />
-        <option value="$PROJECT_DIR$/algro/BalanceSortTree.php" />
-        <option value="$PROJECT_DIR$/algro/index.php" />
         <option value="$PROJECT_DIR$/algro/sort.php" />
-        <option value="$PROJECT_DIR$/algro/Graph.php" />
         <option value="$PROJECT_DIR$/algro/question.php" />
+        <option value="$PROJECT_DIR$/algro/index.php" />
+        <option value="$PROJECT_DIR$/algro/BalanceSortTree.php" />
+        <option value="$PROJECT_DIR$/algro/Graph.php" />
       </list>
     </option>
   </component>
@@ -212,8 +181,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="302" />
-    <option name="y" value="38" />
+    <option name="x" value="341" />
+    <option name="y" value="23" />
     <option name="width" value="1497" />
     <option name="height" value="1011" />
   </component>
@@ -398,7 +367,7 @@
       <workItem from="1515660471309" duration="2202000" />
       <workItem from="1515745038267" duration="3650000" />
       <workItem from="1520938932740" duration="8865000" />
-      <workItem from="1521075721383" duration="28459000" />
+      <workItem from="1521075721383" duration="31819000" />
     </task>
     <servers />
   </component>
@@ -411,12 +380,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="436035000" />
+    <option name="totallyTimeSpent" value="439395000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="302" y="38" width="1497" height="1011" extended-state="0" />
+    <frame x="341" y="23" width="1497" height="1011" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18900344" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16632302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17477876" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -485,6 +455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -658,6 +629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -788,14 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algro/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algro/find.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -804,33 +768,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algro/Graph.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/macphp/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1543">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algro/BalanceSortTree.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="101" column="17" lean-forward="true" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/algro/question.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
+        <state relative-caret-position="1045">
           <caret line="68" column="15" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
           <folding>
             <element signature="e#49#352#0#PHP" expanded="false" />
@@ -838,6 +778,38 @@
             <element signature="e#3699#5024#0#PHP" expanded="false" />
             <element signature="e#5055#5401#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/BalanceSortTree.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/macphp/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="61" column="1" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="61" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algro/Graph.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
