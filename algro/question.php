@@ -102,9 +102,9 @@ function maxSum($arr)
     $t_start = 0;//存储临时值
     $end = 0;//序列结束
     for ($i = 0; $i < $len; $i++) {
-        if($value>0){
+        if ($value > 0) {
             $value = $value + $arr[$i];
-        }else{
+        } else {
             $value = $arr[$i];
             $t_start = $i;
         }
@@ -139,7 +139,7 @@ function commonSubSequence($stra, $strb)
             $status = $temp_str == mb_substr($strb, $j - 1, 1) ? true : false;
             if ($status) {
                 $rect[$i][$j] = $rect[$i - 1][$j - 1] + 1;
-                if ($rect[$i-1][$j] == $rect[$i][$j - 1]) {
+                if ($rect[$i - 1][$j] == $rect[$i][$j - 1]) {
                     $serias .= $temp_str;
                 }
             } else {

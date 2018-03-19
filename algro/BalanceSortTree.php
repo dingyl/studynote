@@ -25,7 +25,7 @@ class BalanceSortTree
 
         if ($value > $this->value) {
             if ($this->right) {
-                $this->right->insert($value);
+                return $this->right->insert($value);
             } else {
                 $tree = new BalanceSortTree();
                 $tree->parent = $this;
@@ -56,7 +56,7 @@ class BalanceSortTree
 
         if ($value < $this->value) {
             if ($this->left) {
-                $this->left->insert($value);
+                return $this->left->insert($value);
             } else {
                 $tree = new BalanceSortTree();
                 $tree->parent = $this;
@@ -118,7 +118,6 @@ class BalanceSortTree
         }
     }
 
-
     public function search($value)
     {
         if ($this->value == $value) {
@@ -148,12 +147,29 @@ class BalanceSortTree
             //待删除节点没有左右子节点
             if (!$this->left && !$this->right) {
                 if ($this->parent) {
-                    if ($this->value > $this->parent->value) {
-                        $this->parent->right = null;
+
+                    if ($this->value == $this->parent->value) {
+                        if ($this->parent->left && $this->parent->left->value == $this->value) {
+                            $this->parent->left = null;
+                        } else {
+                            $this->parent->right = null;
+                        }
+                    } else {
+                        if ($this->value > $this->parent->value) {
+                            $this->parent->right = null;
+                        }
+                        if ($this->value < $this->parent->value) {
+                            $this->parent->left = null;
+                        }
                     }
-                    if ($this->value < $this->parent->value) {
-                        $this->parent->left = null;
+
+                    $t = $this->parent;
+                    while ($t) {
+                        $t->height = max(self::height($t->left), self::height($t->right)) + 1;
+                        $t = $t->parent;
                     }
+
+                    $this->parent->_keepBalance();
                 } else {
                     $this->value = null;
                 }
@@ -177,7 +193,10 @@ class BalanceSortTree
                         $t = $t->parent;
                     }
 
+                    $this->parent->_keepBalance();
+
                     $this->destroy();
+
                 } else {
                     $t = $this->left;
                     $this->value = $t->value;
@@ -193,6 +212,9 @@ class BalanceSortTree
                     $this->left = $t->left;
                     $this->right = $t->right;
                     $this->height = max(self::height($this->left), self::height($this->right)) + 1;
+
+                    $this->_keepBalance();
+
                     $t->destroy();
                 }
                 return true;
@@ -214,6 +236,8 @@ class BalanceSortTree
                         $t = $t->parent;
                     }
 
+                    $this->parent->_keepBalance();
+
                     $this->destroy();
                 } else {
                     $t = $this->right;
@@ -230,6 +254,8 @@ class BalanceSortTree
 
                     $this->height = max(self::height($this->left), self::height($this->right)) + 1;
 
+                    $this->_keepBalance();
+
                     $t->destroy();
                 }
                 return true;
@@ -237,19 +263,25 @@ class BalanceSortTree
 
             //待删除节点左右节点都有
             if ($this->left && $this->right) {
-                $t = $this->right;
-                //待删除节点的右节点没有左节点时
-                if (!$t->left) {
+                //左边高，从左边找最大值
+                if (self::height($this->left) > self::height($this->right)) {
+                    $t = $this->left;
+                    while ($t->right) {
+                        $t = $t->right;
+                    }
+
                     $this->value = $t->value;
-                    $this->right = $t->right;
-                } else {
+                    $this->left->delete($t->value);
+
+                } else {//从右边找最小值
+                    $t = $this->right;
                     while ($t->left) {
                         $t = $t->left;
                     }
+
                     $this->value = $t->value;
-                    $t->parent->right = $t->right;
+                    $this->right->delete($t->value);
                 }
-                $t->destroy();
                 return true;
             }
         }

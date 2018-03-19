@@ -1,70 +1,77 @@
 <?php
-class Tree{
+
+class Tree
+{
     public $left;
     public $right;
     public $parent;
     public $value;
 
     //先序遍历
-    public static function firstDisplay(Tree $tree){
-        echo $tree->value."<br/>";
-        if($tree->left){
+    public static function firstDisplay(Tree $tree)
+    {
+        echo $tree->value . "<br/>";
+        if ($tree->left) {
             self::firstDisplay($tree->left);
         }
-        if($tree->right){
+        if ($tree->right) {
             self::firstDisplay($tree->right);
         }
     }
 
     //中序遍历
-    public static function middleDisplay(Tree $tree){
-        if($tree->left){
+    public static function middleDisplay(Tree $tree)
+    {
+        if ($tree->left) {
             self::middleDisplay($tree->left);
         }
-        echo $tree->value."<br/>";
-        if($tree->right){
+        echo $tree->value . "<br/>";
+        if ($tree->right) {
             self::middleDisplay($tree->right);
         }
     }
 
     //后续遍历
-    public static function lastDisplay(Tree $tree){
-        if($tree->left){
+    public static function lastDisplay(Tree $tree)
+    {
+        if ($tree->left) {
             self::lastDisplay($tree->left);
         }
-        if($tree->right){
+        if ($tree->right) {
             self::lastDisplay($tree->right);
         }
-        echo $tree->value."<br/>";
+        echo $tree->value . "<br/>";
     }
 
     //深度优先遍历 类似 先序遍历
-    public static function deepDisplay(Tree $tree){
+    public static function deepDisplay(Tree $tree)
+    {
         $stack = new SplStack();
         $stack->push($tree);
-        while (!$stack->isEmpty()){
+        while (!$stack->isEmpty()) {
             $node = $stack->pop();
-            echo $node->value."<br/>";
-            if($node->left){
+            echo $node->value . "<br/>";
+            if ($node->left) {
                 $stack->push($node->left);
             }
-            if($node->right){
+            if ($node->right) {
                 $stack->push($node->right);
             }
         }
     }
 
     //广度优先遍历
-    public static function levelDisplay(Tree $tree){
+    public static function levelDisplay(Tree $tree)
+    {
         $queue = new SplQueue();
         $queue->enqueue($tree);
-        while (!$queue->isEmpty()){
+        while (!$queue->isEmpty()) {
             $node = $queue->dequeue();
-            echo $node->value."<br/>";
-            if($node->left){
+            echo $node->value . "<br/>";
+            if ($node->left) {
                 $queue->enqueue($node->left);
             }
-            if($node->right){
+            if ($node->right) {
                 $queue->enqueue($node->right);
             }
         }

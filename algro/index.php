@@ -5,9 +5,11 @@ require_once "BinarySortTree.php";
 
 echo "<pre>";
 $root = new BalanceSortTree();
-$arr = [3,8,5,7,6,2,1,10,4,9];
-foreach($arr as $value){
+$arr = [5, 7, 6, 3, 8, 9, 1];
+foreach ($arr as $value) {
     $root->insert($value);
 }
+
+$root->delete(3);
 
 BalanceSortTree::levelDisplay($root);
