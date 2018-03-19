@@ -9,6 +9,9 @@ class BinarySortTree{
     public function insert($value){
         if(!$this->value){
             $this->value = $value;
+            $this->parent = null;
+            $this->left = null;
+            $this->right = null;
             return true;
         }
 
@@ -23,6 +26,8 @@ class BinarySortTree{
                 $tree = new BinarySortTree();
                 $tree->parent = $this;
                 $tree->value = $value;
+                $tree->left = null;
+                $tree->right = null;
                 $this->right = $tree;
                 return true;
             }
@@ -35,6 +40,8 @@ class BinarySortTree{
                 $tree = new BinarySortTree();
                 $tree->parent = $this;
                 $tree->value = $value;
+                $tree->left = null;
+                $tree->right = null;
                 $this->left = $tree;
                 return true;
             }
@@ -74,6 +81,8 @@ class BinarySortTree{
                     if($this->value < $this->parent->value){
                         $this->parent->left = null;
                     }
+                }else{
+                    $this->value = null;
                 }
                 $this->destroy();
                 return true;
@@ -81,25 +90,57 @@ class BinarySortTree{
 
             //待删除节点只有左节点
             if($this->left && !$this->right){
-                if($this->left->value > $this->parent->value){
-                    $this->parent->right = $this->left;
+                if($this->parent){
+                    if($this->left->value > $this->parent->value){
+                        $this->parent->right = $this->left;
+                    }
+                    if($this->left->value < $this->parent->value){
+                        $this->parent->left = $this->left;
+                    }
+                    $this->destroy();
+                }else{
+                    $t = $this->left;
+                    $this->value = $t->value;
+
+                    if($t->left){
+                        $t->left->parent = $this;
+                    }
+
+                    if($t->right){
+                        $t->right->parent = $this;
+                    }
+
+                    $this->left = $t->left;
+                    $this->right = $t->right;
+                    $t->destroy();
                 }
-                if($this->left->value < $this->parent->value){
-                    $this->parent->left = $this->left;
-                }
-                $this->destroy();
                 return true;
             }
 
             //待删除节点只有右节点
             if($this->right && !$this->left){
-                if($this->right->value > $this->parent->value){
-                    $this->parent->right = $this->right;
+                if($this->parent){
+                    if($this->right->value > $this->parent->value){
+                        $this->parent->right = $this->right;
+                    }
+                    if($this->right->value < $this->parent->value){
+                        $this->parent->left = $this->right;
+                    }
+                    $this->destroy();
+                }else{
+                    $t = $this->right;
+                    $this->value = $t->value;
+                    if($t->left){
+                        $t->left->parent = $this;
+                    }
+
+                    if($t->right){
+                        $t->right->parent = $this;
+                    }
+                    $this->left = $t->left;
+                    $this->right = $t->right;
+                    $t->destroy();
                 }
-                if($this->right->value < $this->parent->value){
-                    $this->parent->left = $this->right;
-                }
-                $this->destroy();
                 return true;
             }
 
@@ -110,17 +151,15 @@ class BinarySortTree{
                 if(!$t->left){
                     $this->value = $t->value;
                     $this->right = $t->right;
-                    $t->destroy();
-                    return true;
                 }else{
                     while($t->left){
                         $t = $t->left;
                     }
                     $this->value = $t->value;
                     $t->parent->right = $t->right;
-                    $t->destroy();
-                    return true;
                 }
+                $t->destroy();
+                return true;
             }
         }
 
