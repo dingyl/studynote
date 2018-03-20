@@ -1,6 +1,5 @@
 <?php
-require 'DbSearch.php';
-$hosts = ['localhost:9200'];
-$client =  DbSearch::getIns($hosts,'order','testtable');
-
-print_r($client->findAll());
+require 'ElasticModel.php';
+echo "<pre>";
+$obj = ElasticModel::count();
+print_r($obj);
