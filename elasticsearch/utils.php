@@ -830,7 +830,7 @@ function isEmail($email)
 
 function isInteger($integer)
 {
-    if (isPresent($integer)) {
+    if ($integer) {
         return preg_match('/^\d+$/', $integer) || preg_match('/^-\d+$/', $integer);
     } else {
         return false;
@@ -839,8 +839,8 @@ function isInteger($integer)
 
 function isFloat($float)
 {
-    if (isPresent($float)) {
-        return isInteger($float) || preg_match('/^\d+\.\d+$/', $float) || preg_match('/^-\d+\.\d+$/', $float);;
+    if ($float) {
+        return isInteger($float) || preg_match('/^\d+\.\d+$/', $float) || preg_match('/^-\d+\.\d+$/', $float);
     } else {
         return false;
     }
@@ -928,6 +928,28 @@ function getFile($name)
     return null;
 }
 
-function E($type){
-    $client = Elastic::getIns($type);
+function rectSort($arrays, $order, $sort_mode = SORT_REGULAR)
+{
+    $order_info = explode(' ',trim($order)) ;
+    $field = $order_info[0];
+    $sort_type = isset($order_info[1]) ? $order_info[1] : 'asc';
+    $sort_type = strtolower($sort_type);
+    if ($sort_type == 'asc') {
+        $sort_type = SORT_ASC;
+    } else {
+        $sort_type = SORT_DESC;
+    }
+    if (is_array($arrays)) {
+        foreach ($arrays as $array) {
+            if (is_array($array)) {
+                $key_arrays[] = $array[$field];
+            } else {
+                return false;
+            }
+        }
+    } else {
+        return false;
+    }
+    array_multisort($key_arrays, $sort_type, $sort_mode, $arrays);
+    return $arrays;
 }

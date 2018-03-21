@@ -2,6 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 require_once "BaseModel.php";
+
 class ElasticModel extends BaseModel
 {
     protected $client;
@@ -76,12 +77,7 @@ class ElasticModel extends BaseModel
                 'doc' => $data
             ]
         ];
-        if (isset($data['id'])) {
-            $params['id'] = $data['id'];
-        }
-        if (!empty($_id)) {
-            $params['id'] = $_id;
-        }
+        $params['id'] = $this->_old_attributes['id'];
         return $this->client->update($this->combineParams($params));
     }
 
@@ -112,11 +108,15 @@ class ElasticModel extends BaseModel
         if ($res['found']) {
             $data = $res['_source'];
         }
-
-        $_this = new self();
-        $_this->_is_new_record = false;
-        $_this->setAttributes($data);
-        return $_this;
+        if ($data) {
+            $_this = new self();
+            $_this->_is_new_record = false;
+            $_this->setAttributes($data);
+            $_this->setOldAttributes($data);
+            return $_this;
+        } else {
+            return null;
+        }
     }
 
     public static function findOne($cond = [], $order = ['id' => 'desc'])
@@ -130,13 +130,14 @@ class ElasticModel extends BaseModel
             $_this = new self();
             $_this->_is_new_record = false;
             $_this->setAttributes($resp_data[0]);
+            $_this->setOldAttributes($resp_data[0]);
             return $_this;
         }
     }
 
     public static function count($cond = [])
     {
-        $resp_data = self::find($cond,['id' => 'desc'],1,1);
+        $resp_data = self::find($cond, ['id' => 'desc'], 1, 1);
         return $resp_data['total'];
     }
 
@@ -154,6 +155,7 @@ class ElasticModel extends BaseModel
                 $_this = new self();
                 $_this->_is_new_record = false;
                 $_this->setAttributes($data);
+                $_this->setOldAttributes($data);
                 $datas[] = $_this;
             }
             return $datas;
@@ -173,6 +175,7 @@ class ElasticModel extends BaseModel
                 $_this = new self();
                 $_this->_is_new_record = false;
                 $_this->setAttributes($data);
+                $_this->setOldAttributes($data);
                 $datas[] = $_this;
             }
             return $datas;
@@ -209,7 +212,7 @@ class ElasticModel extends BaseModel
         }
 
         //显示字段设置
-        $temp_fields = self::getFields();
+        $temp_fields = static::$attributes;
         $fields = [];
         foreach ($temp_fields as $field_name) {
             $fields[$field_name] = new \stdClass();
@@ -217,8 +220,8 @@ class ElasticModel extends BaseModel
         $params['body'] = [
             '_source' => ["include" => $temp_fields],
             'highlight' => [
-                'pre_tags' => ['{left}'],
-                'post_tags' => ['{right}'],
+                'pre_tags' => ['<span style="color:red">'],
+                'post_tags' => ['</span>'],
                 'fields' => $fields
             ]
         ];
@@ -275,28 +278,6 @@ class ElasticModel extends BaseModel
             $data = $res['aggregations'];
         }
         return $data;
-    }
-
-    public static function tableInfo()
-    {
-        $index = static::indexName();
-        $type = static::tableName();
-        $params = [
-            'index' => $index,
-            'type' => $type
-        ];
-        $client = self::client();
-
-        $info = $client->indices()->getMapping(self::combineParams($params));
-
-        return $info[$index]['mappings'][$type];
-    }
-
-    protected static function getFields()
-    {
-        $table_info = self::tableInfo();
-        $fields = array_keys($table_info['properties']);
-        return $fields;
     }
 
     protected static function getConditions($condition, $type = 'match')

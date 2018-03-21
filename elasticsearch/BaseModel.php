@@ -1,14 +1,21 @@
 <?php
 require_once "utils.php";
+
+//id 不允许修改
 abstract class BaseModel
 {
+    //定义表的属性字段  id默认就有
+    public static $attributes = [];
+
     public $error_reason;
 
-    protected $_exec_level;
+    protected $_exec_level = 0;
 
     protected $_is_new_record = true;
 
     protected $_attributes = [];
+
+    protected $_old_attributes = [];
 
     protected $validate_messages = [
         'required' => '%s不能为空',
@@ -39,7 +46,7 @@ abstract class BaseModel
 
     public function __get($name)
     {
-        if(isset($this->_attributes[$name])){
+        if (isset($this->_attributes[$name])) {
             return $this->_attributes[$name];
         }
 
@@ -52,10 +59,9 @@ abstract class BaseModel
 
         //developer  getDeveloper
         $method_name = 'get' . $tname;
-        if (is_callable([$this,$method_name]) && method_exists($this, $method_name)) {
+        if (is_callable([$this, $method_name]) && method_exists($this, $method_name)) {
             return $this->$method_name();
         }
-
 
 
         $reflect = new \ReflectionClass(get_called_class());
@@ -100,20 +106,48 @@ abstract class BaseModel
 
     public function __toString()
     {
-        return json_encode($this->_attributes,JSON_UNESCAPED_UNICODE);
+        return json_encode($this->_attributes, JSON_UNESCAPED_UNICODE);
     }
 
-    public function toJson(){
-        return array_merge($this->_attributes,$this->mergeJson());
+    public function load($data, $formName = null)
+    {
+        $scope = $formName === null ? $this->formName() : $formName;
+
+        if ($scope === '' && !empty($data)) {
+            $data = array_filter($data,function($k){
+                return in_array($k,static::$attributes);
+            },ARRAY_FILTER_USE_KEY);
+            $this->setAttributes($data);
+            return true;
+        } elseif (isset($data[$scope])) {
+            $data[$scope] = array_filter($data[$scope],function($k){
+                return in_array($k,static::$attributes);
+            },ARRAY_FILTER_USE_KEY);
+            $this->setAttributes($data[$scope]);
+            return true;
+        }
+
+        return false;
     }
 
-    public function mergeJson(){
+    public function toJson()
+    {
+        return array_merge($this->_attributes, $this->mergeJson());
+    }
+
+    public function mergeJson()
+    {
         return [];
     }
 
     public function setAttributes($data)
     {
         $this->_attributes = $data;
+    }
+
+    public function setOldAttributes($data)
+    {
+        $this->_old_attributes = $data;
     }
 
     public static function tableName()
@@ -126,25 +160,38 @@ abstract class BaseModel
         return '';
     }
 
+    public static function formName(){
+        $table_name = static::tableName();
+        return ucwords(underLineString2Camel($table_name));
+    }
+
+    public function hasAttributes($name)
+    {
+        $temp = static::$attributes;
+        $temp[] = 'id';
+        return in_array($name, $temp);
+    }
+
 
     public static function findById($id)
     {
-
+        return null;
     }
 
-    public static function __callStatic($method,$params){
-        $prefix = substr($method,0,6);
-        if($prefix == 'findBy'){
-            $name = substr($method,6);
+    public static function __callStatic($method, $params)
+    {
+        $prefix = substr($method, 0, 6);
+        if ($prefix == 'findBy') {
+            $name = substr($method, 6);
             $underline_name = camel2UnderLineString($name);
-            return static::findAll([$underline_name=>$params[0]]);
+            return static::findAll([$underline_name => $params[0]]);
         }
 
-        $prefix = substr($method,0,9);
-        if($prefix == 'findOneBy'){
-            $name = substr($method,9);
+        $prefix = substr($method, 0, 9);
+        if ($prefix == 'findOneBy') {
+            $name = substr($method, 9);
             $underline_name = camel2UnderLineString($name);
-            return static::findOne([$underline_name=>$params[0]]);
+            return static::findOne([$underline_name => $params[0]]);
         }
     }
 
@@ -184,10 +231,10 @@ abstract class BaseModel
                     break;
                 case 'uniqid' :
                     foreach ($fields as $field) {
-                        if($this->isNewRecord() && $this->$field){
+                        if ($this->isNewRecord() && $this->$field) {
                             $filed_name = isset($attributeLabels[$field]) ? $attributeLabels[$field] : $field;
 
-                            $t_funcname = 'findFirstBy' . $field;
+                            $t_funcname = 'findOneBy' . $field;
 
                             if (self::$t_funcname($this->$field)) {
                                 $this->error_reason = sprintf($validate_messages['uniqid'], $filed_name, $this->$field);
@@ -198,17 +245,45 @@ abstract class BaseModel
                     break;
                 case 'integer' :
                     foreach ($fields as $field) {
-                        $this->$field = intval($this->$field);
-                        if ($this->$field) {
-                            $filed_name = isset($attributeLabels[$field]) ? $attributeLabels[$field] : $field;
-                            if (isset($rule['max']) && $this->$field > $rule['max']) {
-                                $this->error_reason = sprintf($validate_messages['max'], $filed_name, $rule['max']);
-                                return false;
+                        $filed_name = isset($attributeLabels[$field]) ? $attributeLabels[$field] : $field;
+                        if(isInteger($this->$field)){
+                            $this->$field = intval($this->$field);
+                            if ($this->$field) {
+
+                                if (isset($rule['max']) && $this->$field > $rule['max']) {
+                                    $this->error_reason = sprintf($validate_messages['max'], $filed_name, $rule['max']);
+                                    return false;
+                                }
+                                if (isset($rule['min']) && $this->$field < $rule['min']) {
+                                    $this->error_reason = sprintf($validate_messages['min'], $filed_name, $rule['min']);
+                                    return false;
+                                }
                             }
-                            if (isset($rule['min']) && $this->$field < $rule['min']) {
-                                $this->error_reason = sprintf($validate_messages['min'], $filed_name, $rule['min']);
-                                return false;
+                        }else{
+                            $this->error_reason = sprintf($validate_messages['integer'], $filed_name);
+                            return false;
+                        }
+                    }
+                    break;
+                case 'float' :
+                    foreach ($fields as $field) {
+                        $filed_name = isset($attributeLabels[$field]) ? $attributeLabels[$field] : $field;
+                        if(isInteger($this->$field)){
+                            $this->$field = intval($this->$field);
+                            if ($this->$field) {
+
+                                if (isset($rule['max']) && $this->$field > $rule['max']) {
+                                    $this->error_reason = sprintf($validate_messages['max'], $filed_name, $rule['max']);
+                                    return false;
+                                }
+                                if (isset($rule['min']) && $this->$field < $rule['min']) {
+                                    $this->error_reason = sprintf($validate_messages['min'], $filed_name, $rule['min']);
+                                    return false;
+                                }
                             }
+                        }else{
+                            $this->error_reason = sprintf($validate_messages['float'], $filed_name);
+                            return false;
                         }
                     }
                     break;
@@ -250,77 +325,136 @@ abstract class BaseModel
         return $this->_is_new_record;
     }
 
-    public function save(){
-        if($this->_attributes){
-            $this->beforeSave();
-            if($this->isNewRecord()){
-                $this->beforeInsert();
+    public function save()
+    {
+        if ($this->_attributes) {
+            $this->_exec_level++;
+            if ($this->_exec_level == 1) {
+                $this->beforeSave();
+            }
+            $this->_exec_level--;
+            if ($this->isNewRecord()) {
+                $this->_exec_level++;
+                if ($this->_exec_level == 1) {
+                    $this->beforeInsert();
+                }
+                $this->_exec_level--;
                 $status = $this->insert();
-                $this->afterInsert();
-                if($status){
+                $this->_exec_level++;
+                if ($this->_exec_level == 1) {
+                    $this->afterInsert();
+                }
+                $this->_exec_level--;
+
+                if ($status) {
                     $this->_is_new_record = false;
                 }
-            }else{
-                $this->beforeUpdate();
+            } else {
+                $this->_exec_level++;
+                if ($this->_exec_level == 1) {
+                    $this->beforeUpdate();
+                }
+                $this->_exec_level--;
                 $status = $this->update();
-                $this->afterUpdate();
+                $this->_exec_level++;
+                if ($this->_exec_level == 1) {
+                    $this->afterUpdate();
+                }
+                $this->_exec_level--;
             }
-            $this->afterSave();
-            return $status;
-        }else{
+
+            if ($status) {
+                $this->setOldAttributes($this->_attributes);
+            }
+
+            $this->_exec_level++;
+            if ($this->_exec_level == 1) {
+                $this->afterSave();
+            }
+            $this->_exec_level--;
+        } else {
             $this->error_reason = '数据为空';
-            return false;
+            $status = false;
         }
-    }
-
-    public function beforeSave(){
-
-    }
-
-    public function afterSave(){
-
-    }
-
-    public function insert(){
-        return true;
-    }
-
-    public function beforeInsert(){
-
-    }
-
-    public function afterInsert(){
-
-    }
-
-    public function update(){
-        return true;
-    }
-
-    public function beforeUpdate(){
-
-    }
-
-    public function afterUpdate(){
-
-    }
-
-    public function delete(){
-        $this->beforeDelete();
-        $status = $this->realDelete();
-        $this->afterDelete();
         return $status;
     }
 
-    public function realDelete(){
+    public function beforeSave()
+    {
+        if ($this->isNewRecord() && $this->hasAttributes('created_at')) {
+            $this->created_at = time();
+        }
+        if ($this->hasAttributes('updated_at')) {
+            $this->updated_at = time();
+        }
         return true;
     }
 
-    public function beforeDelete(){
+    public function afterSave()
+    {
 
     }
 
-    public function afterDelete(){
+    public function insert()
+    {
+        return true;
+    }
+
+    public function beforeInsert()
+    {
+
+    }
+
+    public function afterInsert()
+    {
+
+    }
+
+    public function update()
+    {
+        return true;
+    }
+
+    public function beforeUpdate()
+    {
+
+    }
+
+    public function afterUpdate()
+    {
+
+    }
+
+    public function delete()
+    {
+        $this->_exec_level++;
+        if ($this->_exec_level == 1) {
+            $this->beforeDelete();
+        }
+        $this->_exec_level--;
+
+        $status = $this->realDelete();
+        $this->_exec_level++;
+        if ($this->_exec_level == 1) {
+            $this->afterDelete();
+        }
+        $this->_exec_level--;
+
+        return $status;
+    }
+
+    public function realDelete()
+    {
+        return true;
+    }
+
+    public function beforeDelete()
+    {
+
+    }
+
+    public function afterDelete()
+    {
 
     }
 }

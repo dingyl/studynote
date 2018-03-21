@@ -83,7 +83,7 @@ class SsdbCache extends AbstractCache implements CacheInterface
 
     public function zcard($key)
     {
-        return $this->db->zcount($key, '', '');
+        return $this->db->zcount($key, 0, PHP_INT_MAX);
     }
 
     public function zrange($key, $start, $limit)
