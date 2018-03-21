@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/elasticsearch/RedisModel.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/elasticsearch/SsdbModel.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/elasticsearch/DbSearch.php" afterPath="$PROJECT_DIR$/elasticsearch/Elastic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/BaseModel.php" afterPath="$PROJECT_DIR$/elasticsearch/BaseModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/ElasticModel.php" afterPath="$PROJECT_DIR$/elasticsearch/ElasticModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/search.php" afterPath="$PROJECT_DIR$/elasticsearch/search.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/utils.php" afterPath="$PROJECT_DIR$/elasticsearch/utils.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ssdb/SsdbCache.php" afterPath="$PROJECT_DIR$/ssdb/SsdbCache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/elasticsearch/ElasticModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3667">
-              <caret line="193" column="40" lean-forward="true" selection-start-line="193" selection-start-column="40" selection-end-line="193" selection-end-column="40" />
+              <caret line="193" column="40" lean-forward="false" selection-start-line="193" selection-start-column="40" selection-end-line="193" selection-end-column="40" />
               <folding>
                 <element signature="n#aggs#0;n#ElasticModel#0;n#!!top" expanded="false" />
                 <element signature="n#getConditions#0;n#ElasticModel#0;n#!!top" expanded="false" />
@@ -61,8 +54,8 @@
       <file leaf-file-name="BaseModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/elasticsearch/BaseModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="1119">
+              <caret line="377" column="29" lean-forward="true" selection-start-line="377" selection-start-column="29" selection-end-line="377" selection-end-column="29" />
               <folding>
                 <element signature="n#load#0;n#BaseModel#0;n#!!top" expanded="false" />
                 <element signature="n#toJson#0;n#BaseModel#0;n#!!top" expanded="false" />
@@ -75,7 +68,6 @@
                 <element signature="n#findById#0;n#BaseModel#0;n#!!top" expanded="false" />
                 <element signature="n#__callStatic#0;n#BaseModel#0;n#!!top" expanded="false" />
                 <element signature="n#isNewRecord#0;n#BaseModel#0;n#!!top" expanded="false" />
-                <element signature="n#save#0;n#BaseModel#0;n#!!top" expanded="false" />
                 <element signature="n#beforeSave#0;n#BaseModel#0;n#!!top" expanded="false" />
                 <element signature="n#afterSave#0;n#BaseModel#0;n#!!top" expanded="false" />
                 <element signature="n#insert#0;n#BaseModel#0;n#!!top" expanded="false" />
@@ -105,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utils.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/elasticsearch/utils.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="839" column="24" lean-forward="true" selection-start-line="839" selection-start-column="24" selection-end-line="839" selection-end-column="24" />
+            <state relative-caret-position="86">
+              <caret line="811" column="38" lean-forward="true" selection-start-line="811" selection-start-column="38" selection-end-line="811" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -119,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/elasticsearch/RedisModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+              <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="n#prefixKey#0;n#RedisModel#0;n#!!top" expanded="false" />
                 <element signature="n#idKey#0;n#RedisModel#0;n#!!top" expanded="false" />
@@ -139,10 +131,20 @@
         <entry file="file://$PROJECT_DIR$/elasticsearch/SsdbModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4883">
-              <caret line="260" column="0" lean-forward="true" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+              <caret line="260" column="0" lean-forward="false" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
               <folding>
                 <element signature="n#tableName#0;n#SsdbModel#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/elasticsearch/search.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -246,10 +248,10 @@
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/ssdb/SsdbCache.php" />
         <option value="$PROJECT_DIR$/elasticsearch/SsdbModel.php" />
-        <option value="$PROJECT_DIR$/elasticsearch/search.php" />
-        <option value="$PROJECT_DIR$/elasticsearch/BaseModel.php" />
         <option value="$PROJECT_DIR$/elasticsearch/Elastic.php" />
         <option value="$PROJECT_DIR$/elasticsearch/utils.php" />
+        <option value="$PROJECT_DIR$/elasticsearch/BaseModel.php" />
+        <option value="$PROJECT_DIR$/elasticsearch/search.php" />
       </list>
     </option>
   </component>
@@ -272,10 +274,10 @@
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="61" />
-    <option name="y" value="23" />
-    <option name="width" value="1850" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="308" />
+    <option name="y" value="120" />
+    <option name="width" value="1867" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -471,7 +473,7 @@
       <workItem from="1520938932740" duration="8865000" />
       <workItem from="1521075721383" duration="41967000" />
       <workItem from="1521447096945" duration="2654000" />
-      <workItem from="1521512557692" duration="36795000" />
+      <workItem from="1521512557692" duration="37200000" />
     </task>
     <servers />
   </component>
@@ -484,10 +486,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="488992000" />
+    <option name="totallyTimeSpent" value="489397000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="23" width="1867" height="1057" extended-state="6" />
+    <frame x="308" y="120" width="1867" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13260274" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -522,7 +524,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -873,28 +875,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elasticsearch/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/elasticsearch/SsdbModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4883">
-          <caret line="260" column="0" lean-forward="true" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
-          <folding>
-            <element signature="n#tableName#0;n#SsdbModel#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elasticsearch/ElasticModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3667">
-          <caret line="193" column="40" lean-forward="true" selection-start-line="193" selection-start-column="40" selection-end-line="193" selection-end-column="40" />
+          <caret line="193" column="40" lean-forward="false" selection-start-line="193" selection-start-column="40" selection-end-line="193" selection-end-column="40" />
           <folding>
             <element signature="n#aggs#0;n#ElasticModel#0;n#!!top" expanded="false" />
             <element signature="n#getConditions#0;n#ElasticModel#0;n#!!top" expanded="false" />
@@ -907,7 +891,7 @@
     <entry file="file://$PROJECT_DIR$/elasticsearch/RedisModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="n#prefixKey#0;n#RedisModel#0;n#!!top" expanded="false" />
             <element signature="n#idKey#0;n#RedisModel#0;n#!!top" expanded="false" />
@@ -918,39 +902,6 @@
             <element signature="n#writeClient#0;n#RedisModel#0;n#!!top" expanded="false" />
             <element signature="n#readerClient#0;n#RedisModel#0;n#!!top" expanded="false" />
             <element signature="n#findById#0;n#RedisModel#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/elasticsearch/BaseModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="n#load#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#toJson#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#mergeJson#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#setAttributes#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#setOldAttributes#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#tableName#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#aliasName#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#formName#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#findById#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#__callStatic#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#isNewRecord#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#save#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeSave#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterSave#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#insert#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeInsert#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterInsert#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#update#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeUpdate#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterUpdate#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#realDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -967,8 +918,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/elasticsearch/utils.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="839" column="24" lean-forward="true" selection-start-line="839" selection-start-column="24" selection-end-line="839" selection-end-column="24" />
+        <state relative-caret-position="86">
+          <caret line="811" column="38" lean-forward="true" selection-start-line="811" selection-start-column="38" selection-end-line="811" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elasticsearch/BaseModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1119">
+          <caret line="377" column="29" lean-forward="true" selection-start-line="377" selection-start-column="29" selection-end-line="377" selection-end-column="29" />
+          <folding>
+            <element signature="n#load#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#toJson#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#mergeJson#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#setAttributes#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#setOldAttributes#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#tableName#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#aliasName#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#formName#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#findById#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#__callStatic#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#isNewRecord#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#beforeSave#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#afterSave#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#insert#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#beforeInsert#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#afterInsert#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#update#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#beforeUpdate#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#afterUpdate#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#realDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#beforeDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
+            <element signature="n#afterDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elasticsearch/SsdbModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4883">
+          <caret line="260" column="0" lean-forward="false" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+          <folding>
+            <element signature="n#tableName#0;n#SsdbModel#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elasticsearch/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding />
         </state>
       </provider>

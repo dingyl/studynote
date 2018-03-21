@@ -328,50 +328,55 @@ abstract class BaseModel
     public function save()
     {
         if ($this->_attributes) {
-            $this->_exec_level++;
-            if ($this->_exec_level == 1) {
-                $this->beforeSave();
-            }
-            $this->_exec_level--;
-            if ($this->isNewRecord()) {
+
+            if($this->validate()){
                 $this->_exec_level++;
                 if ($this->_exec_level == 1) {
-                    $this->beforeInsert();
+                    $this->beforeSave();
                 }
                 $this->_exec_level--;
-                $status = $this->insert();
-                $this->_exec_level++;
-                if ($this->_exec_level == 1) {
-                    $this->afterInsert();
+                if ($this->isNewRecord()) {
+                    $this->_exec_level++;
+                    if ($this->_exec_level == 1) {
+                        $this->beforeInsert();
+                    }
+                    $this->_exec_level--;
+                    $status = $this->insert();
+                    $this->_exec_level++;
+                    if ($this->_exec_level == 1) {
+                        $this->afterInsert();
+                    }
+                    $this->_exec_level--;
+
+                    if ($status) {
+                        $this->_is_new_record = false;
+                    }
+                } else {
+                    $this->_exec_level++;
+                    if ($this->_exec_level == 1) {
+                        $this->beforeUpdate();
+                    }
+                    $this->_exec_level--;
+                    $status = $this->update();
+                    $this->_exec_level++;
+                    if ($this->_exec_level == 1) {
+                        $this->afterUpdate();
+                    }
+                    $this->_exec_level--;
                 }
-                $this->_exec_level--;
 
                 if ($status) {
-                    $this->_is_new_record = false;
+                    $this->setOldAttributes($this->_attributes);
                 }
-            } else {
+
                 $this->_exec_level++;
                 if ($this->_exec_level == 1) {
-                    $this->beforeUpdate();
+                    $this->afterSave();
                 }
                 $this->_exec_level--;
-                $status = $this->update();
-                $this->_exec_level++;
-                if ($this->_exec_level == 1) {
-                    $this->afterUpdate();
-                }
-                $this->_exec_level--;
+            }else{
+                return false;
             }
-
-            if ($status) {
-                $this->setOldAttributes($this->_attributes);
-            }
-
-            $this->_exec_level++;
-            if ($this->_exec_level == 1) {
-                $this->afterSave();
-            }
-            $this->_exec_level--;
         } else {
             $this->error_reason = '数据为空';
             $status = false;

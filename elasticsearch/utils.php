@@ -819,7 +819,7 @@ function getValue($arr, &$son_fields)
 
 function isEmail($email)
 {
-    if (isPresent($email)) {
+    if ($email) {
         $exp = "/([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?/i";
         return preg_match($exp, $email) ? true : false;
     } else {

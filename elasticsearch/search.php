@@ -6,10 +6,10 @@ echo "<pre>";
 $keys = SsdbModel::keys();
 //print_r($keys);
 //
-//$category = new SsdbModel();
-//$category->name = 'hello';
-//$category->age = 23;
-//$category->save();
+$category = new SsdbModel();
+$category->name = 'hello';
+$category->age = 23;
+$category->save();
 //
 //
 $models = SsdbModel::findAll(['age'=>23],'id desc');
