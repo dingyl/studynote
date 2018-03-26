@@ -214,7 +214,11 @@ class SsdbModel extends BaseModel
     public static function keys()
     {
         $ssdb = self::readerClient();
-        return $ssdb->keys('', '', PHP_INT_MAX);
+        $keys = [];
+        $keys['simple_keys'] = $ssdb->keys('', '', PHP_INT_MAX);
+        $keys['z_keys'] = $ssdb->zlist('', '',PHP_INT_MAX);
+        $keys['h_keys'] = $ssdb->hlist('', '',PHP_INT_MAX);
+        return $keys;
     }
 
     public static function expire($key, $time)
@@ -277,5 +281,10 @@ class SsdbModel extends BaseModel
     {
         $ssdb = self::writeClient();
         return $ssdb->zdel($key, $value);
+    }
+
+    public static function info(){
+        $ssdb = self::readerClient();
+        return $ssdb->info();
     }
 }
