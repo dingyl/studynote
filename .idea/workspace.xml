@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a2f729-4507-4a5f-8fb8-f3473aeee57c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kafka/consumer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kafka/producer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/swoole/Timer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/Elastic.php" afterPath="$PROJECT_DIR$/elasticsearch/Elastic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/SsdbModel.php" afterPath="$PROJECT_DIR$/elasticsearch/SsdbModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elasticsearch/search.php" afterPath="$PROJECT_DIR$/elasticsearch/search.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,7 +27,58 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timer.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/swoole/Timer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consumer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka/consumer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="producer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kafka/producer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -80,9 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/province_city_prefecture.php" />
-        <option value="$PROJECT_DIR$/province.php" />
-        <option value="$PROJECT_DIR$/ssdb/CacheInterface.php" />
         <option value="$PROJECT_DIR$/ssdb/XRedis.php" />
         <option value="$PROJECT_DIR$/swoole/task/demo.log" />
         <option value="$PROJECT_DIR$/swoole/socket/client.php" />
@@ -130,7 +178,10 @@
         <option value="$PROJECT_DIR$/elasticsearch/search.php" />
         <option value="$PROJECT_DIR$/elasticsearch/SsdbModel.php" />
         <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/swoole/Timer.php" />
+        <option value="$PROJECT_DIR$/kafka/consumer.php" />
         <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/kafka/producer.php" />
       </list>
     </option>
   </component>
@@ -152,10 +203,10 @@
       <server host="study" id="69707afe-271c-4e39-86fa-4c3c9739642c" name="study" />
     </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.6" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="141" />
-    <option name="y" value="131" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.1" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="164" />
+    <option name="y" value="163" />
     <option name="width" value="1613" />
     <option name="height" value="904" />
   </component>
@@ -177,6 +228,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="studynote" type="cbb8eebc:String" user="studynote" />
+              <item name="kafka" type="cbb8eebc:String" user="kafka" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -198,51 +266,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="phpqrcode" type="cbb8eebc:String" user="phpqrcode" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="swoole" type="cbb8eebc:String" user="swoole" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="swoole" type="cbb8eebc:String" user="swoole" />
-              <item name="commet" type="cbb8eebc:String" user="commet" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="swoole" type="cbb8eebc:String" user="swoole" />
-              <item name="socket" type="cbb8eebc:String" user="socket" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="swoole" type="cbb8eebc:String" user="swoole" />
-              <item name="task" type="cbb8eebc:String" user="task" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="studynote" type="cbb8eebc:String" user="studynote" />
-              <item name="websocket" type="cbb8eebc:String" user="websocket" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,8 +304,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.test.php">
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="study" />
+    <configuration name="test.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/test.php" />
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.test.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -373,6 +402,15 @@
       <workItem from="1521512557692" duration="44132000" />
       <workItem from="1521721944744" duration="1268000" />
       <workItem from="1521724889752" duration="9430000" />
+      <workItem from="1522116502058" duration="1289000" />
+      <workItem from="1522393608547" duration="847000" />
+      <workItem from="1522671764808" duration="706000" />
+      <workItem from="1523520841708" duration="2403000" />
+      <workItem from="1523851055530" duration="2244000" />
+      <workItem from="1523928609611" duration="283000" />
+      <workItem from="1524137260329" duration="1261000" />
+      <workItem from="1524815355305" duration="738000" />
+      <workItem from="1524822691332" duration="2428000" />
     </task>
     <servers />
   </component>
@@ -385,16 +423,16 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507027000" />
+    <option name="totallyTimeSpent" value="519226000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="141" y="131" width="1613" height="904" extended-state="0" />
+    <frame x="164" y="163" width="1613" height="904" extended-state="1" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1521324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19159772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17477876" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19172113" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29295427" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -427,42 +465,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ManhattanRecommend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/province_city_prefecture.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/province_city.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/city/city_prefecture.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jquery/validate/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jquery/demo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -537,7 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="191" column="20" lean-forward="false" selection-start-line="191" selection-start-column="9" selection-end-line="191" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -622,7 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,31 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5320">
           <caret line="341" column="21" lean-forward="false" selection-start-line="341" selection-start-column="21" selection-end-line="341" selection-end-column="21" />
-          <folding>
-            <element signature="n#load#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#toJson#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#mergeJson#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#setAttributes#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#setOldAttributes#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#tableName#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#aliasName#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#formName#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#findById#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#__callStatic#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#isNewRecord#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeSave#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterSave#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#insert#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeInsert#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterInsert#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#update#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeUpdate#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterUpdate#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#realDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#beforeDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
-            <element signature="n#afterDelete#0;n#BaseModel#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -697,12 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3933">
           <caret line="207" column="9" lean-forward="false" selection-start-line="207" selection-start-column="9" selection-end-line="207" selection-end-column="9" />
-          <folding>
-            <element signature="n#aggs#0;n#ElasticModel#0;n#!!top" expanded="false" />
-            <element signature="n#getConditions#0;n#ElasticModel#0;n#!!top" expanded="false" />
-            <element signature="n#getData#0;n#ElasticModel#0;n#!!top" expanded="false" />
-            <marker date="1521617045000" expanded="true" signature="5970:5979" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -710,16 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
           <caret line="76" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="280" selection-end-column="1" />
-          <folding>
-            <element signature="n#prefixKey#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#idKey#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#idListKey#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#tableName#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#hosts#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#writeClient#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#readerClient#0;n#RedisModel#0;n#!!top" expanded="false" />
-            <element signature="n#findById#0;n#RedisModel#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -727,7 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15409">
           <caret line="811" column="38" lean-forward="false" selection-start-line="811" selection-start-column="38" selection-end-line="811" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -735,9 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4199">
           <caret line="224" column="5" lean-forward="false" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
-          <folding>
-            <element signature="n#tableName#0;n#SsdbModel#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -746,7 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,7 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -762,7 +715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -770,7 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -778,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -794,7 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,7 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,15 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,7 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,6 +771,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/Core/Core_d.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="188" column="9" lean-forward="false" selection-start-line="188" selection-start-column="9" selection-end-line="188" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka/consumer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kafka/producer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/swoole/Timer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

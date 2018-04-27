@@ -1,13 +1,13 @@
 <?php
 $rk = new RdKafka\Consumer();
 $rk->setLogLevel(LOG_DEBUG);
-$rk->addBrokers('localhost:9092');
+$rk->addBrokers('localhost:9092,localhost:9192,localhost:9292');
 $offset = 1;
-$topic = $rk->newTopic('test');
+$topic = $rk->newTopic('test-x');
 $partition = 0;
-$topic->consumeStart($partition, 0);
+$topic->consumeStart($partition, $offset);
 while (true) {
-    $message = $topic->consume($partition, 3);
+    $message = $topic->consume($partition, 100);
     if (!is_object($message)) {
         continue;
     }
@@ -16,12 +16,8 @@ while (true) {
             print_r($message);
             break;
         case RD_KAFKA_RESP_ERR__PARTITION_EOF:
-            echo 'eof' . PHP_EOL;
-            sleep(1);
             break;
         case RD_KAFKA_RESP_ERR__TIMED_OUT:
-            echo 'out' . PHP_EOL;
-            sleep(1);
             break;
         default:
             throw new \Exception($message->errstr(), $message->err);
