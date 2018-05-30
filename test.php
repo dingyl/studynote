@@ -1,6 +1,1 @@
-<?php
-$directorys = new DirectoryIterator('/tmp');
-
-foreach ($directorys as $directory) {
-    echo $directory . PHP_EOL;
-}
+<img src="https://img.momoyuedu.cn/chance/users/avatar/20180525115b0784d0392b8.jpg" alt="">
