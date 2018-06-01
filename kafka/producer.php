@@ -14,4 +14,4 @@ $name = 'test';
 
 $queue = KafkaQueue::getInstance($host, $name);
 
-$queue->push('dingyaoli');
+$queue->push('dingyaoli' . time());

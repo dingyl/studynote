@@ -6,14 +6,14 @@ $name = 'test';
 
 $queue = KafkaQueue::getInstance($host, $name);
 
-
-
 while(1)
 {
-    $message = $message = $queue->pop();
+    $message = $queue->pop();
+
     switch ($message->err) {
         case RD_KAFKA_RESP_ERR_NO_ERROR:
             var_dump($message);
+            $queue->commit();
             break;
         case RD_KAFKA_RESP_ERR__PARTITION_EOF:
             echo "No more messages; will wait for more\n";
