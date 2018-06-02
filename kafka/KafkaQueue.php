@@ -7,7 +7,6 @@ class KafkaQueue
     protected $id;
     protected $consumer_topic;
     protected $producer_topic;
-    protected $message;
     protected static $ins;
 
     const DEFAULT_PARTITION = 0;
@@ -30,11 +29,10 @@ class KafkaQueue
         $reader = new \RdKafka\Consumer($conf);
         $reader->addBrokers($host);
         $topicConf = new \RdKafka\TopicConf();
-//        $topicConf->set('auto.commit.interval.ms', 100);
+        $topicConf->set('auto.commit.enable', 'false');
         $topicConf->set('offset.store.method', 'file');
         $topicConf->set('offset.store.path', sys_get_temp_dir());
-//        $topicConf->set('auto.offset.reset', 'smallest');
-        $topicConf->set('auto.commit.enable', 'false');
+        $topicConf->set('auto.commit.interval.ms', 100);
         $this->consumer_topic = $reader->newTopic($name, $topicConf);
         $this->consumer_topic->consumeStart(self::DEFAULT_PARTITION, RD_KAFKA_OFFSET_STORED);
     }
@@ -51,31 +49,38 @@ class KafkaQueue
         return self::$ins;
     }
 
-    # 发送消息
+    # 发送字符消息
     public function push($message)
     {
         $this->producer_topic->produce(self::DEFAULT_PARTITION, 0, $message);
     }
 
-    # 获取消息
+    # 获取字符消息
     public function pop()
     {
-
         $message = $this->consumer_topic->consume(self::DEFAULT_PARTITION, 120 * 1000);
-        $this->message = $message;
-        return $message;
+        if ($message && $message->err == RD_KAFKA_RESP_ERR_NO_ERROR) {
+            return $message->payload;
+        } else {
+            return null;
+        }
     }
 
-    # 取指定位置的消息
-    public function pos($offset)
+    # 发送数组消息
+    public function pushJson($data)
     {
-        $this->consumer_topic->consumeStart(self::DEFAULT_PARTITION, $offset);
+        $message = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $this->push($message);
     }
 
-    public function commit()
+    # 获取数组消息
+    public function popJson()
     {
-        if ($this->message && $this->message->err == RD_KAFKA_RESP_ERR_NO_ERROR) {
-            $this->consumer_topic->offsetStore($this->message->partition, $this->message->offset);
+        $msg = $this->pop();
+        if ($msg) {
+            return json_decode($msg, true);
+        } else {
+            return null;
         }
     }
 }
