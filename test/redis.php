@@ -47,7 +47,7 @@ $redis->connect('127.0.0.1', 6379);
 $prefix = 'age_';
 $num = 1000000;
 
-$bench = new BenchTest();
+$bench = new BenchUtil();
 $bench->start();
 
 //$bench->execute('set赋值测试', function () use ($redis, $prefix, $num) {
