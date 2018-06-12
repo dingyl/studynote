@@ -1,17 +1,17 @@
 <?php
 
 //日志文件地址
-define('LOG_DIR',__DIR__);
-define('LOG_FILE',LOG_DIR.'/development.log');
+define('LOG_DIR', __DIR__);
+define('LOG_FILE', LOG_DIR . '/development.log');
 
 //定义系统换行符
 //windows系统
-if(in_array(PHP_OS,['WIN32', 'WINNT', 'Windows'])){
-    define('SYSTEM_CRLF',"\r\n");
-}else if(in_array(PHP_OS,['Darwin'])){//mac系统
-    define('SYSTEM_CRLF',"\r");
-}else{
-    define('SYSTEM_CRLF',"\n");
+if (in_array(PHP_OS, ['WIN32', 'WINNT', 'Windows'])) {
+    define('SYSTEM_CRLF', "\r\n");
+} else if (in_array(PHP_OS, ['Darwin'])) {//mac系统
+    define('SYSTEM_CRLF', "\r");
+} else {
+    define('SYSTEM_CRLF', "\n");
 }
 
 function getMimes()
@@ -121,22 +121,24 @@ function p($arr)
  * 切换日志目录
  * @param $file_name
  */
-function switchLog($file_name){
-    define('LOG_FILE',LOG_DIR.DIRECTORY_SEPARATOR.$file_name);
+function switchLog($file_name)
+{
+    define('LOG_FILE', LOG_DIR . DIRECTORY_SEPARATOR . $file_name);
 }
 
 
 /**
  * 打印日志函数
  */
-function debug(){
+function debug()
+{
     $args = func_get_args();
     $str = '';
-    foreach($args as $argv){
-        if(is_string($argv)){
-            $str .= ' '.$argv;
-        }else{
-            $str .= ' '.json_encode($argv);
+    foreach ($args as $argv) {
+        if (is_string($argv)) {
+            $str .= ' ' . $argv;
+        } else {
+            $str .= ' ' . json_encode($argv);
         }
     }
     $time = date('[Y-m-d H:i:s]');
@@ -148,8 +150,8 @@ function debug(){
     $class = isset($backtrace_call['class']) ? $backtrace_call['class'] : '';
     $type = isset($backtrace_call['type']) ? $backtrace_call['type'] : '';
     $func = $backtrace_call['function'];
-    $info = "$time $file:$line $class$type$func $str".SYSTEM_CRLF;
-    error_log($info,3,LOG_FILE);
+    $info = "$time $file:$line $class$type$func $str" . SYSTEM_CRLF;
+    error_log($info, 3, LOG_FILE);
 }
 
 
@@ -157,15 +159,16 @@ function debug(){
  * 行输出函数
  * @param $str
  */
-function echoLine($str){
-    if(is_array($str)){
+function echoLine($str)
+{
+    if (is_array($str)) {
         print_r($str);
-        return ;
+        return;
     }
-    if(!is_string($str)){
+    if (!is_string($str)) {
         $str = json_encode($str);
     }
-    echo "$str".SYSTEM_CRLF;
+    echo "$str" . PHP_EOL;
 }
 
 
@@ -329,8 +332,9 @@ function getBrowser()
  * 判断是否是微信浏览器
  * @return bool
  */
-function isWeixin(){
-    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+function isWeixin()
+{
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
         return true;
     }
     return false;
@@ -428,7 +432,6 @@ function getClientIp()
 }
 
 
-
 /**
  * 获取ip的地址信息
  * @param string $ip
@@ -437,7 +440,7 @@ function getClientIp()
 function getAddress($ip)
 {
     $info = file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
-    $info = json_decode($info,true);
+    $info = json_decode($info, true);
     return $info['data'];
 }
 
@@ -446,12 +449,13 @@ function getAddress($ip)
  * 根据ip地址获取城市信息
  * @return array
  */
-function getLocalAddress(){
+function getLocalAddress()
+{
     $url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json";
     $json = file_get_contents($url);
     $address = json_decode($json);
     $info = [];
-    if(isset($address->country)){
+    if (isset($address->country)) {
         $info = [
             'country' => $address->country,
             'province' => $address->province,
@@ -469,13 +473,14 @@ function getLocalAddress(){
  * @param $city_name
  * @return bool|mixed|string
  */
-function getWeatherInfo($city_name){
+function getWeatherInfo($city_name)
+{
     $pinyin = pinyin($city_name);
     $city_code = getCityCode($pinyin);
     $url = "http://wthrcdn.etouch.cn/weather_mini?citykey=$city_code";
     $info = file_get_contents($url);
     $info = gzdecode($info);
-    $info = json_decode($info,true);
+    $info = json_decode($info, true);
     return $info;
 }
 
@@ -485,16 +490,17 @@ function getWeatherInfo($city_name){
  * @param $mobile
  * @return array
  */
-function getMobileInfo($mobile){
+function getMobileInfo($mobile)
+{
     $url = "https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=$mobile";
     $info = file_get_contents($url);
-    $info = trim(explode('=',$info)[1]);
-    $info = preg_replace('/[\t\r\n \{\}]+/','',$info);
-    $info = explode(',',$info);
+    $info = trim(explode('=', $info)[1]);
+    $info = preg_replace('/[\t\r\n \{\}]+/', '', $info);
+    $info = explode(',', $info);
     $temp = [];
-    foreach($info as $value){
-        $key_value = explode(':',$value);
-        $temp[$key_value[0]] = trim(iconv('GB2312','UTF-8',$key_value[1]),'\'');
+    foreach ($info as $value) {
+        $key_value = explode(':', $value);
+        $temp[$key_value[0]] = trim(iconv('GB2312', 'UTF-8', $key_value[1]), '\'');
     }
     return $temp;
 }
@@ -505,14 +511,14 @@ function getMobileInfo($mobile){
  * @param array $data
  * @return string
  */
-function signDate($data=[],$secret)
+function signDate($data = [], $secret)
 {
     ksort($data);
     $signStr = [];
-    foreach ($data as $key => $val){
+    foreach ($data as $key => $val) {
         $signStr[] = $key . $val;
     }
-    $signStr = implode('&',$signStr);
+    $signStr = implode('&', $signStr);
     $signature = md5($secret . strtolower($signStr) . $secret);
     return $signature;
 }
@@ -522,21 +528,22 @@ function signDate($data=[],$secret)
  * 接口验证签名
  * @return array
  */
-function validSign($secret){
+function validSign($secret)
+{
     $params = $_REQUEST;
     if ($params) {
         $current_time = time();
         $signature = $params['signature'];
-        if($signature){
+        if ($signature) {
             unset($params['signature']);
-        }else{
+        } else {
             return false;
         }
         //允许3分钟的延迟
-        if($params['timestamp']>$current_time || $params['timestamp']<$current_time-180){
+        if ($params['timestamp'] > $current_time || $params['timestamp'] < $current_time - 180) {
             return false;
         }
-        $sign = signDate($params,$secret);
+        $sign = signDate($params, $secret);
         if ($signature == $sign) {
             return true;
         }
@@ -549,28 +556,29 @@ function validSign($secret){
  * @param $str
  * @return mixed
  */
-function replace_DBC2SBC($str) {
+function replace_DBC2SBC($str)
+{
     $DBC = Array(
-        '０' , '１' , '２' , '３' , '４' ,
-        '５' , '６' , '７' , '８' , '９' ,
-        'Ａ' , 'Ｂ' , 'Ｃ' , 'Ｄ' , 'Ｅ' ,
-        'Ｆ' , 'Ｇ' , 'Ｈ' , 'Ｉ' , 'Ｊ' ,
-        'Ｋ' , 'Ｌ' , 'Ｍ' , 'Ｎ' , 'Ｏ' ,
-        'Ｐ' , 'Ｑ' , 'Ｒ' , 'Ｓ' , 'Ｔ' ,
-        'Ｕ' , 'Ｖ' , 'Ｗ' , 'Ｘ' , 'Ｙ' ,
-        'Ｚ' , 'ａ' , 'ｂ' , 'ｃ' , 'ｄ' ,
-        'ｅ' , 'ｆ' , 'ｇ' , 'ｈ' , 'ｉ' ,
-        'ｊ' , 'ｋ' , 'ｌ' , 'ｍ' , 'ｎ' ,
-        'ｏ' , 'ｐ' , 'ｑ' , 'ｒ' , 'ｓ' ,
-        'ｔ' , 'ｕ' , 'ｖ' , 'ｗ' , 'ｘ' ,
-        'ｙ' , 'ｚ' , '－' , '　' , '：' ,
-        '。' , '，' , '／' , '％' , '＃' ,
-        '！' , '＠' , '＆' , '（' , '）' ,
-        '＜' , '＞' , '＂' , '＇' , '？' ,
-        '［' , '］' , '｛' , '｝' , '＼' ,
-        '｜' , '＋' , '＝' , '＿' , '＾' ,
-        '￥' , '￣' , '｀' , '“' , '”',
-        '；' , '·'
+        '０', '１', '２', '３', '４',
+        '５', '６', '７', '８', '９',
+        'Ａ', 'Ｂ', 'Ｃ', 'Ｄ', 'Ｅ',
+        'Ｆ', 'Ｇ', 'Ｈ', 'Ｉ', 'Ｊ',
+        'Ｋ', 'Ｌ', 'Ｍ', 'Ｎ', 'Ｏ',
+        'Ｐ', 'Ｑ', 'Ｒ', 'Ｓ', 'Ｔ',
+        'Ｕ', 'Ｖ', 'Ｗ', 'Ｘ', 'Ｙ',
+        'Ｚ', 'ａ', 'ｂ', 'ｃ', 'ｄ',
+        'ｅ', 'ｆ', 'ｇ', 'ｈ', 'ｉ',
+        'ｊ', 'ｋ', 'ｌ', 'ｍ', 'ｎ',
+        'ｏ', 'ｐ', 'ｑ', 'ｒ', 'ｓ',
+        'ｔ', 'ｕ', 'ｖ', 'ｗ', 'ｘ',
+        'ｙ', 'ｚ', '－', '　', '：',
+        '。', '，', '／', '％', '＃',
+        '！', '＠', '＆', '（', '）',
+        '＜', '＞', '＂', '＇', '？',
+        '［', '］', '｛', '｝', '＼',
+        '｜', '＋', '＝', '＿', '＾',
+        '￥', '￣', '｀', '“', '”',
+        '；', '·'
     );
     $SBC = Array(
         '0', '1', '2', '3', '4',
@@ -588,7 +596,7 @@ function replace_DBC2SBC($str) {
         'y', 'z', '-', ' ', ':',
         '.', ',', '/', '%', '#',
         '!', '@', '&', '(', ')',
-        '<', '>', '"', '\'','?',
+        '<', '>', '"', '\'', '?',
         '[', ']', '{', '}', '\\',
         '|', '+', '=', '_', '^',
         '$', '~', '`', '"', '"',
@@ -597,11 +605,12 @@ function replace_DBC2SBC($str) {
     return str_replace($DBC, $SBC, $str);
 }
 
-function hashCode($str) {
+function hashCode($str)
+{
     $str = (string)$str;
     $hash = 0;
     $len = strlen($str);
-    if ($len == 0 )
+    if ($len == 0)
         return $hash;
 
     for ($i = 0; $i < $len; $i++) {
@@ -614,12 +623,14 @@ function hashCode($str) {
     return $hash;
 }
 
-function simHashCode($str){
+function simHashCode($str)
+{
     return decbin(hashCode($str));
 }
 
 
-function simHash($text){
+function simHash($text)
+{
     $so = scws_new();
     $so->set_charset('utf8'); //编码
     $so->set_duality(0);  //散字二元
@@ -627,51 +638,30 @@ function simHash($text){
     $so->set_multi(0);
     $str = replace_DBC2SBC($text);
     //过滤字符
-    $filter = [',','.','-','_','`','、','"',"'",":",';'];
+    $filter = [',', '.', '-', '_', '`', '、', '"', "'", ":", ';'];
     $so->send_text($str);
     $hash = [];
-    while($words = $so->get_result())
-    {
-        foreach($words as $word){
+    while ($words = $so->get_result()) {
+        foreach ($words as $word) {
             $s = $word['word'];
             $weight = intval($word['idf']);
             $hash_code = hashCode($s);
-            if(!in_array($s,$filter) && strlen($hash_code)>=6 && $weight){
+            if (!in_array($s, $filter) && strlen($hash_code) >= 6 && $weight) {
                 $code = decbin($hash_code);
-                $code = str_repeat('0',32 - strlen($code)).$code;
-                for($i=1;$i<=32;$i++){
+                $code = str_repeat('0', 32 - strlen($code)) . $code;
+                for ($i = 1; $i <= 32; $i++) {
                     $value = intval($code[$i]);
-                    if($value){
+                    if ($value) {
                         $hash[$i] += $weight;
-                    }else{
+                    } else {
                         $hash[$i] -= $weight;
                     }
                 }
             }
         }
     }
-    for($i=1;$i<=32;$i++){
-        $hash[$i] = intval($hash[$i])>0 ? 1 : 0 ;
+    for ($i = 1; $i <= 32; $i++) {
+        $hash[$i] = intval($hash[$i]) > 0 ? 1 : 0;
     }
-    return implode('',$hash);
+    return implode('', $hash);
 }
-
-//levenshtein($sim_hash1,$sim_hash2); 用来计算两者之间的距离
-
-//require "curl/Curl.php";
-//$curl = new Curl("http://news.ifeng.com/a/20180107/54893174_0.shtml");
-//$content = $curl->getContent();
-//echo $content;die;
-
-$content1 = "对中央委员会成员和省部级主要领导干部提出了信念过硬、政治过硬、立足于共产党人须臾不忘的初心使命，与政治自觉。，党领导人民进行伟大社会革命才不断取得胜利。在新时代、伟大梦想，党的建设新的伟大工程起着决定性作用。贯彻党的十九大报告提出的新时代党的建设总要求，以党的自我革命来推动伟大社会革命，这既是我们党作为马克思主义政党建设和发展的内在需要，也是我们党领导人民进行伟大社会革命的客观要求。敢于自我革命，我们党才能让自身始终过硬。必须看到，决胜全面建成小康社会的艰巨任务、实现中华民族伟大复兴的历史使命，对我们党提出了前所未有的新挑战新要求，影响党的先进性、弱化党的纯洁性的各种因素具有很强的危险性和破坏性。这就决定了新时代党的建设新的伟大工程，一个极为重要的方面就是要发挥彻底的自我革命精神。全党同志要深刻牢记习近平总书记提出的“四个不容易”：“功成名就时做到居安思危、保持创业初期那种励精图治的精神状态不容易，执掌政权后做到节俭内敛、敬终如始不容易，承平时期严以治吏、防腐戒奢不容易，重大变革关头顺乎潮流、顺应民心不容易”，要深刻懂得我们这样一个有8900多万名党员、450多万个基层党组织的大党，能打败我们的只有我们自己。只有敢于刀刃向内，敢于刮骨疗伤，敢于壮士断腕，才能防止祸起萧墙，让自身始终过硬，始终成为时代先锋、民族脊梁，始终成为马克思主义执政党。以自我革命的精神把党建设好，必须抓住“关键少数”。习近平总书记提出的信念过硬、政治过硬、责任过硬、能力过硬、作风过硬5点要求，是对中央委员会成员和省部级主要领导干部提出的，也是对全党同志特别是各级领导干部的期望。只要我们坚定理想信念，始终把人民群众放在心里，牢固树立“四个意识”，发扬更加强烈的担当精神，全面增强领导能力和执政水平，在服务人民中不断完善自己，我们党就会拥有无比强大力量，经得起各种风浪考验，始终受到人民衷心拥护。办好中国的事情，关键在党。认真学习贯彻习近平总书记“1·5”重要讲话精神，一以贯之推进党的建设新的伟大工程，我们就一定能把党建设得更加坚强有力，夺取新时代坚持和发展中国特色社会主义这场伟大社会革命的新胜利";
-$content3 = "对中央委员会成员和省部级主要领导干部提出了信念过硬、政治过硬、责任过硬、能力过硬、作风过硬的5点要求。深邃的历史视野，深沉的忧患意识，深刻的思想境界，立足于共产党人须臾不忘的初心使命，彰显了大国大党领袖的胸襟格局，体现了马克思主义执政党的自我革命勇气与政治自觉。勇于自我革命，从严管党治党，是我们党最鲜明的品格。回望党的97年历史，正是坚持自我革命、加强自身建设，我们党才始终走在时代前列，党领导人民进行伟大社会革命才不断取得胜利。在新时代，坚持和发展中国特色社会主义，党的领导是根本保证；统揽伟大斗争、伟大工程、伟大事业、伟大梦想，党的建设新的伟大工程起着决定性作用。贯彻党的十九大报告提出的新时代党的建设总要求，以党的自我革命来推动伟大社会革命，这既是我们党作为马克思主义政党建设和发展的内在需要，也是我们党领导人民进行伟大社会革命的客观要求。敢于自我革命，我们党才能让自身始终过硬。必须看到，决胜全面建成小康社会的艰巨任务、实现中华民族伟大复兴的历史使命，对我们党提出了前所未有的新挑战新要求，影响党的先进性、弱化党的纯洁性的各种因素具有很强的危险性和破坏性。这就决定了新时代党的建设新的伟大工程，一个极为重要的方面就是要发挥彻底的自我革命精神。全党同志要深刻牢记习近平总书记提出的“四个不容易”：“功成名就时做到居安思危、保持创业初期那种励精图治的精神状态不容易，执掌政权后做到节俭内敛、敬终如始不容易，承平时期严以治吏、防腐戒奢不容易，重大变革关头顺乎潮流、顺应民心不容易”，要深刻懂得我们这样一个有8900多万名党员、450多万个基层党组织的大党，能打败我们的只有我们自己。只有敢于刀刃向内，敢于刮骨疗伤，敢于壮士断腕，才能防止祸起萧墙，让自身始终过硬，始终成为时代先锋、民族脊梁，始终成为马克思主义执政党。以自我革命的精神把党建设好，必须抓住“关键少数”。习近平总书记提出的信念过硬、政治过硬、责任过硬、能力过硬、作风过硬5点要求，是对中央委员会成员和省部级主要领导干部提出的，也是对全党同志特别是各级领导干部的期望。只要我们坚定理想信念，始终把人民群众放在心里，牢固树立“四个意识”，发扬更加强烈的担当精神，全面增强领导能力和执政水平，在服务人民中不断完善自己，我们党就会拥有无比强大力量，经得起各种风浪考验，始终受到人民衷心拥护。办好中国的事情，关键在党。认真学习贯彻习近平总书记“1·5”重要讲话精神，一以贯之推进党的建设新的伟大工程，我们就一定能把党建设得更加坚强有力，夺取新时代坚持和发展中国特色社会主义这场伟大社会革命的新胜利";
-$content2 = "我国科技界要坚定创新自信，坚定敢为天下先的志向，在独创独有上下功夫，勇于挑战最前沿的科学问题，提出更多原创理论，作出更多原创发现，力争在重要科技领域实现跨越发展，跟上甚至引领世界科技发展新方向，掌握新一轮全球科技竞争的战略主动。";
-
-$sim_hash1 = simHash($content1);
-$sim_hash2 = simHash($content3);
-
-echo time()."<br/>";
-for($i=0;$i<=1000000;$i++){
-    levenshtein($sim_hash1,$sim_hash2);
-}
-echo time()."<br/>";

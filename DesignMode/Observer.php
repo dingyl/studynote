@@ -1,5 +1,7 @@
 <?php
 
+# 观察者模式
+
 class Users implements SplSubject
 {
     public $observers = [];

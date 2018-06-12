@@ -1,29 +1,55 @@
 <?php
 
-# 单例模式
+require_once 'utils.php';
 
-class Model
+# 中介者模式
+
+
+abstract class AbstractMediator
 {
-    private static $ins;
+    protected $purchase;
+    protected $sale;
+    protected $stock;
 
-    private function __construct()
+    public function __construct($purchase, $sale, $stock)
     {
+        $this->purchase = $purchase;
+        $this->sale = $sale;
+        $this->stock = $stock;
     }
 
-    private function __clone()
-    {
-    }
+    abstract public function execute();
+}
 
-    public static function getIns()
+class Mediator extends AbstractMediator
+{
+    public function execute()
     {
-        if (!self::$ins instanceof self) {
-            self::$ins = new self();
-        }
-        return self::$ins;
+        // TODO: Implement execute() method.
     }
 }
 
 
-$model1 = Model::getIns();
-$model2 = Model::getIns();
-var_dump($model1 === $model2);
+abstract class AbstractColleague
+{
+    protected $mediator;
+
+    public function __construct(AbstractMediator $mediator)
+    {
+        $this->mediator = $mediator;
+    }
+}
+
+
+class Purchase extends AbstractColleague
+{
+    public function buyIBMComputer()
+    {
+
+    }
+
+    public function refuseBuyIBM($number)
+    {
+        $this->mediator->execute();
+    }
+}
