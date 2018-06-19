@@ -4,43 +4,41 @@
     <title>录制页面</title>
 </head>
 <body>
-    <video autoplay id="sourcevid" style="width:640px;height:480px"></video>
-    <canvas id="output" style="display:none"></canvas>
-    <script type="text/javascript" charset="utf-8">
-        if( document.createElement('canvas').getContext ) {
-            var socket = new WebSocket("ws://127.0.0.1:8080"),
+<video autoplay id="sourcevid" style="width:640px;height:480px"></video>
+<canvas id="output" style="display:none"></canvas>
+<script type="text/javascript" charset="utf-8">
+    if (document.createElement('canvas').getContext) {
+        var socket = new WebSocket("ws://127.0.0.1:8080"),
             back = document.getElementById('output'),
             backcontext = back.getContext('2d'),
             video = document.getElementsByTagName('video')[0];
 
-            socket.onopen = function() {
-                draw();
-            }
-            
-            var success = function(stream) {
-                video.src = window.URL.createObjectURL(stream);
-            }
+        socket.onopen = function () {
+            draw();
+        };
+        var success = function (stream) {
+            video.src = window.URL.createObjectURL(stream);
+        };
 
-            var draw = function() {
-                try {
-                    backcontext.drawImage(video,0,0, back.width, back.height);
-                } catch(e) {
-                    if (e.name == "NS_ERROR_NOT_AVAILABLE") {
-                        return setTimeout(draw, 100);
-                    } else {
-                        throw e;
-                    }
+        var draw = function () {
+            try {
+                backcontext.drawImage(video, 0, 0, back.width, back.height);
+            } catch (e) {
+                if (e.name == "NS_ERROR_NOT_AVAILABLE") {
+                    return setTimeout(draw, 100);
+                } else {
+                    throw e;
                 }
-                socket.send(back.toDataURL("image/jpeg", 0.5));
-                setTimeout(draw, 100);
             }
-
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia || navigator.msGetUserMedia;
-            navigator.getUserMedia({video:true, audio:false}, success, console.log);
-        } else {
-            alert('你的浏览器不支持html5，请先更换浏览器。。');
-        }
-    </script>
+            socket.send(back.toDataURL("image/jpeg", 1));
+            setTimeout(draw, 100);
+        };
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia;
+        navigator.getUserMedia({video: true, audio: false}, success, console.log);
+    } else {
+        alert('你的浏览器不支持html5，请先更换浏览器。。');
+    }
+</script>
 </body>
 </html>

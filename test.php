@@ -1,55 +1,17 @@
 <?php
 
-require_once 'utils.php';
+$objs = [];
 
-# 中介者模式
-
-
-abstract class AbstractMediator
-{
-    protected $purchase;
-    protected $sale;
-    protected $stock;
-
-    public function __construct($purchase, $sale, $stock)
-    {
-        $this->purchase = $purchase;
-        $this->sale = $sale;
-        $this->stock = $stock;
-    }
-
-    abstract public function execute();
-}
-
-class Mediator extends AbstractMediator
-{
-    public function execute()
-    {
-        // TODO: Implement execute() method.
-    }
+for ($i = 1; $i <= 20; $i++) {
+    $obj = new stdClass();
+    $obj->site = mt_rand(1, 5);
+    $objs[] = $obj;
 }
 
 
-abstract class AbstractColleague
-{
-    protected $mediator;
-
-    public function __construct(AbstractMediator $mediator)
-    {
-        $this->mediator = $mediator;
-    }
-}
+$filters = array_map(function($obj){
+    return $obj->site;
+},$objs);
 
 
-class Purchase extends AbstractColleague
-{
-    public function buyIBMComputer()
-    {
-
-    }
-
-    public function refuseBuyIBM($number)
-    {
-        $this->mediator->execute();
-    }
-}
+print_r($filters);
