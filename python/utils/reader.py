@@ -44,6 +44,3 @@ def get_item_info(item_file):
         user_click[userid].append(itemid)
     fp.close()
     return user_click
-
-user_click = get_user_click("../data/ratings.csv")
-print(user_click['2'])
