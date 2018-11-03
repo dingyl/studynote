@@ -1,17 +1,9 @@
 <?php
 
-$objs = [];
-
-for ($i = 1; $i <= 20; $i++) {
-    $obj = new stdClass();
-    $obj->site = mt_rand(1, 5);
-    $objs[] = $obj;
-}
+$arr = [1, 2, 3, 4];
+$res = array_reduce($arr, function ($x, $y) {
+    return $x . '-' . $y;
+});
 
 
-$filters = array_map(function($obj){
-    return $obj->site;
-},$objs);
-
-
-print_r($filters);
+echo $res;
