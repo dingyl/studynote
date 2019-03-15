@@ -1,6 +1,23 @@
+<style>
+
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    table {
+        width: 100%;
+        text-align: center;
+    }
+
+    table > tr {
+        border-bottom: 1px solid #cccccc;
+    }
+</style>
+
 <a href="/news/create">创建</a>
 
-<table style="width: 100%;">
+<table>
     <tr>
         <th>id</th>
         <th>标题</th>
@@ -13,10 +30,10 @@
             <td><?php echo $item->id ?></td>
             <td><?php echo $item->title ?></td>
             <td><?php echo $item->content ?></td>
-            <td><?php echo $item->created_at ?></td>
+            <td><?php echo date('Y-m-d H:i', $item->created_at) ?></td>
             <td>
-                <a href="/news/update/<?php echo $item->id ?>" >更新</a>
-                <a href="/news/delete/<?php echo $item->id ?>" >删除</a>
+                <a href="/news/update/<?php echo $item->id ?>">更新</a>
+                <a href="/news/delete/<?php echo $item->id ?>">删除</a>
             </td>
         </tr>
     <?php } ?>

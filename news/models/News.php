@@ -10,6 +10,13 @@ class News extends BaseModel
         return ['id', 'title', 'content', 'created_at'];
     }
 
+    public static function rules()
+    {
+        return [
+            [['title', 'content'], 'required', 'message' => '%s不能为空']
+        ];
+    }
+
     public static function import($url)
     {
         # 获取内容

@@ -7,7 +7,7 @@ class News extends BaseController
 {
     public function index()
     {
-        $news = \models\News::findAll();
+        $news = \models\News::find();
         $this->view['news'] = $news;
     }
 

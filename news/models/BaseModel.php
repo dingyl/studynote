@@ -9,6 +9,8 @@ namespace models;
 class BaseModel
 {
 
+    public $errors = [];
+
     /**
      * @var array 对象属性
      */
@@ -38,34 +40,14 @@ class BaseModel
         return [];
     }
 
+    public static function rules()
+    {
+        return [];
+    }
+
     public function __construct()
     {
         $this->_is_new_record = true;
-    }
-
-    /**
-     * 表明获取
-     * @return string
-     * @throws \ReflectionException
-     */
-    public static function tableName()
-    {
-        $reflect = new \ReflectionClass(get_called_class());
-        $table_name = camel2UnderLineString($reflect->getShortName());
-        return $table_name;
-    }
-
-    /**
-     * 获取数据库连接
-     * @return null|\PDO
-     */
-    public static function getDb()
-    {
-        if (self::$_db === null) {
-            $dsn = DB_TYPE . ':host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME;
-            self::$_db = new \PDO($dsn, DB_USER, DB_PASSWORD);
-        }
-        return self::$_db;
     }
 
     public function __set($name, $value)
@@ -88,6 +70,45 @@ class BaseModel
         return json_encode($this->getAttributes(), JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * 表明获取
+     * @return string
+     * @throws \ReflectionException
+     */
+    public static function tableName()
+    {
+        $reflect = new \ReflectionClass(get_called_class());
+        $table_name = camel2UnderLineString($reflect->getShortName());
+        return $table_name;
+    }
+
+    /**
+     * 获取数据库连接
+     * @return null|\PDO
+     */
+    protected static function getDb()
+    {
+        if (self::$_db === null) {
+            $dsn = DB_TYPE . ':host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME;
+            self::$_db = new \PDO($dsn, DB_USER, DB_PASSWORD);
+        }
+        return self::$_db;
+    }
+
+    /**
+     * @param $sql
+     * @param array $binds 预处理绑定参数
+     * @return array [$db, $dh, $status]
+     */
+    protected static function executeSql($sql, $binds = [])
+    {
+        $db = self::getDb();
+        $dh = $db->prepare($sql);
+        $status = $dh->execute($binds);
+        return [$db, $status, $dh];
+    }
+
+
     public function toArray(array $fields = [], array $expand = [], $recursive = true)
     {
         return $this->getAttributes();
@@ -100,6 +121,53 @@ class BaseModel
     public function isNewRecord()
     {
         return $this->_is_new_record;
+    }
+
+    /**
+     * 验证函数
+     * @return bool
+     */
+    public function validate()
+    {
+        $rules = static::rules();
+        $errors = [];
+        $flag = true;
+        foreach ($rules as $rule) {
+            list($fields, $type) = $rule;
+            switch ($type) {
+                case 'required':
+                    foreach ($fields as $field) {
+                        if (isBlank($this->$field)) {
+                            $flag = false;
+                            $errors[] = sprintf($rule['message'], $field);
+                        }
+                    }
+                    break;
+                case 'function':
+                    foreach ($fields as $field) {
+                        $func_name = $rule['func_name'];
+                        if (!$this->$func_name($this->$field)) {
+                            $errors[] = sprintf($rule['message'], $field);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        $this->errors = $errors;
+        return $flag;
+    }
+
+    /**
+     * 加载参数函数
+     * @param $data
+     * @return bool
+     */
+    public function load($data)
+    {
+        $this->setAttributes($data);
+        return $this->validate();
     }
 
     /**
@@ -161,56 +229,103 @@ class BaseModel
         return false;
     }
 
-    public static function findAll()
+    /**
+     * 查找数据
+     * @param array $cond
+     * @return static[]|null
+     * @throws \ReflectionException
+     */
+    public static function find($cond = [])
     {
-        $db = self::getDb();
-        $sql = 'select ' . implode(', ', static::fields()) . ' from ' . self::tableName();
-        info('find all sql ', $sql);
-        $query = $db->query($sql);
-        $rows = $query->fetchAll();
-        $models = [];
-        foreach ($rows as $row) {
-            foreach ($row as $field => $value) {
-                if (is_integer($field)) {
-                    unset($row[$field]);
-                }
+        try {
+            $conditions = fetch($cond, 'conditions');
+            $order = fetch($cond, 'order');
+            $bind = fetch($cond, 'bind', []);
+            $sql = 'select ' . implode(', ', static::fields()) . ' from ' . self::tableName();
+            if (!isBlank($conditions)) {
+                $sql .= ' where ' . $conditions;
             }
-            $model = self::createObject($row);
-            $model->_is_new_record = false;
-            $models[] = $model;
+            if (!isBlank($order)) {
+                $sql .= ' order by ' . $order;
+            }
+            list($db, $status, $dh) = self::executeSql($sql, $bind);
+            $models = [];
+            $rows = $dh->fetchAll();
+            foreach ($rows as $row) {
+                foreach ($row as $field => $value) {
+                    if (is_integer($field)) {
+                        unset($row[$field]);
+                    }
+                }
+                $model = self::createObject($row);
+                $model->_is_new_record = false;
+                $models[] = $model;
+            }
+            return $models;
+        } catch (\PDOExecption $e) {
+            info('Exce', $e->getMessage());
+            return null;
         }
-        return $models;
+    }
+
+    /**
+     * 查找第一个数据
+     * @param array $cond
+     * @return mixed|null
+     * @throws \ReflectionException
+     */
+    public static function findFirst($cond = [])
+    {
+        $models = self::find($cond);
+        if (count($models) > 0) {
+            return $models[0];
+        } else {
+            return null;
+        }
+    }
+
+    public static function findPagination($cond = [], $page = 1, $page_size = 30)
+    {
+
+    }
+
+    public static function findForeach($cond)
+    {
+
     }
 
     /**
      * 根据id进行查找
      * @param $id
-     * @return BaseModel|null
+     * @return static|null
      * @throws \ReflectionException
      */
     public static function findById($id)
     {
-        try {
-            $db = self::getDb();
-            $sql = 'select ' . implode(', ', static::fields()) . ' from ' . self::tableName() . ' where id = ' . $id;
-            info('find sql ', $sql);
-            $query = $db->query($sql);
-            $rows = $query->fetchAll();
-            if (count($rows)) {
-                $data = $rows[0];
-                foreach ($data as $field => $value) {
-                    if (is_integer($field)) {
-                        unset($data[$field]);
-                    }
-                }
-                $model = self::createObject($data);
-                $model->_is_new_record = false;
-                return $model;
-            }
-        } catch (\PDOExecption $e) {
-            info('Exce', $e->getMessage());
-            return null;
-        };
+        $cond = [
+            'conditions' => ' id = :id ',
+            'bind' => ['id' => $id],
+        ];
+        return self::findFirst($cond);
+    }
+
+    /**
+     * 根据ids进行查询
+     * @param $ids
+     * @return static[]|null
+     * @throws \ReflectionException
+     */
+    public static function findByIds($ids)
+    {
+        if (is_string($ids)) {
+            $ids = explode(',', $ids);
+        }
+        $ids = array_filter($ids);
+        $cond = [
+            'conditions' => ' id in (:ids) ',
+            'bind' => ['ids' => implode(',', $ids)],
+        ];
+        return self::find($cond);
     }
 
     /**
@@ -234,25 +349,27 @@ class BaseModel
     public function create()
     {
         try {
-            $db = self::getDb();
-            $attributes = $this->_attributes;
-            $fields = [];
-            $values = [];
-            $binds = [];
-            foreach ($attributes as $field => $value) {
-                $fields[] = '`' . $field . '`';
-                $values[] = ':' . $field;
-                $binds[$field] = $value;
+            if ($this->validate()) {
+                $attributes = $this->getAttributes();
+                $fields = [];
+                $values = [];
+                $binds = [];
+                foreach ($attributes as $field => $value) {
+                    $fields[] = '`' . $field . '`';
+                    $values[] = ':' . $field;
+                    $binds[$field] = $value;
+                }
+                $sql = 'insert into ' . static::tableName() . '(' . implode(', ', $fields) . ') values (' . implode(', ', $values) . ') ';
+                info('create sql ', $sql, $binds);
+                list($db, $status) = self::executeSql($sql, $binds);
+                info('status', $status);
+                if ($status) {
+                    $this->_is_new_record = false;
+                    return $db->lastInsertId();
+                }
             }
-            $sql = 'insert into ' . static::tableName() . '(' . implode(', ', $fields) . ') values (' . implode(', ', $values) . ') ';
-            info('create sql ', $sql, $binds);
-            $execute = $db->prepare($sql);
-            $status = $execute->execute($binds);
-            info('status', $status);
-            if ($status) {
-                $this->_is_new_record = false;
-                return $db->lastInsertId();
-            }
+            info('validate fail', $this->errors);
+            return false;
         } catch (\PDOException $e) {
             info('create Exce', $e->getMessage());
             return false;
@@ -267,21 +384,23 @@ class BaseModel
     public function update()
     {
         try {
-            $db = self::getDb();
-            $attributes = $this->_attributes;
-            $fields = [];
-            $binds = [];
-            foreach ($attributes as $field => $value) {
-                $fields[] = $field . ' = ' . ':' . $field;
-                $binds[$field] = $value;
+            if ($this->validate()) {
+                $attributes = $this->_attributes;
+                $fields = [];
+                $binds = [];
+                foreach ($attributes as $field => $value) {
+                    $fields[] = $field . ' = ' . ':' . $field;
+                    $binds[$field] = $value;
+                }
+                $sql = 'update ' . static::tableName() . ' set ' . implode(', ', $fields) . ' where id = :id';
+                info('update sql ', $sql);
+                $binds['id'] = $this->id;
+                list($db, $status) = self::executeSql($sql, $binds);
+                info('status', $status);
+                return $status;
             }
-            $sql = 'update ' . static::tableName() . ' set ' . implode(', ', $fields) . ' where id = :id';
-            info('update sql ', $sql);
-            $execute = $db->prepare($sql);
-            $binds['id'] = $this->id;
-            $status = $execute->execute($binds);
-            info('status', $status);
-            return $status;
+            info('validate fail', $this->errors);
+            return false;
         } catch (\PDOException $e) {
             info('update Exce', $e->getMessage());
             return false;
@@ -296,10 +415,8 @@ class BaseModel
     public function delete()
     {
         try {
-            $db = self::getDb();
             $sql = 'delete from ' . static::tableName() . ' where id = :id';
-            $execute = $db->prepare($sql);
-            $status = $execute->execute(['id' => $this->id]);
+            list($db, $status) = self::executeSql($sql, ['id' => $this->id]);
             return $status;
         } catch (\PDOException $e) {
             info('delete Exce', $e->getMessage());

@@ -81,6 +81,11 @@ function fetch($array, $key, $default_value = '')
     return isset($array[$key]) ? $array[$key] : $default_value;
 }
 
+function isBlank($value)
+{
+    return (is_string($value) && trim($value) === '') || $value === false || is_null($value) || $value === 0 || (is_array($value) && count($value) == 0);
+}
+
 
 function httpGet($url)
 {
