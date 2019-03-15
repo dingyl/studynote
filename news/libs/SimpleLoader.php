@@ -5,11 +5,18 @@ require_once __DIR__ . '/../config/utils.php';
 class SimpleLoader
 {
 
+    /**
+     * 注册自动加载函数
+     */
     public function autoLoader()
     {
         spl_autoload_register([$this, 'loadClass']);
     }
 
+    /**
+     * 自动加载函数实现
+     * @param $name
+     */
     protected function loadClass($name)
     {
         $name = str_replace('\\', '/', $name);
@@ -19,6 +26,10 @@ class SimpleLoader
         }
     }
 
+    /**
+     * 解析路由
+     * @return bool
+     */
     public function run()
     {
         $params = $_GET;

@@ -3,27 +3,51 @@
 namespace models;
 
 /**
- * 所有表模型字段需要主动声明定义
- * @property integer $id
- * @property integer $created_at
- * @property integer $updated_at
  * Class BaseModel
- * @package yii\base
+ * @package models
  */
 class BaseModel
 {
 
-    public $_attributes = [];
+    /**
+     * @var array 对象属性
+     */
+    protected $_attributes = [];
 
+    /**
+     * @var bool 对象是否是新创建标识
+     */
     protected $_is_new_record;
 
+    /**
+     * @var null 数据库连接句柄
+     */
     protected static $_db = null;
+
+    /**
+     * 主键字段名称
+     */
+    const PRIMARY_FIELD = 'id';
+
+    /**
+     * 表字段定义
+     * @return array
+     */
+    public static function fields()
+    {
+        return [];
+    }
 
     public function __construct()
     {
         $this->_is_new_record = true;
     }
 
+    /**
+     * 表明获取
+     * @return string
+     * @throws \ReflectionException
+     */
     public static function tableName()
     {
         $reflect = new \ReflectionClass(get_called_class());
@@ -31,6 +55,10 @@ class BaseModel
         return $table_name;
     }
 
+    /**
+     * 获取数据库连接
+     * @return null|\PDO
+     */
     public static function getDb()
     {
         if (self::$_db === null) {
@@ -40,24 +68,14 @@ class BaseModel
         return self::$_db;
     }
 
-    public function query($sql)
-    {
-        $db = self::getDb();
-        return $db->query($sql);
-    }
-
     public function __set($name, $value)
     {
-        $this->setAttribute($name, $value);
+        return $this->setAttribute($name, $value);
     }
 
     public function __get($name)
     {
-        if (isset($this->_attributes[$name])) {
-            return $this->_attributes[$name];
-        } else {
-            return false;
-        }
+        return $this->getAttribute($name);
     }
 
     public function __isset($name)
@@ -75,45 +93,78 @@ class BaseModel
         return $this->getAttributes();
     }
 
-    //判断是否是新添加的记录
+    /**
+     * 判断是否是新添加的记录
+     * @return bool
+     */
     public function isNewRecord()
     {
         return $this->_is_new_record;
     }
 
-    public function setAttributes($data)
+    /**
+     * 设置属性
+     * @param $data
+     * @param bool $flag
+     */
+    public function setAttributes($data, $flag = false)
     {
         foreach ($data as $name => $value) {
-            $this->setAttribute($name, $value);
+            $this->setAttribute($name, $value, $flag);
         }
     }
 
-    public function getAttributes($names = null, $except = [])
+    /**
+     * 获取所有属性值
+     * @return array
+     */
+    public function getAttributes()
     {
         return $this->_attributes ? $this->_attributes : [];
     }
 
+    /**
+     * 判断是否有某个属性
+     * @param $name
+     * @return bool
+     */
     public function hasAttribute($name)
     {
-        return true;
+        return in_array($name, static::fields());
     }
 
+    /**
+     * 获取某个属性值
+     * @param $name
+     * @return mixed|null
+     */
     public function getAttribute($name)
     {
         return isset($this->_attributes[$name]) ? $this->_attributes[$name] : null;
     }
 
-    public function setAttribute($name, $value)
+    /**
+     * 设置属性值
+     * @param $name
+     * @param $value
+     * @param bool $flag
+     * @return bool
+     */
+    public function setAttribute($name, $value, $flag = false)
     {
         if ($this->hasAttribute($name)) {
-            $this->_attributes[$name] = $value;
+            if ($flag === true || $name != self::PRIMARY_FIELD) {
+                $this->_attributes[$name] = $value;
+            }
+            return true;
         }
+        return false;
     }
 
     public static function findAll()
     {
         $db = self::getDb();
-        $sql = 'select * from ' . self::tableName();
+        $sql = 'select ' . implode(', ', static::fields()) . ' from ' . self::tableName();
         info('find all sql ', $sql);
         $query = $db->query($sql);
         $rows = $query->fetchAll();
@@ -131,27 +182,42 @@ class BaseModel
         return $models;
     }
 
+    /**
+     * 根据id进行查找
+     * @param $id
+     * @return BaseModel|null
+     * @throws \ReflectionException
+     */
     public static function findById($id)
     {
-        $db = self::getDb();
-        $sql = 'select * from ' . self::tableName() . ' where id = ' . $id;
-        info('find sql ', $sql);
-        $query = $db->query($sql);
-        $rows = $query->fetchAll();
-        if (count($rows)) {
-            $data = $rows[0];
-            foreach ($data as $field => $value) {
-                if (is_integer($field)) {
-                    unset($data[$field]);
+        try {
+            $db = self::getDb();
+            $sql = 'select ' . implode(', ', static::fields()) . ' from ' . self::tableName() . ' where id = ' . $id;
+            info('find sql ', $sql);
+            $query = $db->query($sql);
+            $rows = $query->fetchAll();
+            if (count($rows)) {
+                $data = $rows[0];
+                foreach ($data as $field => $value) {
+                    if (is_integer($field)) {
+                        unset($data[$field]);
+                    }
                 }
+                $model = self::createObject($data);
+                $model->_is_new_record = false;
+                return $model;
             }
-            $model = self::createObject($data);
-            $model->_is_new_record = false;
-            return $model;
-        }
-        return null;
+        } catch (\PDOExecption $e) {
+            info('Exce', $e->getMessage());
+            return null;
+        };
     }
 
+    /**
+     * 保存操作
+     * @return bool|string
+     * @throws \ReflectionException
+     */
     public function save()
     {
         if ($this->isNewRecord()) {
@@ -161,66 +227,95 @@ class BaseModel
         }
     }
 
+    /**
+     * @return bool|string
+     * @throws \ReflectionException
+     */
     public function create()
     {
-        $db = self::getDb();
-        $attributes = $this->_attributes;
-        $fields = [];
-        $values = [];
-        $binds = [];
-        foreach ($attributes as $field => $value) {
-            $fields[] = '`' . $field . '`';
-            $values[] = '\'' . $value . '\'';
-//            $param = ':' . $field;
-//            $values[] = '\'' . $param . '\'';
-//            $binds[$param] = $value;
+        try {
+            $db = self::getDb();
+            $attributes = $this->_attributes;
+            $fields = [];
+            $values = [];
+            $binds = [];
+            foreach ($attributes as $field => $value) {
+                $fields[] = '`' . $field . '`';
+                $values[] = ':' . $field;
+                $binds[$field] = $value;
+            }
+            $sql = 'insert into ' . static::tableName() . '(' . implode(', ', $fields) . ') values (' . implode(', ', $values) . ') ';
+            info('create sql ', $sql, $binds);
+            $execute = $db->prepare($sql);
+            $status = $execute->execute($binds);
+            info('status', $status);
+            if ($status) {
+                $this->_is_new_record = false;
+                return $db->lastInsertId();
+            }
+        } catch (\PDOException $e) {
+            info('create Exce', $e->getMessage());
+            return false;
         }
-        $sql = 'insert into ' . static::tableName() . '(' . implode(', ', $fields) . ') values (' . implode(', ', $values) . ') ';
-        info('create sql ', $sql, $binds);
-        $status = $db->exec($sql);
-//        $execute = $db->prepare($sql);
-//        $status = $execute->execute($binds);
-        info('status', $status);
-        if ($status) {
-            $this->_is_new_record = false;
-            return $db->lastInsertId();
-        }
-        return false;
     }
 
+    /**
+     * 数据更新
+     * @return bool
+     * @throws \ReflectionException
+     */
     public function update()
     {
-        $db = self::getDb();
-        $attributes = $this->_attributes;
-        $fields = [];
-        $binds = [];
-        foreach ($attributes as $field => $value) {
-//            $param = ':' . $field;
-            $param = '\'' . $value . '\'';
-            $fields[] = $field . ' = ' . $param;
-//            $binds[$param] = $value;
+        try {
+            $db = self::getDb();
+            $attributes = $this->_attributes;
+            $fields = [];
+            $binds = [];
+            foreach ($attributes as $field => $value) {
+                $fields[] = $field . ' = ' . ':' . $field;
+                $binds[$field] = $value;
+            }
+            $sql = 'update ' . static::tableName() . ' set ' . implode(', ', $fields) . ' where id = :id';
+            info('update sql ', $sql);
+            $execute = $db->prepare($sql);
+            $binds['id'] = $this->id;
+            $status = $execute->execute($binds);
+            info('status', $status);
+            return $status;
+        } catch (\PDOException $e) {
+            info('update Exce', $e->getMessage());
+            return false;
         }
-        $sql = 'update ' . static::tableName() . ' set ' . implode(', ', $fields) . ' where id = ' . $this->id;
-        info('update sql ', $sql);
-        $status = $db->exec($sql);
-//        $execute = $db->prepare($sql);
-//        $status = $execute->execute($binds);
-        info('status', $status);
-        return $status;
     }
 
+    /**
+     * 数据删除
+     * @return bool
+     * @throws \ReflectionException
+     */
     public function delete()
     {
-        $db = self::getDb();
-        $sql = 'delete from `' . static::tableName() . '` where id = ' . $this->id;
-        info('delete sql ', $sql, 'get_called_class', get_called_class());
-        return $db->exec($sql);
+        try {
+            $db = self::getDb();
+            $sql = 'delete from ' . static::tableName() . ' where id = :id';
+            $execute = $db->prepare($sql);
+            $status = $execute->execute(['id' => $this->id]);
+            return $status;
+        } catch (\PDOException $e) {
+            info('delete Exce', $e->getMessage());
+            return false;
+        }
     }
 
+    /**
+     * 使用数组数据创建对象
+     * @param array $data
+     * @return BaseModel
+     */
     public static function createObject($data)
     {
         $model = new static();
-        $model->setAttributes($data);
+        $model->setAttributes($data, true);
         return $model;
     }
 }

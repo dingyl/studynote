@@ -2,8 +2,13 @@
 
 namespace controllers;
 
+use libs\Url;
+
 class BaseController
 {
+    /**
+     * @var array 模板参数
+     */
     protected $view = [];
 
     /**
@@ -34,9 +39,13 @@ class BaseController
         return $_SERVER['REQUEST_METHOD'] == 'POST' ? true : false;
     }
 
+    /**
+     * 跳转
+     * @param $url
+     */
     protected function redirect($url)
     {
-        header('Location: ' . $url);
+        Url::redirect($url);
     }
 
     protected function renderJson($error_code, $error_reason, $data = [])
@@ -48,6 +57,10 @@ class BaseController
         return array_merge($resp, $data);
     }
 
+    /**
+     * 渲染模板
+     * @return false|string
+     */
     protected function renderView()
     {
         ob_start();

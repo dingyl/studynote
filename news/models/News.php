@@ -5,6 +5,11 @@ namespace models;
 class News extends BaseModel
 {
 
+    public static function fields()
+    {
+        return ['id', 'title', 'content', 'created_at'];
+    }
+
     public static function import($url)
     {
         # 获取内容
