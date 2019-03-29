@@ -2,13 +2,17 @@
 
 namespace controllers;
 
-
 class News extends BaseController
 {
+    /**
+     * @return null
+     * @throws \ReflectionException
+     */
     public function index()
     {
         $news = \models\News::find();
         $this->view['news'] = $news;
+        return null;
     }
 
     public function create()
@@ -24,6 +28,11 @@ class News extends BaseController
         $this->view['news'] = $news;
     }
 
+    /**
+     * @param integer $id 编号
+     * @return false|string
+     * @throws \ReflectionException
+     */
     public function update($id)
     {
         $news = \models\News::findById($id);
@@ -34,8 +43,17 @@ class News extends BaseController
             }
         }
         $this->view['news'] = $news;
+        return $this->renderView();
     }
 
+    /**
+     * 功    能: delete
+     * 修改日期: 2019-03-18
+     *
+     * @param int $id 编号
+     * @return array
+     * @throws \ReflectionException
+     */
     public function delete($id)
     {
         $news = \models\News::findById($id);
