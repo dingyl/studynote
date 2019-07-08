@@ -1,49 +1,104 @@
 <?php
-//数组打印函数
-function p($arr){
-    echo "<pre>";
-    print_r($arr);
-    echo "</pre>";
-}
 
-
-//日志打印函数
-function put_log($msg,$file='./put.log'){
-    $msg = var_export($msg,true);
-    $visit_ip = $_SERVER["REMOTE_ADDR"];
-    $visit_time = date("Y-m-d H:i:s",time());
-    error_log($visit_ip.' '.$visit_time." : $msg\r\n",3,$file);
-}
-
-
-
-//魔术引号开启
-//如果 magic_quotes_gpc 为关闭时返回 0，否则返回 1。在 PHP 5.4.O 起将始终返回 FALSE。
-//放入数据库之前要用\引用引号
-function _addslashes(&$arr){
-    foreach ($arr as $k=>$v){
-        if(is_array($v)){
-            $arr[$k] = _addslashes($v);
-        }else{
-            $arr[$k] = addslashes($v);
+// 有序数组合并
+function merge(&$arr, $low, $middle, $high)
+{
+    $left_arr = $right_arr = [];
+    for ($i = $low; $i <= $middle; $i++) {
+        $left_arr[] = $arr[$i];
+    }
+    for ($j = $middle + 1; $j <= $high; $j++) {
+        $right_arr[] = $arr[$j];
+    }
+    $i = $j = 0;
+    $k = $low;
+    while (true && $i < count($left_arr) && $j < count($right_arr)) {
+        if ($left_arr[$i] < $right_arr[$j]) {
+            $arr[$k++] = $left_arr[$i++];
+        } else {
+            $arr[$k++] = $right_arr[$j++];
         }
     }
-}
-
-//魔术引号过滤
-function init_magic_quotes(){
-    if(!get_magic_quotes_gpc()){
-        _addslashes($_REQUEST);
-        _addslashes($_GET);
-        _addslashes($_POST);
+    while ($i < count($left_arr)) {
+        $arr[$k++] = $left_arr[$i++];
+    }
+    while ($j < count($right_arr)) {
+        $arr[$k++] = $right_arr[$j++];
     }
 }
-//思路:在进行数据操作的时候,才对个别数据进行引号过滤.或者采用pdo预处理查询方式
-//sql拼接执行会造成sql注入.主要在where条件和update,insert上出现问题,可对db库进行封装处理
-//防sql注入可以采用mysql的预处理特性,将参数和处理语句分开传送,避免sql拼接时被恶意输入改变元sql语义
 
-//$preparedStatement = $db->prepare('INSERT INTO table (column) VALUES (:column)');
-//$preparedStatement->execute(array(':column' => $unsafeValue));
-//init_magic_quotes();
-//p($_GET);
-?>
+// 合并排序
+function mergeSort(&$arr, $low, $high)
+{
+    if ($low < $high) {
+        $middle = intval(($low + $high) / 2);
+        mergeSort($arr, $low, $middle);
+        mergeSort($arr, $middle + 1, $high);
+        merge($arr, $low, $middle, $high);
+    }
+}
+
+// 快排
+function quickSort(&$arr, $low, $high)
+{
+    if ($low < $high) {
+        $left = $k = $low;
+        $right = $high;
+        $middle = $arr[$k];
+        while ($left < $right) {
+            while ($left < $right && $arr[$right] >= $middle) {
+                $right--;
+            }
+            if ($left < $right) {
+                $arr[$k] = $arr[$right];
+                $k = $right;
+            }
+            while ($left < $right && $arr[$left] <= $middle) {
+                $left++;
+            }
+            if ($left < $right) {
+                $arr[$k] = $arr[$left];
+                $k = $left;
+            }
+        }
+        $arr[$left] = $middle;
+        quickSort($arr, $low, $k);
+        quickSort($arr, $k + 1, $high);
+    }
+}
+
+// 全排
+function fullArrange(&$arr, $index)
+{
+    if ($index == 0) {
+        return [$arr[0]];
+    } else {
+        $rows = fullArrange($arr, $index - 1);
+        $temp_len = count($rows);
+        $temp_arr = [];
+        for ($k = 0; $k < $temp_len; $k++) {
+            $row = $rows[$k];
+            for ($j = 0; $j <= strlen($row); $j++) {
+                $str = substr($row, 0, $j) . $arr[$index] . substr($row, $j);
+                $temp_arr[] = $str;
+            }
+        }
+        return $temp_arr;
+    }
+}
+
+// 全组合
+function fullCombine($arr, $index)
+{
+    if ($index == 0) {
+        return [$arr[0]];
+    } else {
+        $rows = fullCombine($arr, $index - 1);
+        $temp_len = count($rows);
+        $rows[] = $arr[$index];
+        for ($k = 0; $k < $temp_len; $k++) {
+            $rows[] = $rows[$k] . $arr[$index];
+        }
+        return $rows;
+    }
+}

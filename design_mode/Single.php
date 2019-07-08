@@ -18,8 +18,8 @@ class Db
 
     public static function getIns()
     {
-        if (!self::$ins instanceof self) {
-            self::$ins = new self();
+        if (empty(self::$ins)) {
+            self::$ins = new static();
         }
         return self::$ins;
     }
