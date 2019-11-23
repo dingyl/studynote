@@ -1,25 +1,31 @@
 <?php
+
 //协同程序
-class Task {
+class Task
+{
     protected $taskId;
     protected $coroutine;
     protected $sendValue = null;
     protected $beforeFirstYield = true;
 
-    public function __construct($taskId, Generator $coroutine) {
+    public function __construct($taskId, Generator $coroutine)
+    {
         $this->taskId = $taskId;
         $this->coroutine = $coroutine;
     }
 
-    public function getTaskId() {
+    public function getTaskId()
+    {
         return $this->taskId;
     }
 
-    public function setSendValue($sendValue) {
+    public function setSendValue($sendValue)
+    {
         $this->sendValue = $sendValue;
     }
 
-    public function run() {
+    public function run()
+    {
         if ($this->beforeFirstYield) {
             $this->beforeFirstYield = false;
             return $this->coroutine->current();//执行后中断
@@ -30,21 +36,25 @@ class Task {
         }
     }
 
-    public function isFinished() {
+    public function isFinished()
+    {
         return !$this->coroutine->valid();
     }
 }
 
-class Scheduler {
+class Scheduler
+{
     protected $maxTaskId = 0;
     protected $taskMap = []; // taskId => task
     protected $taskQueue;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->taskQueue = new SplQueue();
     }
 
-    public function newTask(Generator $coroutine) {
+    public function newTask(Generator $coroutine)
+    {
         $tid = ++$this->maxTaskId;
         $task = new Task($tid, $coroutine);
         $this->taskMap[$tid] = $task;
@@ -52,11 +62,13 @@ class Scheduler {
         return $tid;
     }
 
-    public function schedule(Task $task) {
+    public function schedule(Task $task)
+    {
         $this->taskQueue->enqueue($task);
     }
 
-    public function run() {
+    public function run()
+    {
         while (!$this->taskQueue->isEmpty()) {
             $task = $this->taskQueue->dequeue();
             $task->run();
@@ -69,14 +81,16 @@ class Scheduler {
     }
 }
 
-function task1() {
+function task1()
+{
     for ($i = 1; $i <= 10; ++$i) {
         echo "This is task 1 iteration $i.\n";
         yield;
     }
 }
 
-function task2() {
+function task2()
+{
     for ($i = 1; $i <= 5; ++$i) {
         echo "This is task 2 iteration $i.\n";
         yield;
