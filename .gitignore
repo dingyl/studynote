@@ -2,4 +2,5 @@
 *.mp4
 elasticsearch/vendor
 composer.lock
+vendor/
 .idea

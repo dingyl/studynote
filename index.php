@@ -1,4 +1,5 @@
 <?php
+
 function createOrder($product_id, $num, $opt = [])
 {
     //根据商品id生成具体的key,key中存的是商品的库存数量
@@ -25,4 +26,5 @@ PRODUCT_SCRIPT;
     }
     return false;
 }
+
 createOrder(1, 1);
